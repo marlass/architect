@@ -1,0 +1,19 @@
+{
+  "minify": false,
+  "options": [
+    "mq",
+    "setClasses"
+  ],
+  "feature-detects": [
+    "test/history",
+    "test/css/flexbox",
+    "test/es5/specification",
+    "test/es5/strictmode",
+    "test/es6/generators",
+    "test/es6/math",
+    "test/es6/number",
+    "test/es6/object",
+    "test/es6/promises",
+    "test/es6/string"
+  ]
+}
