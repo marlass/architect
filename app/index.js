@@ -3,6 +3,8 @@ var express_handlebars  = require('express-handlebars');
 
 var app = express();
 
+app.use('/static', express.static('public'));
+
 app.engine('handlebars', express_handlebars({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
@@ -26,20 +28,28 @@ app.get('/portfolio', function (req, res) {
     res.render('portfolio');
 });
 
+app.get('/portfolio/*', function (req, res) {
+    res.render('portfolio-item');
+});
+
 app.get('/realizacje', function (req, res) {
-    res.render('realizacje');
+    res.render('portfolio');
+});
+
+app.get('/realizacje/*', function (req, res) {
+    res.render('portfolio-item');
 });
 
 app.get('/o-nas', function (req, res) {
-    res.render('o-nas');
+    res.render('about');
 });
 
 app.get('/oferta', function (req, res) {
-    res.render('oferta');
+    res.render('offer');
 });
 
 app.get('/kontakt', function (req, res) {
-    res.render('kontakt');
+    res.render('contact');
 });
 
 app.listen(3000, function () {

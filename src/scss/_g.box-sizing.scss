@@ -1,0 +1,14 @@
+/* stylelint-disable selector-no-universal */
+/* In generic styles universal is allowed */
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+/* stylelint-enable selector-no-universal */

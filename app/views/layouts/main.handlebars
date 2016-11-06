@@ -2,11 +2,38 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Example App</title>
+    <title>Static views</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
+    <header>
+        <div class="header">
+            <nav>
+                <div class="nav">                
+                    <a href="#" class="nav__homepage">
+                        <img src="/static/assets/logo-cropped.png" class="nav__icon">
+                        <span class="nav__title">Architekt</span>
+                    </a>
+                    <label for="menu-toggle" class="nav__menu-toggle" onclick="">Menu</label>  
+                    <input type="checkbox" id="menu-toggle" name="menu" class="nav__menu-checkbox"/>
+                    <ul class="nav__menu">
+                        <li class="nav__item"><a href="#" class="nav__link">About</a></li>
+                        <li class="nav__item"><a href="#" class="nav__link">Offer</a></li>
+                        <li class="nav__item"><a href="#" class="nav__link">Portfolio</a></li>
+                        <li class="nav__item"><a href="#" class="nav__link">Contact</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-    {{{body}}}
-
+    
+    <main>
+        <div class="main">{{{body}}}</div>
+    </main>
+    
+    <footer>
+        <div class="footer"></div>
+    </footer>
 </body>
 </html>

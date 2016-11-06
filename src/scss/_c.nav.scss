@@ -1,0 +1,41 @@
+.nav {
+
+
+
+    &__homepage {
+
+    }
+
+    &__icon {
+
+    }
+
+    &__title {
+
+    }
+
+    &__menu-toggle {
+
+    }
+
+    &__menu-checkbox {
+        display: none;
+    }
+
+    &__menu {
+        display: none;
+
+        .nav__menu-checkbox:checked + & {
+            display: block;
+        }
+
+    }
+
+    &__item {
+
+    }
+
+    &__link {
+
+    }
+}

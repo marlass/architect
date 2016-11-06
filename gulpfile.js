@@ -18,15 +18,13 @@ const config = {
         sass: "./src/scss/"
     },
     dest: {
-        css: "./dist/css/"
+        css: "./app/public/css/"
     }
 }
 
 function server(){
     bs.init({
-        server: {
-            baseDir: "dist",
-        }
+        proxy: 'localhost:3000'
     });
 }
 
@@ -57,4 +55,4 @@ gulp.task('styles', styles);
 gulp.task('watch', gulp.parallel(server, watch));
 gulp.task('build', styles);
 
-gulp.task('default', build);
+gulp.task('default', watch);
