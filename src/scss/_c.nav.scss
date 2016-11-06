@@ -1,21 +1,56 @@
 .nav {
-
-
+    background-color: $white;
+    color: $gray-8;
+    height: 6em;
+    box-shadow: 0 2px 2px $gray-4;
+    width: 100%;
+    position: relative;
 
     &__homepage {
-
+        text-decoration: none;
+        color: $gray-8;
+        height: 100%;
+        display: block;
+        float: left;
     }
 
     &__icon {
+        max-height: 100%;
+        padding: 1.5em .75em 1.5em .5em;
+        float: left;
+        display: block;
 
+        @media all and (min-width: 50em) {
+            padding: 1em;
+        }
     }
 
     &__title {
+        line-height: 5em;
+        display: block;
+        float: left;
+        font-size: 1.2em;
 
+        @media all and (min-width: 50em) {
+            font-size: 1.5em;
+            line-height: 4em;
+        }
     }
 
     &__menu-toggle {
+        display: block;
+        float: right;
+        font-size: 1.2em;
+        height: 100%;
+        line-height: 5em;
+        padding-right: .5em;
+        cursor: pointer;
+        user-select: none;
+        text-transform: uppercase;
 
+        @media all and (min-width: 50em) {
+            display: none;
+        }
     }
 
     &__menu-checkbox {
@@ -23,19 +58,74 @@
     }
 
     &__menu {
-        display: none;
+        transform: scaleY(0);
+        transform-origin: top;
+        position: absolute;
+        top: 6em;
+        padding: 0;
+        width: 100%;
+        margin: 0;
+        float: right;
+        box-shadow: 0 2px 2px 0 $gray-4;
+        transition: transform .3s cubic-bezier(1, .07, .13, .9);
 
         .nav__menu-checkbox:checked + & {
-            display: block;
+            transform: scaleY(1);
+
+            .nav__link {
+                opacity: 1;
+            }
         }
 
+        @media all and (min-width: 50em) {
+            transform: scaleY(1);
+            top: 0;
+            position: relative;
+            width: auto;
+            box-shadow: none;
+            height: 100%;
+        }
     }
 
     &__item {
+        display: block;
+        width: 100%;
+        float: left;
+        background-color: $primary-0;
 
+        &:nth-child( 2 ) {
+            background-color: $primary-1;
+        }
+
+        &:nth-child( 3 ) {
+            background-color: $primary-2;
+        }
+
+        &:nth-child( 4 ) {
+            background-color: $primary-3;
+        }
+
+        @media all and (min-width: 50em) {
+            width: auto;
+            float: left;
+            height: 100%;
+            background-color: white !important;
+        }
     }
 
     &__link {
+        color: $gray-8;
+        text-decoration: none;
+        display: block;
+        font-size: 1.2em;
+        padding: 1em 1.5em;
+        opacity: 0;
+        transition: opacity .3s cubic-bezier(1, .07, .13, .9);
 
+        @media all and (min-width: 50em) {
+            display: inline-block;
+            opacity: 1;
+            padding: 2em 1.5em;
+        }
     }
 }

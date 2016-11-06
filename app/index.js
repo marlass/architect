@@ -3,7 +3,9 @@ var express_handlebars  = require('express-handlebars');
 
 var app = express();
 
-app.use('/static', express.static('public'));
+app.use('/static', express.static('public',{
+  etag: true
+}));
 
 app.engine('handlebars', express_handlebars({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
