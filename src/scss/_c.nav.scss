@@ -6,6 +6,12 @@
     width: 100%;
     position: relative;
 
+    &__inner {
+        max-width: 60em;
+        margin: 0 auto;
+        height: 100%;
+    }
+
     &__homepage {
         text-decoration: none;
         color: $gray-8;
@@ -66,6 +72,7 @@
         width: 100%;
         margin: 0;
         float: right;
+        z-index: 10;
         box-shadow: 0 2px 2px 0 $gray-4;
         transition: transform .3s cubic-bezier(1, .07, .13, .9);
 

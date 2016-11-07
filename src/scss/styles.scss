@@ -13,5 +13,13 @@
 /* --- COMPONENTS --- */
 
 @import 'c.nav';
+@import 'c.masthead';
+@import 'c.about';
+@import 'c.contact';
+@import 'c.offer';
+@import 'c.portfolio';
 
 /* --- UTILITY --- */
+
+@import 'u.accessibility';
+@import 'u.clearfix';
