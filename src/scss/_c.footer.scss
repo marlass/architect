@@ -1,0 +1,13 @@
+.footer {
+    background-color: $gray-8;
+    color: $gray-2;
+    min-height: 2em;
+    width: 100%;
+    float: left;
+    position: relative;
+
+    &__inner {
+        max-width: 60em;
+        margin: 0 auto;
+    }
+}

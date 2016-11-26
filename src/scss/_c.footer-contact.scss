@@ -1,0 +1,17 @@
+.footer-contact {
+    float: left;
+    line-height: 1.5em;
+    font-weight: 300;
+
+
+    &__item {
+        float: left;
+        margin: 0;
+        padding: 1.5em 2.5em 1.5em 1.5em;
+    }
+
+    &__link {
+        text-decoration: underline;
+        color: $gray-2;
+    }
+}

@@ -1,0 +1,15 @@
+.office {
+    width: 100%;
+    padding: 1em;
+
+    &__info {
+        width: 25%;
+        float: left;
+        padding-right: 2em;
+    }
+
+    &__map {
+        width: 75%;
+        float: left;
+    }
+}
