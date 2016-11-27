@@ -45,7 +45,10 @@
     "es6-promise": "^4.0.5",
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
-    "mongoose": "^4.6.5",
-    "whatwg-fetch": "^1.0.0"
+    "whatwg-fetch": "^1.0.0",
+    "jsonwebtoken": "^7.1.9",
+    "mongoose": "^4.7.0",
+    "morgan": "^1.7.0",
+    "body-parser": "^1.15.2"
   }
 }
