@@ -7,6 +7,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
 const cookie = require('cookie-parser');
+const bcrypt = require('bcrypt-nodejs');
 
 const app = express();
 
@@ -29,6 +30,10 @@ app.use(bodyParser.json());
 
 app.use(morgan('dev'));
 
+function isValidPassword (user, password){
+  return bCrypt.compareSync(password, user.password);
+}
+
 passport.use(new LocalStrategy(
   function(username, password, done) {
     User.findOne({ username: username }, function (err, user) {
@@ -36,9 +41,9 @@ passport.use(new LocalStrategy(
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
       }
-      /*if (!user.validPassword(password)) {
+      if (!isValidPassword(user,password)) {
         return done(null, false, { message: 'Incorrect password.' });
-      }*/
+      }
       return done(null, user);
     });
   }
@@ -52,11 +57,6 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  res.redirect('/login')
-}
-
 app.use(cookie());
 app.use(session({secret: 'keyboard cat',
   resave: false,
@@ -64,82 +64,12 @@ app.use(session({secret: 'keyboard cat',
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.post('/login', 
-    passport.authenticate('local',
-        { successRedirect: '/admin',
-        failureRedirect: '/login' })
-);
+/* Admin routes */
+require('./routes/admin.js')(app);
 
-app.get('/login', function (req, res) {
-    res.render('login');
-});
+/* Normal routes */
+require('./routes/front.js')(app);
 
-app.all('/admin/*',ensureAuthenticated, function(req,res){
-  res.render('home');
-});
-
-app.get('/setup', function(req, res) {
-
-  // create a sample user
-  var nick = new User({ 
-    username: 'admin', 
-    password: 'admin',
-    admin: true 
-  });
-
-  // save the sample user
-  nick.save(function(err) {
-    if (err) throw err;
-
-    console.log('User saved successfully');
-    res.json({ success: true });
-  });
-});
-
-/* Normal app routes */
-app.get('/', function (req, res) {
-    res.render('home');
-});
-
-app.get('/about', function (req, res) {
-    res.render('about');
-});
-
-app.get('/contact', function (req, res) {
-    res.render('contact');
-});
-
-app.get('/offer', function (req, res) {
-    res.render('offer');
-});
-
-app.get('/portfolio', function (req, res) {
-    res.render('portfolio');
-});
-
-app.get('/portfolio/*', function (req, res) {
-    res.render('portfolio-item');
-});
-
-app.get('/realizacje', function (req, res) {
-    res.render('portfolio');
-});
-
-app.get('/realizacje/*', function (req, res) {
-    res.render('portfolio-item');
-});
-
-app.get('/o-nas', function (req, res) {
-    res.render('about');
-});
-
-app.get('/oferta', function (req, res) {
-    res.render('offer');
-});
-
-app.get('/kontakt', function (req, res) {
-    res.render('contact');
-});
 
 app.listen(3000, function () {
     console.log('Architect page listening on 3000');
