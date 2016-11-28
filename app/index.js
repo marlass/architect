@@ -3,7 +3,10 @@ const express_handlebars  = require('express-handlebars');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const session = require('express-session');
+const cookie = require('cookie-parser');
 
 const app = express();
 
@@ -26,101 +29,72 @@ app.use(bodyParser.json());
 
 app.use(morgan('dev'));
 
-/* Login and user stuff */
-app.get('/setup', function(req, res) {
-    const nick = new User({
-        name: 'Nick Cerminara',
-        password: 'passwrod'
-    })
-
-    nick.save(function(err) {
-        if (err) throw err;
-        console.log('User saved successfully');
-        res.json({ success: true });
-    })
-})
-
-app.get('/users', function(req, res) {
-    User.find({}, function (err, users) {
-        res.json(users);
-    })
-})
-
-app.post('/login', function(req, res) {
-    User.findOne({
-        name: req.body.name
-    }, function (err, user) {
-        if (err) throw err;
-        if (!user) {
-            res.json({ success: false, message: 'Authentication failed. User not found.' });
-        } else if (user) {
-
-        // check if password matches
-        if (user.password != req.body.password) {
-            res.json({ success: false, message: 'Authentication failed. Wrong password.' });
-        } else {
-
-            // if user is found and password is right
-            // create a token
-            let token = jwt.sign(user, app.get('superSecret'), {
-                expiresIn: '24h' // expires in 24 hours
-            });
-
-            // return the information including token as JSON
-            res.json({
-                success: true,
-                message: 'Enjoy your token!',
-                token: token
-                });
-            }
-        }
-    })
-})
-
-const apiRoutes = express.Router(); 
-
-// route middleware to verify a token
-apiRoutes.use(function(req, res, next) {
-
-  // check header or url parameters or post parameters for token
-  let token = req.body.token || req.query.token || req.headers['x-access-token'];
-
-  // decode token
-  if (token) {
-
-    // verifies secret and checks exp
-    jwt.verify(token, app.get('superSecret'), function(err, decoded) {      
-      if (err) {
-        return res.json({ success: false, message: 'Failed to authenticate token.' });    
-      } else {
-        // if everything is good, save to request for use in other routes
-        req.decoded = decoded;    
-        next();
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ username: username }, function (err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
       }
+      /*if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }*/
+      return done(null, user);
     });
-
-  } else {
-
-    // if there is no token
-    // return an error
-    return res.status(403).send({ 
-        success: false, 
-        message: 'No token provided.' 
-    });
-    
   }
+));
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
 });
 
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
 
-// apply the routes to our application with the prefix /api
-app.use('/admin', apiRoutes);
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/login')
+}
 
-app.get('/admin/contact', function (req, res) {
-    User.find({}, function (err, users) {
-        res.json(users);
-    })
-})
+app.use(cookie());
+app.use(session({secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true}));
+app.use(passport.initialize());
+app.use(passport.session());
 
+app.post('/login', 
+    passport.authenticate('local',
+        { successRedirect: '/admin',
+        failureRedirect: '/login' })
+);
+
+app.get('/login', function (req, res) {
+    res.render('login');
+});
+
+app.all('/admin/*',ensureAuthenticated, function(req,res){
+  res.render('home');
+});
+
+app.get('/setup', function(req, res) {
+
+  // create a sample user
+  var nick = new User({ 
+    username: 'admin', 
+    password: 'admin',
+    admin: true 
+  });
+
+  // save the sample user
+  nick.save(function(err) {
+    if (err) throw err;
+
+    console.log('User saved successfully');
+    res.json({ success: true });
+  });
+});
 
 /* Normal app routes */
 app.get('/', function (req, res) {
