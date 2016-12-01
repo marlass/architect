@@ -30,9 +30,9 @@ app.use(bodyParser.json());
 
 app.use(morgan('dev'));
 
-function isValidPassword (user, password){
-  return bCrypt.compareSync(password, user.password);
-}
+function isValidPassword (user, password, callback){
+    bcrypt.compare(password, user.password, callback)
+};
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
@@ -41,10 +41,13 @@ passport.use(new LocalStrategy(
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
       }
-      if (!isValidPassword(user,password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
+      isValidPassword(user,password,function (err, match) {
+        if (err)
+          return done(null, false, { message: 'Incorrect password.' });
+        if (match) {
+          return done(null, user);
+        }
+      });      
     });
   }
 ));
@@ -71,6 +74,6 @@ require('./routes/admin.js')(app);
 require('./routes/front.js')(app);
 
 
-app.listen(3000, function () {
-    console.log('Architect page listening on 3000');
+app.listen(3003, function () {
+    console.log('Architect page listening on 3003');
 });

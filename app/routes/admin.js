@@ -1,4 +1,6 @@
 const passport = require('passport');
+const User = require('../models/user');
+const bcrypt = require('bcrypt-nodejs');
 
 module.exports = function(app) {
 
@@ -31,16 +33,17 @@ module.exports = function(app) {
 
     /* For creating user */
     app.get('/setup', function(req, res) {
-        let nick = new User({ 
-            username: 'admin', 
-            password: 'admin',
-            admin: true 
-        });
+        bcrypt.hash("admin123", null, null, function(err, hash) {
+            let nick = new User({ 
+                username: 'admin123', 
+                password: hash
+            });
 
-        nick.save(function(err) {
-            if (err) throw err;
-            res.json({ success: true });
-        });
+            nick.save(function(err) {
+                if (err) throw err;
+                res.json({ success: true });
+            });
+        });        
     });
 
 
