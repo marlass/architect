@@ -1,0 +1,39 @@
+.page-settings {
+    background-color: $gray-6;
+    width: 100%;
+    padding: 0;
+
+    &__wrapper {
+        width: 33%;
+        float: left;
+        padding: 10px;
+        margin: 0;
+    }
+
+    &__label {
+        display: block;
+        padding-bottom: 5px;
+        color: $white;
+    }
+
+    &__input {
+        display: block;
+        height: 30px;
+    }
+
+    &__select {
+        display: block;
+        height: 30px;
+    }
+
+    &__submit {
+        margin: 20px 10px 10px;
+        padding: 10px;
+        clear: both;
+        display: block;
+        background-color: $secondary-7;
+        border: 2px solid $secondary-5;
+        color: $white;
+    }
+
+}

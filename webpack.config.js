@@ -4,18 +4,11 @@ var webpack = require('webpack'),
 module.exports = {
     //debug: true,
     entry: {
-        index: ['./src/js/index.js'],
-        about: ['./src/js/about.js'],
-        contact: ['./src/js/contact.js'],
-        common: ['./src/js/common.js'],
-        offer: ['./src/js/offer.js'],
-        portfolio: ['./src/js/portfolio.js'],
-        portfolio_item: ['./src/js/portfolio-item.js'],
-        main: ['./src/js/main.js']
+        admin: ['./src/js/admin.js']
     },
     output: {
-        path: path.join(__dirname, 'dist/js'),
-        publicPath: path.join(__dirname, "/dist/js/"),
+        path: path.join(__dirname, 'app/public/js'),
+        publicPath: '/app/public/js/',
         filename: '[name].js'
     },
     devtool: 'source-map',
@@ -23,16 +16,12 @@ module.exports = {
         rules: [
             { test: /\.js$/, exclude: /node_modules/, loader: "eslint-loader", enforce: "pre"},
             { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader", query: {
-                    presets: [["es2015", {"modules": false}]],
-                    plugins: ["transform-async-to-generator"]
+                    presets: [["es2015", {"modules": false}]]
                 }
             }            
         ]
     },
     plugins: [
-        new webpack.ProvidePlugin({
-            $: "jquery"
-        }),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.optimize.AggressiveMergingPlugin(),
         new webpack.optimize.UglifyJsPlugin({
@@ -42,11 +31,7 @@ module.exports = {
                 warnings: false,
                 screw_ie8: true
             }
-        }),
-        // new webpack.optimize.CommonsChunkPlugin({
-        //     name: "common",
-        //     minChunks: 2
-        // })
+        })
     ],
     watch: true
 };

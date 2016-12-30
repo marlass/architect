@@ -1,0 +1,38 @@
+<div class="page-settings u-clearfix">
+    <p class="page-settings__wrapper">
+        <label class="page-settings__label">Adres strony</label>
+        <input type="text" name="pageUrl" class="js__page-url page-settings__input">
+    </p>
+    <p class="page-settings__wrapper">
+        <label class="page-settings__label">Tytuł strony</label>
+        <input type="text" name="pageTitle" class="js__title page-settings__input">
+    </p>
+    <p class="page-settings__wrapper">
+        <label class="page-settings__label">Język strony</label>
+        <select name="pageLang" class="js__lang-select page-settings__select">
+            <option value="en">Angielski</option>
+            <option value="pl">Polski</option>
+        </select>
+    </p>
+    <p class="page-settings__wrapper"> 
+        <label class="page-settings__label">Link do drugiej wersji językowej</label>
+        <input type="text" name="otherLanguageUrl" class="page-settings__input js__other-lang-url">
+    </p>
+    <button type="button" class="page-settings__submit js__save-page">Zapisz</button>
+</div>
+<div class="content-editor">
+    <div class="new-block">
+        <label class="new-block__label">Wybierz blok</label>
+        <select name="new-block__select" class="new-block__select">
+            <option value="masthead">Zdjęcie główne</option>
+            <option value="text">Pole tesktowe</option>
+            <option value="calc">Kalkualtor projektu</option>
+            <option value="offices">Informacje o biurach</option>
+            <option value="team">Członkowie zespołu</option>
+            <option value="projectsBlock">Blok z projektami</option>
+            <option value="smallOffices">Mały blok z biurami</option>
+            <option value="gallery">Galeria</option>
+        </select>
+        <button class="new-block__submit">Dodaj blok</button>
+    </div>
+</div>

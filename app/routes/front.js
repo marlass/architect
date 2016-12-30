@@ -1,4 +1,20 @@
+const Page = require('../models/page');
+const express_handlebars  = require('express-handlebars');
+
 module.exports = function (app) {
+
+    function findPage (req, res, next) {
+        console.log(req.path)
+        Page.find({"pageUrl": req.path}, function(err, pages) {
+            res.json(pages);
+        })
+    }
+
+    app.get('/*', findPage, function(req, res, next){
+        next();
+    });
+
+
     app.get('/', function (req, res) {
         res.render('home');
     });

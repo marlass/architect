@@ -1,0 +1,20 @@
+.new-block {
+    margin: 10px 0;
+    border: 2px solid $primary-8;
+
+    &__label {
+        text-align: center;
+        display: block;
+        margin: 50px auto 10px;
+    }
+
+    &__select {
+        display: block;
+        margin: 10px auto;
+    }
+
+    &__submit {
+        display: block;
+        margin: 10px auto 50px;
+    }
+}

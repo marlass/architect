@@ -4,21 +4,23 @@
     <meta charset="utf-8">
     <title>Static views</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/static/css/styles.css">
-    <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/admin.css">
+    <script src="/static/js/admin.js" defer></script>
 </head>
 <body>
+    <aside>
+        <div class="aside admin-bar clearfix">
+            <ul class="admin-bar__list">
+                <li class="admin-bar__item"><a class="admin-bar__link" href="/admin/pageList">Lista stron</a></li>
+                <li class="admin-bar__item"><a class="admin-bar__link" href="/admin/newPage">Nowa strona</a></li>
+                <li class="admin-bar__item"><a class="admin-bar__link" href="/admin/editMenus">Edycja nagłówka i stopki</a></li>
+                <li class="admin-bar__item"><a class="admin-bar__link" href="/admin/changePassword">Zmiana hasła</a></li>
+                <li class="admin-bar__item"><a class="admin-bar__link" href="/admin/logout">Wyloguj się</a></li>
+            </ul>
+        </div>
+    </aside>
     <main>
-        <div class="main">{{{body}}}</div>
+        <div class="main admin-content">{{{body}}}</div>
     </main>
-    <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
-
-    <!-- Initialize Quill editor -->
-    <!--<script>
-    var editor = new Quill('.main', {
-        modules: { toolbar: '#toolbar' },
-        theme: 'snow'
-    });
-    </script>-->
 </body>
 </html>
