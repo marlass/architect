@@ -1,5 +1,6 @@
 import * as blockTextHandler from './blockTextHandler';
 import blockCreationHandler from './blockCreationHandler';
+import * as blockHandler from './blockHandler';
 
 export default function(state = {}, action) {
     switch (action.type) {
@@ -17,6 +18,12 @@ export default function(state = {}, action) {
             return blockTextHandler.setText(state, action);
         case 'SET_BLOCK_TEXT_BACKGROUND':
             return blockTextHandler.setBackground(state, action);
+        case 'SET_BLOCK_UP':
+            return blockHandler.setUp(state, action);
+        case 'SET_BLOCK_DOWN':
+            return blockHandler.setDown(state, action);
+        case 'DELETE_BLOCK':
+            return blockHandler.deleteBlock(state, action);
         default:
             return state;
     }

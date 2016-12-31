@@ -1,4 +1,5 @@
 import * as blockTextListeners from './blockTextListeners';
+import * as block from './blockListeners';
 
 
 export default function(store) {
@@ -6,8 +7,9 @@ export default function(store) {
     const newBlockSelect = document.querySelector('.new-block__select');
 
     document.addEventListener('click', function (e) {
-        blockTextListeners.clickList(e,store);
-    }, false);
+        blockTextListeners.clickList(e, store);
+        block.clickList(e, store);
+    }, true);
 
     document.addEventListener('blur', function (e) {
         blockTextListeners.blurList(e, store);
@@ -25,9 +27,9 @@ export default function(store) {
 
     function newBlockHTML(block) {
         let html = `
-            <div class="block__up"></div>
-            <div class="block__down"></div>
-            <div class="block__delete"></div>
+            <button class="block__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+            <button class="block__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+            <button class="block__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
             <div class="block__content">
                 ${renderBlockBase(block)}
             </div>`;
@@ -35,8 +37,8 @@ export default function(store) {
         node.className = 'block';
         node.setAttribute('data-block-id',idCounter++);
         node.innerHTML = html;
-        let before = document.querySelector('.new-block');
-        before.parentNode.insertBefore(node, before);
+        let container = document.querySelector('.block-container');
+        container.appendChild(node);
         /*let selector = '[data-block-id="'+(idCounter-1)+'"] .block-text__text';
         let newTextarea = document.querySelector(selector);
         if (newTextarea) {

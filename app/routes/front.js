@@ -8,10 +8,18 @@ module.exports = function (app) {
 
     function findPage (req, res, next) {
         console.log(req.path)
-        Page.findOne({"pageUrl": req.path}).lean().exec(function(err, pages) {
-            res.render('front',{page: pages,header: header,footer: footer,
-                layout: 'empty'});
-        })
+        let adminRegexp = /^\/admin\/.*$/;
+        let loginRegexp = /^\/login\/?.*$/;
+        let url = req.path;
+
+        if (!adminRegexp.test(url) && !loginRegexp.test(url)) {
+            Page.findOne({"pageUrl": req.path}).lean().exec(function(err, pages) {
+                res.render('front',{page: pages,header: header,footer: footer,
+                    layout: 'empty'});
+            })
+        } else {
+            next();
+        }        
     }
 
     app.get('/*', findPage, function(req, res, next){
