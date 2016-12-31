@@ -1,12 +1,26 @@
-export default function() {
+import * as blockTextListeners from './blockTextListeners';
+
+
+export default function(store) {
     const newBlockSubmit = document.querySelector('.new-block__submit');
     const newBlockSelect = document.querySelector('.new-block__select');
 
+    document.addEventListener('click', function (e) {
+        blockTextListeners.clickList(e,store);
+    }, false);
+
+    document.addEventListener('blur', function (e) {
+        blockTextListeners.blurList(e, store);
+    }, true);
+
+    let idCounter = 0;
+
     if (newBlockSubmit) {
         newBlockSubmit.addEventListener('click', function(){
-            const newBlock = newBlockSelect.options[newBlockSelect.selectedIndex].value
+            const newBlock = newBlockSelect.options[newBlockSelect.selectedIndex].value;
             newBlockHTML(newBlock);    
-        })
+            store.dispatch({"type": 'CREATE_BLOCK', "blockId": idCounter-1, "sectionType": newBlock});
+        });
     }
 
     function newBlockHTML(block) {
@@ -17,11 +31,19 @@ export default function() {
             <div class="block__content">
                 ${renderBlockBase(block)}
             </div>`;
-        var node = document.createElement('div');
+        let node = document.createElement('div');
         node.className = 'block';
+        node.setAttribute('data-block-id',idCounter++);
         node.innerHTML = html;
-        var before = document.querySelector('.new-block')
+        let before = document.querySelector('.new-block');
         before.parentNode.insertBefore(node, before);
+        /*let selector = '[data-block-id="'+(idCounter-1)+'"] .block-text__text';
+        let newTextarea = document.querySelector(selector);
+        if (newTextarea) {
+            let mdeditor = new SimpleMDE(
+                {element: newTextarea,
+                autoDownloadFontAwesome: false});
+        }*/
     }
 
     function renderBlockBase(block) {
@@ -59,6 +81,20 @@ export default function() {
                     <input type="file" name="block-masthead__background" class="blokc-masthead__file">
                 </div>
                 <img src="#" class="block-masthead__preview">
-            </div>`
+            </div>`;
+    }
+
+    function renderTextBase() {
+        return `
+            <div class="block-text">
+                <div class="block-text__wrapper">
+                    <label class="block-text__label">Tło</label>
+                    <input type="text" name ="block-text__background" class="block-text__input block-text__background" placeholder="np. white">
+                </div>
+                <div class="block-text__wrapper">
+                    <label class="block-text__label">Treść</label>
+                    <textarea name="block-text__text" class="block-text__text" placeholder="np. Informacje o ofercie"></textarea>
+                </div>
+            </div>`;
     }
 }

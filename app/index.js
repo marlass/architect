@@ -17,8 +17,17 @@ const User = require('./models/user');
 app.use('/static', express.static('public',{
   etag: true
 }));
-
-app.engine('handlebars', express_handlebars({defaultLayout: 'main'}));
+app.engine('handlebars', express_handlebars({
+  defaultLayout: 'main',
+  helpers: {
+    equals: function(value, test, options) {
+      if (value === test) {
+        return options.fn(this);
+      }
+        return options.inverse(this);
+    }
+  }
+}));
 app.set('view engine', 'handlebars');
 
 app.set('superSecret', config.secret);

@@ -1,12 +1,16 @@
 import * as promisePolyfill from 'es6-promise';
 promisePolyfill.polyfill();
+import closestPolyfill from './closest.polyfill';
+closestPolyfill();
 
 import * as isomorphicFetch from 'isomorphic-fetch';
 import * as redux from 'redux';
 import actions from './actions.js';
 import blockCreator from './blockCreator';
 
-blockCreator();
+const store = redux.createStore(actions, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
+blockCreator(store);
 
 const saveBtn = document.querySelector('.js__save-page');
 const langSelect = document.querySelector('.js__lang-select');
@@ -42,8 +46,6 @@ if (otherLangUrl) {
         store.dispatch({"type": 'SET_OTHER_LANG_URL',"url": url});
     });
 }
-
-const store = redux.createStore(actions, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 if (saveBtn) {
     saveBtn.addEventListener('click', function(e){

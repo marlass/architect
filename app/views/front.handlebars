@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="{{page.lang}}">
+<head>
+    <meta charset="UTF-8">
+    <title>{{page.title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="header">
+            <nav>
+                <div class="nav">
+                    <div class="nav__inner">
+                        <a href="/" class="nav__homepage">
+                            <img src="/static/assets/logo-cropped.png" class="nav__icon">
+                            <span class="nav__title">{{header.title}}</span>
+                        </a>
+                        <label for="menu-toggle" class="nav__menu-toggle" onclick="">Menu</label>  
+                        <input type="checkbox" id="menu-toggle" name="menu" class="nav__menu-checkbox"/>
+                        <ul class="nav__menu">
+                        {{#each header.links}}
+                            <li class="nav__item"><a href="{{this.link}}" class="nav__link">{{this.title}}</a></li>
+                        {{/each}}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    
+    <main>
+        <div class="main">
+            {{#each page.content}}
+                {{#equals this.sectionType 'masthead'}}
+                    <div class="masthead" style="background-image: url('{{this.content.background}}')">
+                        <div class="masthead__inner">
+                            <h1 class="masthead__title">{{this.content.title}}</h1>
+                        </div>
+                    </div>
+                {{/equals}}
+                {{#equals this.sectionType 'text'}}
+                    <div class="content">
+                        <div class="content__inner u-clearfix">
+                            {{{this.content.text}}}
+                        </div>
+                    </div>
+                {{/equals}}
+                {{#equals this.sectionType 'calc'}}
+                    <div class="content">
+                        <div class="content__inner u-clearfix">                            
+                            <div class="calculator">
+                                <h2>Oblicz przykładowy koszt projektu domu wolnostojącego</h2>
+                                <p>
+                                    <label for="size">Wielkość domu w m^2</label>
+                                    <input type="number" name="size" id="size">
+                                </p>
+                                <p>
+                                    <h3>Garaż</h3>
+                                    <input type="radio" name="garage" id="garage1" value="0">
+                                    <label for="garage1">Bez garażu</label>
+                                    <input type="radio" name="garage" id="garage2" value="1">
+                                    <label for="garage2">1 garaż</label>
+                                    <input type="radio" name="garage" id="garage3" value="2">
+                                    <label for="garage3">2 garaże</label>
+                                </p>
+                                <p>
+                                    <h3>Rodzaj projektu</h3>
+                                    <input type="radio" name="projekt" id="project1" value="project1">
+                                    <label for="project1">Projekt</label>
+                                    <input type="radio" name="projekt" id="project2" value="project2">
+                                    <label for="project2">Projekt + instalacje</label>
+                                    <input type="radio" name="projekt" id="project3" value="project3">
+                                    <label for="project3">Projekt + instalacje + aranżacje</label>
+                                </p>
+                                <p>
+                                    <input type="checkbox" name="garden" id="garden">
+                                    <label for="garden">Projekt ogrodu</label>
+                                </p>
+                                <p>Oferujemy projekt domu jednorodzinnego o metrażu 45m^2 z garażem i projektem instalacji, wnętrz i ogrodu od 4000 zł</p>
+                            </div>
+                        </div>
+                    </div>
+                {{/equals}}
+                {{#equals this.sectionType 'offices'}}
+                    <div class="content">
+                        <div class="content__inner u-clearfix">
+                            <h2>{{this.content.title}}</h2>
+                            {{#each this.content.offices}}
+                            <div class="office u-clearfix">
+                                <p class="office__info">
+                                    {{this.title}}<br>
+                                    {{this.street}},<br>
+                                    {{this.city}}, {{this.postal}}<br>
+                                    tel: <a href="tel: {{this.tel}}">{{this.tel}}</a><br>
+                                    email: <a href="mailto: {{this.mail}}">{{this.tel}}</a>
+                                </p>
+                                <div class="office__map">
+                                    <div class="embed-container">
+                                        <iframe src="{{this.map}}" width="600" height="450" frameborder="0" style="border:0"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                {{/equals}}
+                {{#equals this.sectionType 'team'}}
+                    <div class="content">
+                        <div class="content__inner u-clearfix">
+                            <h2>{{this.content.title}}</h2>
+                            <div class="team u-clearfix">
+                                {{#each this.content.team}}
+                                <figure class="team__member member">
+                                    <img class="member__img" src="{{this.img}}">
+                                    <figcaption class="memeber__info">
+                                        {{this.info}}
+                                    </figcaption>
+                                </figure>
+                                {{/each}}
+                            </div>        
+                        </div>
+                    </div>
+                {{/equals}}
+                {{#equals this.sectionType 'projectsBlock'}}
+                    <div class="content">
+                        <div class="content__inner u-clearfix">
+                            {{#each this.content.projects}}
+                            <div class="project {{#if this.big }}project--big{{/if}}">
+                                <a href="{{this.url}}" class="project__link"  style="background-image: url('{{this.img}}');">
+                                    <h2 class="project__title">{{this.title}}</h2>
+                                </a>
+                            </div>
+                            {{/each}}
+                            {{#if this.content.more.link }}
+                            <a href="{{this.content.more.link}}">{{this.content.more.title}}</a>
+                            {{/if}}
+                        </div>
+                    </div>
+                {{/equals}}
+                {{#equals this.sectionType 'smallOffices'}}
+                    <div class="content">
+                        <div class="content__inner u-clearfix">
+                            {{#each this.content.offices}}
+                            <p>
+                                {{this.title}}<br>
+                                {{this.street}},<br>
+                                {{this.city}}, {{this.postal}}<br>
+                                tel: <a href="tel: {{this.phone}}">{{this.phone}}</a><br>
+                                email: <a href="mailto: {{this.mail}}">{{this.mail}}</a>
+                            </p>
+                            {{/each}}
+                            <a href="{{this.content.contactUrl}}">{{this.content.contactLinkTitle}}</a>
+                        </div>
+                    </div>
+                {{/equals}}
+                {{#equals this.sectionType 'gallery'}}
+                    <div class="content">
+                        <div class="content__inner u-clearfix">
+                            <div class="gallery u-clearfix">
+                                {{#each this.content.gallery}}
+                                <figure class="gallery__item">
+                                    <img class="gallery__img" src="{{this.img}}" alt="{{this.title}}">
+                                    <figcaption class="gallery__caption">
+                                        {{this.title}}
+                                    </figcaption>
+                                </figure>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                {{/equals}}
+            {{/each}}
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer">
+            <div class="footer__inner u-clearfix">
+                <nav>
+                    <div class="footer-nav">
+                        <ul class="footer-nav__list">
+                            {{#each footer.links}}
+                                <li class="footer-nav__item"><a class="footer-nav__link" href="{{this.link}}">{{this.title}}</a></li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </nav>
+                <div class="footer-contact">
+                    {{#each footer.item}}
+                    <p class="footer-contact__item">
+                        {{this.title}}<br>
+                        {{this.street}},<br>
+                        {{this.city}}, {{this.postal}}<br>
+                        tel: <a href="tel: {{this.phone}}" class="footer-contact__link">{{this.phone}}</a><br>
+                        email: <a href="mailto: {{this.mail}}" class="footer-contact__link">{{this.mail}}</a>
+                    </p>
+                    {{/each}}
+                </div>
+                <p class="copyright">
+                    © Copyright {{footer.title}} {{footer.year}}
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

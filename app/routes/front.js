@@ -1,12 +1,16 @@
 const Page = require('../models/page');
 const express_handlebars  = require('express-handlebars');
+const page = require('../pages/home');
+const footer = require('../pages/footer');
+const header = require('../pages/header');
 
 module.exports = function (app) {
 
     function findPage (req, res, next) {
         console.log(req.path)
-        Page.find({"pageUrl": req.path}, function(err, pages) {
-            res.json(pages);
+        Page.findOne({"pageUrl": req.path}).lean().exec(function(err, pages) {
+            res.render('front',{page: pages,header: header,footer: footer,
+                layout: 'empty'});
         })
     }
 

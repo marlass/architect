@@ -126,7 +126,7 @@ module.exports = function(app) {
     });
 
     app.post('/admin/savePage', function(req, res) {
-        Page.update( { pageUrl : req.body.pageUrl }, req.body, { upsert : true }, function(err) {
+        Page.update( { pageUrl : req.body.pageUrl }, req.body, { upsert : true, strict: false }, function(err) {
             if (err) throw err;
             res.json(req.body);
         });
