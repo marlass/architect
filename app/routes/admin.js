@@ -3,6 +3,22 @@ const User = require('../models/user');
 const Page = require('../models/page');
 const bcrypt = require('bcrypt-nodejs');
 const config = require('../config');
+const mime = require('mime');
+
+const multer  = require('multer')
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, __dirname + '/../public/uploads/'+req.body.catalog);
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + '.' + mime.extension(file.mimetype));
+  }
+})
+let upload = multer({storage: storage});
+
+const fs = require('fs');
+const path = require('path');
 
 module.exports = function(app) {
 
@@ -130,5 +146,79 @@ module.exports = function(app) {
             if (err) throw err;
             res.json(req.body);
         });
+    });
+
+    function getDirectories(srcpath) {
+        return fs.readdirSync(srcpath).filter(function(file) {
+            return fs.statSync(path.join(srcpath, file)).isDirectory();
+        });
+    }
+
+    function getFilesInDir(srcpath) {
+        return fs.readdirSync(srcpath).filter(function(file) {
+            return fs.statSync(path.join(srcpath, file)).isFile();
+        });
+    }
+
+    app.get('/admin/managePhotos', function(req, res) {
+        const dirs = getDirectories(__dirname + '/../public/uploads/');
+        let dirsList = [];
+        dirs.forEach(function(a){
+            const files = getFilesInDir(__dirname + '/../public/uploads/' + a);
+            let fileList = [];
+            files.forEach(function(b){
+                fileList.push({path: b});
+            })
+            dirsList.push({path: a,photos: fileList});
+        })
+        res.render('managePhotos', {layout: 'admin',catalogs: dirsList});
+    });
+
+    app.post('/admin/getPhotos', function(req, res) {
+        const dir = req.body.dir || '';
+        res.json(getFilesInDir(__dirname + '/../public/uploads/' + dir));
     })
+
+    app.post('/admin/addCatalog', function (req, res) {
+        let catalog = req.body.catalog;
+        let CatalogRegexp = /^[A-Za-z]{1,}[A-Za-z0-9]*$/;
+        let path = __dirname + '/../public/uploads/'+catalog;
+        if (CatalogRegexp.test(catalog) && !fs.existsSync(path)) {
+            fs.mkdirSync(path,0744);
+        }
+        res.redirect('/admin/managePhotos');
+    });
+
+    app.post('/admin/uploadPhotos', upload.array('photos'), function(req, res) {
+        console.log(req.files);
+        res.redirect('/admin/managePhotos');
+    });
+
+    app.post('/admin/deletePhoto', function (req, res) {
+        let photo = req.body.photo;
+        let path = __dirname + '/../public/uploads/'+photo;
+        fs.unlinkSync(path);
+        res.redirect('/admin/managePhotos');
+    });
+
+    function deleteFolderRecursive(path) {
+        if( fs.existsSync(path) ) {
+            fs.readdirSync(path).forEach(function(file,index){
+                var curPath = path + "/" + file;
+                if(fs.lstatSync(curPath).isDirectory()) { // recurse
+                    deleteFolderRecursive(curPath);
+                } else { // delete file
+                    fs.unlinkSync(curPath);
+                }
+            });
+            fs.rmdirSync(path);
+        }
+    };
+
+    app.post('/admin/deleteCatalog', function (req, res) {
+        let catalog = req.body.catalog;
+        let path = __dirname + '/../public/uploads/'+catalog;
+        deleteFolderRecursive(path);
+        res.redirect('/admin/managePhotos');
+    });
 }

@@ -18,6 +18,31 @@ const pageUrl = document.querySelector('.js__page-url');
 const title = document.querySelector('.js__title');
 const otherLangUrl = document.querySelector('.js__other-lang-url');
 
+const deleteCatalogForms = document.querySelectorAll('.deleteCatalogForm');
+const deletePhotoForms = document.querySelectorAll('.deletePhotoForm');
+if (deleteCatalogForms) {
+    for (let i=0; i<deleteCatalogForms.length;i++){
+        deleteCatalogForms[i].addEventListener('submit', function(e){
+            e.preventDefault();
+            let result = window.confirm('Czy chcesz usunąć katalog i całą jego zawartość?')
+            if (result) {
+                e.target.submit();
+            }
+        })
+    }
+}
+if (deletePhotoForms) {
+    for (let i=0; i<deletePhotoForms.length;i++){
+        deletePhotoForms[i].addEventListener('submit', function(e){
+            e.preventDefault();
+            let result = window.confirm('Czy chcesz usunąć obraz?')
+            if (result) {
+                e.target.submit();
+            }
+        })
+    }
+}
+
 
 if (langSelect) {
     langSelect.addEventListener('change', function(e) {

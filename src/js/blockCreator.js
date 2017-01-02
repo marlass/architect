@@ -39,6 +39,7 @@ export default function(store) {
         node.innerHTML = html;
         let container = document.querySelector('.block-container');
         container.appendChild(node);
+        postRenderFunction(block, idCounter-1);
         /*let selector = '[data-block-id="'+(idCounter-1)+'"] .block-text__text';
         let newTextarea = document.querySelector(selector);
         if (newTextarea) {
@@ -46,6 +47,61 @@ export default function(store) {
                 {element: newTextarea,
                 autoDownloadFontAwesome: false});
         }*/
+    }
+
+    function postRenderFunction(block, blockId) {    
+        switch (block) {
+            case "masthead":
+                mastHeadpost(blockId);
+                break;
+            default:
+                break;
+        }
+    }
+
+    function mastHeadpost(blockId) {
+        let details = {
+            'dir': 'masthead'
+        };
+        let formBody = [];
+        for (let property in details) {
+        let encodedKey = encodeURIComponent(property);
+        let encodedValue = encodeURIComponent(details[property]);
+        formBody.push(encodedKey + "=" + encodedValue);
+        }
+        formBody = formBody.join("&");
+        let req = {
+            method: 'POST',
+            mode: 'same-origin',
+            headers: {
+            'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
+            'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+            },
+            body: formBody,
+            credentials: 'same-origin'
+        };
+        
+        fetch('/admin/getPhotos/', req)
+            .then(function(res) {
+                return res.json();
+            })
+            .then(function(json){
+                let html = '<h2>Wybierz tło</h2>';
+                var timestamp = Date.now();
+                json.forEach(function(element) {
+                    html += '<label for="'+timestamp+element+'"><img style="width:150px;height:150px;object-fit:cover;float:left" src="/static/uploads/masthead/'+element+'"></label><input type="radio" name="background" id="'+timestamp+element+'" value="'+element+'">';
+                }, this);
+                let qs = `[data-block-id="${blockId}"] .block-masthead__bg-wrapper`;
+                let radioContainer = document.querySelector(qs);
+                if (radioContainer) {
+                    let p = document.createElement('div');
+                    p.innerHTML = html;
+                    radioContainer.appendChild(p);
+                }
+            })
+            .catch(function(res) {
+                console.log(res);
+            });
     }
 
     function renderBlockBase(block) {
@@ -71,18 +127,15 @@ export default function(store) {
         }
     }
 
-    function renderMastheadBase() {
+    function renderMastheadBase() {        
         return `
             <div class="block-masthead">
                 <div class="block-masthead__wrapper">
                     <label class="block-masthead__label">Tytuł</label>
                     <input type="text" name="block-masthead__input block-masthead__title" placeholder="np. Projekty">
                 </div>
-                <div class="block-masthead__wrapper">
-                    <label class="block-masthead__label">Zdjęcie okładki</label>
-                    <input type="file" name="block-masthead__background" class="blokc-masthead__file">
+                <div class="block-masthead__bg-wrapper u-clearfix">
                 </div>
-                <img src="#" class="block-masthead__preview">
             </div>`;
     }
 
