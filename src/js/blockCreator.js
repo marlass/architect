@@ -1,4 +1,5 @@
 import * as blockTextListeners from './blockTextListeners';
+import * as blockMastheadListeners from './blockMastheadListeners';
 import * as block from './blockListeners';
 
 
@@ -8,11 +9,17 @@ export default function(store) {
 
     document.addEventListener('click', function (e) {
         blockTextListeners.clickList(e, store);
+        blockMastheadListeners.clickList(e, store);
         block.clickList(e, store);
     }, true);
 
     document.addEventListener('blur', function (e) {
         blockTextListeners.blurList(e, store);
+        blockMastheadListeners.blurList(e, store);
+    }, true);
+
+    document.addEventListener('change', function (e) {
+        blockMastheadListeners.changeList(e, store);
     }, true);
 
     let idCounter = 0;
@@ -89,7 +96,7 @@ export default function(store) {
                 let html = '<h2>Wybierz tło</h2>';
                 var timestamp = Date.now();
                 json.forEach(function(element) {
-                    html += '<label for="'+timestamp+element+'"><img style="width:150px;height:150px;object-fit:cover;float:left" src="/static/uploads/masthead/'+element+'"></label><input type="radio" name="background" id="'+timestamp+element+'" value="'+element+'">';
+                    html += '<label for="'+timestamp+element+'"><img style="width:150px;height:150px;object-fit:cover;float:left" src="/static/uploads/masthead/'+element+'"></label><input type="radio" name="background" class="block-masthead__background" id="'+timestamp+element+'" value="'+element+'">';
                 }, this);
                 let qs = `[data-block-id="${blockId}"] .block-masthead__bg-wrapper`;
                 let radioContainer = document.querySelector(qs);
@@ -132,7 +139,7 @@ export default function(store) {
             <div class="block-masthead">
                 <div class="block-masthead__wrapper">
                     <label class="block-masthead__label">Tytuł</label>
-                    <input type="text" name="block-masthead__input block-masthead__title" placeholder="np. Projekty">
+                    <input type="text" name="block-masthead__title" class="block-masthead__input block-masthead__title" placeholder="np. Projekty">
                 </div>
                 <div class="block-masthead__bg-wrapper u-clearfix">
                 </div>

@@ -3,6 +3,7 @@ const express_handlebars  = require('express-handlebars');
 const page = require('../pages/home');
 const footer = require('../pages/footer');
 const header = require('../pages/header');
+const md = require("node-markdown").Markdown;
 
 module.exports = function (app) {
 
@@ -14,6 +15,13 @@ module.exports = function (app) {
 
         if (!adminRegexp.test(url) && !loginRegexp.test(url)) {
             Page.findOne({"pageUrl": req.path}).lean().exec(function(err, pages) {
+                if (pages && pages.content) {
+                    pages.content.forEach(function(item,key){
+                        if(item.sectionType === 'text'){
+                            pages.content[key].content.text = md(pages.content[key].content.text);
+                        }
+                    })
+                }
                 res.render('front',{page: pages,header: header,footer: footer,
                     layout: 'empty'});
             })

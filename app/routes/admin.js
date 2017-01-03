@@ -221,4 +221,8 @@ module.exports = function(app) {
         deleteFolderRecursive(path);
         res.redirect('/admin/managePhotos');
     });
+
+    app.get('/admin/manageHeader', function(req, res) {
+        res.render('manageHeader', {layout: 'admin', header: 'yo', footer: "bu"});
+    })
 }

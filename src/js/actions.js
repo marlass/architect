@@ -1,4 +1,5 @@
 import * as blockTextHandler from './blockTextHandler';
+import * as blockMastheadHandler from './blockMastheadHandler';
 import blockCreationHandler from './blockCreationHandler';
 import * as blockHandler from './blockHandler';
 
@@ -18,6 +19,10 @@ export default function(state = {}, action) {
             return blockTextHandler.setText(state, action);
         case 'SET_BLOCK_TEXT_BACKGROUND':
             return blockTextHandler.setBackground(state, action);
+        case 'SET_BLOCK_MASTHEAD_TITLE':
+            return blockMastheadHandler.setTitle(state, action);
+        case 'SET_BLOCK_MASTHEAD_BACKGROUND':
+            return blockMastheadHandler.setBackground(state, action);
         case 'SET_BLOCK_UP':
             return blockHandler.setUp(state, action);
         case 'SET_BLOCK_DOWN':

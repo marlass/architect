@@ -25,6 +25,9 @@ app.engine('handlebars', express_handlebars({
         return options.fn(this);
       }
         return options.inverse(this);
+    },
+    json: function(context) {
+      return JSON.stringify(context);
     }
   }
 }));

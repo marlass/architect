@@ -1,0 +1,178 @@
+<div class="js-page__manageHeader">
+    <script>
+        window.__PRESTATE__ = {};
+        window.__PRESTATE__.header = {{{json header}}};
+        window.__PRESTATE__.footer = {{{json footer}}};
+    </script>
+    <div class="manageHeader">
+        <p class="manageHeader__wrapper">
+            <label>Nazwa firmy PL</label>
+            <input type="text" value="{{header.title.pl}}" class="manageHeader__title-pl">
+        </p>
+        <p class="manageHeader__wrapper">
+            <label>Nazwa firmy EN</label>
+            <input type="text" value="{{header.title.en}}" class="manageHeader__title-en">
+        </p>
+        <h2>Nawigacja PL</h2>
+        <div class="manageHeader__linksPlContainer">
+            {{#each header.links.pl}}
+                <div class="manageHeader__linkGroup" data-block-id="{{this.blockId}}">
+                    <button class="link__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                    <button class="link__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    <button class="link__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <p>
+                        <label>Nazwa</label>
+                        <input type="text" class="manageHeader__linkPL-title" value="{{this.title}}">
+                    </p>
+                    <p>
+                        <label>Adres</label>
+                        <input type="text" class="manageHeader__linkPL-url" value="{{this.url}}">
+                    </p>
+                </div>
+            {{/each}}
+            <button type"button" class="manageHeader__add-link-pl">Dodaj link</button>
+        </div>
+        <h2>Nawigacja EN</h2>
+        <div class="manageHeader__linksENContainer">
+            {{#each header.links.en}}
+                <div class="manageHeader__linkGroup" data-block-id="{{this.blockId}}">
+                    <button class="link__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                    <button class="link__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    <button class="link__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <p>
+                        <label>Nazwa</label>
+                        <input type="text" class="manageHeader__linkEN-title" value="{{this.title}}">
+                    </p>
+                    <p>
+                        <label>Adres</label>
+                        <input type="text" class="manageHeader__linkEN-url" value="{{this.url}}">
+                    </p>
+                </div>
+            {{/each}}
+            <button type"button" class="manageHeader__add-link-en">Dodaj link</button>
+        </div>
+    </div>
+
+    <div class="manageFooter">
+        <p class="manageFooter__wrapper">
+            <label>Nazwa firmy PL</label>
+            <input type="text" value="{{footer.title.pl}}" class="manageFooter__title-pl">
+        </p>
+        <p class="manageFooter__wrapper">
+            <label>Nazwa firmy EN</label>
+            <input type="text" value="{{footer.title.en}}" class="manageFooter__title-en">
+        </p>
+        <p class="manageFooter__wrapper">
+            <label>Rok</label>
+            <input type="text" value="{{footer.year}}" class="manageFooter__year">
+        </p>
+        <h2>Nawigacja PL</h2>
+        <div class="manageFooter__linksPlContainer">
+            {{#each footer.links.pl}}
+                <div class="manageFooter__linkGroup" data-block-id="{{this.blockId}}">
+                    <button class="link__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                    <button class="link__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    <button class="link__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <p>
+                        <label>Nazwa</label>
+                        <input type="text" class="manageFooter__linkPL-title" value="{{this.title}}">
+                    </p>
+                    <p>
+                        <label>Adres</label>
+                        <input type="text" class="manageFooter__linkPL-url" value="{{this.url}}">
+                    </p>
+                </div>
+            {{/each}}
+            <button type"button" class="manageFooter__add-link-pl">Dodaj link</button>
+        </div>
+        <h2>Nawigacja EN</h2>
+        <div class="manageFooter__linksENContainer">
+            {{#each footer.links.en}}
+                <div class="manageFooter__linkGroup" data-block-id="{{this.blockId}}">
+                    <button class="link__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                    <button class="link__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    <button class="link__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <p>
+                        <label>Nazwa</label>
+                        <input type="text" class="manageFooter__linkEN-title" value="{{this.title}}">
+                    </p>
+                    <p>
+                        <label>Adres</label>
+                        <input type="text" class="manageFooter__linkEN-url" value="{{this.url}}">
+                    </p>
+                </div>
+            {{/each}}
+            <button type"button" class="manageFooter__add-link-en">Dodaj link</button>
+        </div>
+        <h2>Biura PL</h2>
+        <div class="manageFooter__officesPlContainer">
+            {{#each footer.offices.pl}}
+                <div class="manageFooter__officeGroup" data-block-id="{{this.blockId}}">
+                    <button class="link__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                    <button class="link__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    <button class="link__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <p>
+                        <label>Nazwa</label>
+                        <input type="text" class="manageFooter__officePL-title" value="{{this.title}}">
+                    </p>
+                    <p>
+                        <label>Adres</label>
+                        <input type="text" class="manageFooter__officePL-address" value="{{this.address}}">
+                    </p>
+                    <p>
+                        <label>Miejscowość</label>
+                        <input type="text" class="manageFooter__officePL-city" value="{{this.city}}">
+                    </p>
+                    <p>
+                        <label>Kod pocztowy</label>
+                        <input type="text" class="manageFooter__officePL-postal" value="{{this.postal}}">
+                    </p>
+                    <p>
+                        <label>Telefon</label>
+                        <input type="text" class="manageFooter__officePL-phone" value="{{this.phone}}">
+                    </p>
+                    <p>
+                        <label>E-mail</label>
+                        <input type="text" class="manageFooter__officePL-email" value="{{this.email}}">
+                    </p>
+                </div>
+            {{/each}}
+            <button type"button" class="manageFooter__add-office-pl">Dodaj biuro</button>
+        </div>
+        <h2>Biura EN</h2>
+        <div class="manageFooter__officesENContainer">
+            {{#each footer.offices.en}}
+                <div class="manageFooter__officeGroup" data-block-id="{{this.blockId}}">
+                    <button class="link__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                    <button class="link__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    <button class="link__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <p>
+                        <label>Nazwa</label>
+                        <input type="text" class="manageFooter__officeEN-title" value="{{this.title}}">
+                    </p>
+                    <p>
+                        <label>Adres</label>
+                        <input type="text" class="manageFooter__officeEN-address" value="{{this.address}}">
+                    </p>
+                    <p>
+                        <label>Miejscowość</label>
+                        <input type="text" class="manageFooter__officeEN-city" value="{{this.city}}">
+                    </p>
+                    <p>
+                        <label>Kod pocztowy</label>
+                        <input type="text" class="manageFooter__officeEN-postal" value="{{this.postal}}">
+                    </p>
+                    <p>
+                        <label>Telefon</label>
+                        <input type="text" class="manageFooter__officeEN-phone" value="{{this.phone}}">
+                    </p>
+                    <p>
+                        <label>E-mail</label>
+                        <input type="text" class="manageFooter__officeEN-email" value="{{this.email}}">
+                    </p>
+                </div>
+            {{/each}}
+            <button type"button" class="manageFooter__add-office-en">Dodaj biuro</button>
+        </div>
+    </div>
+</div>

@@ -34,14 +34,14 @@
         <div class="main">
             {{#each page.content}}
                 {{#equals this.sectionType 'masthead'}}
-                    <div class="masthead" style="background-image: url('{{this.content.background}}')">
+                    <div class="masthead" style="background-image: url('/static/uploads/masthead/{{this.content.background}}')">
                         <div class="masthead__inner">
                             <h1 class="masthead__title">{{this.content.title}}</h1>
                         </div>
                     </div>
                 {{/equals}}
                 {{#equals this.sectionType 'text'}}
-                    <div class="content">
+                    <div class="content" style="background-color: {{this.content.background}}">
                         <div class="content__inner u-clearfix">
                             {{{this.content.text}}}
                         </div>

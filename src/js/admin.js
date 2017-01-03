@@ -5,12 +5,19 @@ closestPolyfill();
 
 import * as isomorphicFetch from 'isomorphic-fetch';
 import * as redux from 'redux';
+
 import actions from './actions.js';
+import headerActions from './headerActions.js';
 import blockCreator from './blockCreator';
 
-const store = redux.createStore(actions, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+if (document.querySelector('.js-page__newPage')){
+    let store = redux.createStore(actions, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+    blockCreator(store);
+} else if (document.querySelector('.js-page__manageHeader')) {
+    let store = redux.createStore(actions, window.__PRESTATE__, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+    blockCreator(store);
+}
 
-blockCreator(store);
 
 const saveBtn = document.querySelector('.js__save-page');
 const langSelect = document.querySelector('.js__lang-select');
@@ -24,22 +31,22 @@ if (deleteCatalogForms) {
     for (let i=0; i<deleteCatalogForms.length;i++){
         deleteCatalogForms[i].addEventListener('submit', function(e){
             e.preventDefault();
-            let result = window.confirm('Czy chcesz usunąć katalog i całą jego zawartość?')
+            let result = window.confirm('Czy chcesz usunąć katalog i całą jego zawartość?');
             if (result) {
                 e.target.submit();
             }
-        })
+        });
     }
 }
 if (deletePhotoForms) {
     for (let i=0; i<deletePhotoForms.length;i++){
         deletePhotoForms[i].addEventListener('submit', function(e){
             e.preventDefault();
-            let result = window.confirm('Czy chcesz usunąć obraz?')
+            let result = window.confirm('Czy chcesz usunąć obraz?');
             if (result) {
                 e.target.submit();
             }
-        })
+        });
     }
 }
 
