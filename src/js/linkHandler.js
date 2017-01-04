@@ -35,7 +35,7 @@ export function createLink(state, action, lang, section) {
             postState[section]["links"] = {
                 en: [],
                 pl: []
-            }
+            };
         }
     } else {
         postState[section] = {
@@ -43,7 +43,7 @@ export function createLink(state, action, lang, section) {
                 en: [],
                 pl: []
             }
-        }        
+        };
     }
     postState[section]["links"][lang].push({blockId: action.blockId, title: '',url: ''});
     return Object.assign({},state, postState);

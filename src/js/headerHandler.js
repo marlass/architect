@@ -1,13 +1,16 @@
 import * as linkListeners from './linkListeners'; 
+import * as officeListeners from './officeListeners';
 
 export default function(store) {
 
     document.addEventListener('click', function (e) {
         linkListeners.clickList(store, e);
+        officeListeners.clickList(store, e);
     }, true);
 
     document.addEventListener('blur', function (e) {
         linkListeners.blurList(store, e);
+        officeListeners.blurList(store, e);
     }, true);
 
     let inputHeaderTitlePl = document.querySelector('.manageHeader__title-pl');

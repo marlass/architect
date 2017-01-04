@@ -1,6 +1,7 @@
 import * as titlesHandler from './titlesHandler';
 import * as yearHandler from './yearHandler';
 import * as linkHandler from './linkHandler';
+import * as officeHandler from './officeHandler';
 
 export default function(state = {}, action) {
     switch (action.type) {
@@ -62,6 +63,46 @@ export default function(state = {}, action) {
             return linkHandler.deleteLink(state, action, 'pl', 'footer');
         case 'DELETE_FOOTER_LINK_EN':
             return linkHandler.deleteLink(state, action, 'en', 'footer');
+        case 'SET_OFFICE_TITLE_PL':
+            return officeHandler.setOfficeTitle(state, action, 'pl');
+        case 'SET_OFFICE_ADDRESS_PL':
+            return officeHandler.setOfficeAddress(state, action, 'pl');
+        case 'SET_OFFICE_CITY_PL':
+            return officeHandler.setOfficeCity(state, action, 'pl');
+        case 'SET_OFFICE_POSTAL_PL':
+            return officeHandler.setOfficePostal(state, action, 'pl');
+        case 'SET_OFFICE_PHONE_PL':
+            return officeHandler.setOfficePhone(state, action, 'pl');
+        case 'SET_OFFICE_EMAIL_PL':
+            return officeHandler.setOfficeEmail(state, action, 'pl');
+        case 'SET_OFFICE_TITLE_EN':
+            return officeHandler.setOfficeTitle(state, action, 'en');
+        case 'SET_OFFICE_ADDRESS_EN':
+            return officeHandler.setOfficeAddress(state, action, 'en');
+        case 'SET_OFFICE_CITY_EN':
+            return officeHandler.setOfficeCity(state, action, 'en');
+        case 'SET_OFFICE_POSTAL_EN':
+            return officeHandler.setOfficePostal(state, action, 'en');
+        case 'SET_OFFICE_PHONE_EN':
+            return officeHandler.setOfficePhone(state, action, 'en');
+        case 'SET_OFFICE_EMAIL_EN':
+            return officeHandler.setOfficeEmail(state, action, 'en');
+        case 'CREATE_OFFICE_EN':
+            return officeHandler.createOffice(state, action, 'en');
+        case 'CREATE_OFFICE_PL':
+            return officeHandler.createOffice(state, action, 'pl');
+        case 'DELETE_OFFICE_PL':
+            return officeHandler.deleteOffice(state, action, 'pl');
+        case 'DELETE_OFFICE_EN':
+            return officeHandler.deleteOffice(state, action, 'en');
+        case 'SET_OFFICE_UP_PL':
+            return officeHandler.setOfficeUp(state, action, 'pl');
+        case 'SET_OFFICE_UP_EN':
+            return officeHandler.setOfficeUp(state, action, 'en');
+        case 'SET_OFFICE_DOWN_PL':
+            return officeHandler.setOfficeDown(state, action, 'pl');
+        case 'SET_OFFICE_DOWN_EN':
+            return officeHandler.setOfficeDown(state, action, 'en');
         default:
             return state;
     }

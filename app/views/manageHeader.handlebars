@@ -90,9 +90,7 @@
                 </div>{{/each}}</div>
         <button type"button" class="manageFooter__add-link-en">Dodaj link</button>
         <h2>Biura PL</h2>
-        <div class="manageFooter__officesPlContainer">
-            {{#each footer.offices.pl}}
-                <div class="manageFooter__officeGroup block" data-block-id="{{this.blockId}}">
+        <div class="manageFooter__officesPlContainer">{{#each footer.offices.pl}}<div class="manageFooter__officeGroup block" data-block-id="{{this.blockId}}">
                     <button class="footerOfficePl__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
                     <button class="footerOfficePl__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
                     <button class="footerOfficePl__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
@@ -120,14 +118,10 @@
                         <label>E-mail</label>
                         <input type="text" class="manageFooter__officePL-email" value="{{this.email}}">
                     </p>
-                </div>
-            {{/each}}
-            <button type"button" class="manageFooter__add-office-pl">Dodaj biuro</button>
-        </div>
+                </div>{{/each}}</div>
+        <button type"button" class="manageFooter__add-office-pl">Dodaj biuro</button>
         <h2>Biura EN</h2>
-        <div class="manageFooter__officesENContainer">
-            {{#each footer.offices.en}}
-                <div class="manageFooter__officeGroup block" data-block-id="{{this.blockId}}">
+        <div class="manageFooter__officesENContainer">{{#each footer.offices.en}}<div class="manageFooter__officeGroup block" data-block-id="{{this.blockId}}">
                     <button class="footerOfficeEn__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
                     <button class="footerOfficeEn__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
                     <button class="footerOfficeEn__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
@@ -155,9 +149,7 @@
                         <label>E-mail</label>
                         <input type="text" class="manageFooter__officeEN-email" value="{{this.email}}">
                     </p>
-                </div>
-            {{/each}}
-            <button type"button" class="manageFooter__add-office-en">Dodaj biuro</button>
-        </div>
+                </div>{{/each}}</div>
+        <button type"button" class="manageFooter__add-office-en">Dodaj biuro</button>
     </div>
 </div>
