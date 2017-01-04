@@ -14,14 +14,28 @@
                     <div class="nav__inner">
                         <a href="/" class="nav__homepage">
                             <img src="/static/assets/logo-cropped.png" class="nav__icon">
-                            <span class="nav__title">{{header.title}}</span>
+                            <span class="nav__title">
+                                {{#equals page.lang 'pl'}}
+                                    {{header.title.pl}}
+                                {{/equals}}
+                                {{#equals page.lang 'en'}}
+                                    {{header.title.en}}
+                                {{/equals}}
+                            </span>
                         </a>
                         <label for="menu-toggle" class="nav__menu-toggle" onclick="">Menu</label>  
                         <input type="checkbox" id="menu-toggle" name="menu" class="nav__menu-checkbox"/>
                         <ul class="nav__menu">
-                        {{#each header.links}}
-                            <li class="nav__item"><a href="{{this.link}}" class="nav__link">{{this.title}}</a></li>
-                        {{/each}}
+                        {{#equals page.lang 'pl'}}
+                            {{#each header.links.pl}}
+                                <li class="nav__item"><a href="{{this.url}}" class="nav__link">{{this.title}}</a></li>
+                            {{/each}}
+                        {{/equals}}
+                        {{#equals page.lang 'en'}}
+                            {{#each header.links.en}}
+                                <li class="nav__item"><a href="{{this.url}}" class="nav__link">{{this.title}}</a></li>
+                            {{/each}}
+                        {{/equals}}
                         </ul>
                     </div>
                 </div>
@@ -181,25 +195,52 @@
                 <nav>
                     <div class="footer-nav">
                         <ul class="footer-nav__list">
-                            {{#each footer.links}}
-                                <li class="footer-nav__item"><a class="footer-nav__link" href="{{this.link}}">{{this.title}}</a></li>
-                            {{/each}}
+                            {{#equals page.lang 'pl'}}
+                                {{#each footer.links.pl}}
+                                    <li class="footer-nav__item"><a class="footer-nav__link" href="{{this.url}}">{{this.title}}</a></li>
+                                {{/each}}
+                            {{/equals}}
+                            {{#equals page.lang 'en'}}
+                                {{#each footer.links.en}}
+                                    <li class="footer-nav__item"><a class="footer-nav__link" href="{{this.url}}">{{this.title}}</a></li>
+                                {{/each}}
+                            {{/equals}}
                         </ul>
                     </div>
                 </nav>
                 <div class="footer-contact">
-                    {{#each footer.item}}
-                    <p class="footer-contact__item">
-                        {{this.title}}<br>
-                        {{this.street}},<br>
-                        {{this.city}}, {{this.postal}}<br>
-                        tel: <a href="tel: {{this.phone}}" class="footer-contact__link">{{this.phone}}</a><br>
-                        email: <a href="mailto: {{this.mail}}" class="footer-contact__link">{{this.mail}}</a>
-                    </p>
-                    {{/each}}
+                    {{#equals page.lang 'pl'}}
+                        {{#each footer.offices.pl}}
+                        <p class="footer-contact__item">
+                            {{this.title}}<br>
+                            {{this.address}},<br>
+                            {{this.city}}, {{this.postal}}<br>
+                            tel: <a href="tel: {{this.phone}}" class="footer-contact__link">{{this.phone}}</a><br>
+                            email: <a href="mailto: {{this.email}}" class="footer-contact__link">{{this.email}}</a>
+                        </p>
+                        {{/each}}
+                    {{/equals}}
+                    {{#equals page.lang 'en'}}
+                        {{#each footer.offices.en}}
+                        <p class="footer-contact__item">
+                            {{this.title}}<br>
+                            {{this.address}},<br>
+                            {{this.city}}, {{this.postal}}<br>
+                            tel: <a href="tel: {{this.phone}}" class="footer-contact__link">{{this.phone}}</a><br>
+                            email: <a href="mailto: {{this.email}}" class="footer-contact__link">{{this.email}}</a>
+                        </p>
+                        {{/each}}
+                    {{/equals}}
                 </div>
                 <p class="copyright">
-                    © Copyright {{footer.title}} {{footer.year}}
+                    © Copyright 
+                    {{#equals page.lang 'pl'}}
+                        {{footer.title.pl}}
+                    {{/equals}}
+                    {{#equals page.lang 'en'}}
+                        {{footer.title.en}}
+                    {{/equals}}                     
+                     {{footer.year}}
                 </p>
             </div>
         </div>

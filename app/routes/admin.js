@@ -1,9 +1,13 @@
 const passport = require('passport');
 const User = require('../models/user');
 const Page = require('../models/page');
+const Footer = require('../models/footer');
+const Header = require('../models/header');
 const bcrypt = require('bcrypt-nodejs');
 const config = require('../config');
 const mime = require('mime');
+const header = require('../pages/header');
+const footer = require('../pages/footer');
 
 const multer  = require('multer')
 
@@ -190,7 +194,6 @@ module.exports = function(app) {
     });
 
     app.post('/admin/uploadPhotos', upload.array('photos'), function(req, res) {
-        console.log(req.files);
         res.redirect('/admin/managePhotos');
     });
 
@@ -223,6 +226,30 @@ module.exports = function(app) {
     });
 
     app.get('/admin/manageHeader', function(req, res) {
-        res.render('manageHeader', {layout: 'admin', header: 'yo', footer: "bu"});
+        Header.findOne({}).lean().exec(function(err, header) {
+            Footer.findOne({}).lean().exec(function(err, footer) {
+                res.render('manageHeader', {layout: 'admin', header: header, footer: footer});
+            });
+        });        
+    });
+
+    app.post('/admin/saveHeader', function(req, res) {
+        Header.update( {}, req.body.header, { upsert : true, strict: false }, function(err) {
+            if (err) throw err;
+            Footer.update( {}, req.body.footer, { upsert : true, strict: false }, function(err) {
+                if (err) throw err;
+                res.json(req.body);
+            });
+        });
+    });
+
+    app.get('/admin/setHeader', function(req, res) {
+        Header.update( {}, header, { upsert : true, strict: false }, function(err) {
+            if (err) throw err;
+            Footer.update( {}, footer, { upsert : true, strict: false }, function(err) {
+                if (err) throw err;
+                res.json({'succ': 5});
+            });
+        });
     })
 }

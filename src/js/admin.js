@@ -9,16 +9,17 @@ import * as redux from 'redux';
 import actions from './actions.js';
 import headerActions from './headerActions.js';
 import blockCreator from './blockCreator';
+import headerHandler from './headerHandler';
 
 if (document.querySelector('.js-page__newPage')){
-    let store = redux.createStore(actions, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+    var store = redux.createStore(actions, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
     blockCreator(store);
 } else if (document.querySelector('.js-page__manageHeader')) {
-    let store = redux.createStore(actions, window.__PRESTATE__, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-    blockCreator(store);
+    var store = redux.createStore(headerActions, window.__PRESTATE__, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+    headerHandler(store);
 }
 
-
+const saveHeaderBtn = document.querySelector('.manageHeader__saveButton');
 const saveBtn = document.querySelector('.js__save-page');
 const langSelect = document.querySelector('.js__lang-select');
 const pageUrl = document.querySelector('.js__page-url');
@@ -94,10 +95,29 @@ if (saveBtn) {
         
         fetch('/admin/savePage/', req)
             .then(function(res) {
-                console.log(res);
             })
             .catch(function(res) {
-                console.log('error2');
+            });
+    });
+}
+
+if (saveHeaderBtn) {
+    saveHeaderBtn.addEventListener('click', function(e){
+        e.preventDefault();
+        let req = {
+            method: 'POST',
+            mode: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            },
+            body: JSON.stringify( store.getState()),
+            credentials: 'same-origin'
+        };
+        
+        fetch('/admin/saveHeader/', req)
+            .then(function(res) {
+            })
+            .catch(function(res) {
             });
     });
 }

@@ -107,7 +107,6 @@ export default function(store) {
                 }
             })
             .catch(function(res) {
-                console.log(res);
             });
     }
 

@@ -4,6 +4,7 @@
         window.__PRESTATE__.header = {{{json header}}};
         window.__PRESTATE__.footer = {{{json footer}}};
     </script>
+    <button class="manageHeader__saveButton">Zapisz nagłówek i stopkę</button>
     <div class="manageHeader">
         <p class="manageHeader__wrapper">
             <label>Nazwa firmy PL</label>
@@ -14,12 +15,10 @@
             <input type="text" value="{{header.title.en}}" class="manageHeader__title-en">
         </p>
         <h2>Nawigacja PL</h2>
-        <div class="manageHeader__linksPlContainer">
-            {{#each header.links.pl}}
-                <div class="manageHeader__linkGroup" data-block-id="{{this.blockId}}">
-                    <button class="link__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-                    <button class="link__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-                    <button class="link__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+        <div class="manageHeader__linksPlContainer">{{#each header.links.pl}}<div class="manageHeader__linkGroup block" data-block-id="{{this.blockId}}">
+                    <button class="headerLinkPl__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                    <button class="headerLinkPl__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    <button class="headerLinkPl__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
                     <p>
                         <label>Nazwa</label>
                         <input type="text" class="manageHeader__linkPL-title" value="{{this.title}}">
@@ -28,17 +27,13 @@
                         <label>Adres</label>
                         <input type="text" class="manageHeader__linkPL-url" value="{{this.url}}">
                     </p>
-                </div>
-            {{/each}}
-            <button type"button" class="manageHeader__add-link-pl">Dodaj link</button>
-        </div>
+                </div>{{/each}}</div>
+        <button type"button" class="manageHeader__add-link-pl">Dodaj link</button>
         <h2>Nawigacja EN</h2>
-        <div class="manageHeader__linksENContainer">
-            {{#each header.links.en}}
-                <div class="manageHeader__linkGroup" data-block-id="{{this.blockId}}">
-                    <button class="link__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-                    <button class="link__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-                    <button class="link__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+        <div class="manageHeader__linksENContainer">{{#each header.links.en}}<div class="manageHeader__linkGroup block" data-block-id="{{this.blockId}}">
+                    <button class="headerLinkEn__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                    <button class="headerLinkEn__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    <button class="headerLinkEn__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
                     <p>
                         <label>Nazwa</label>
                         <input type="text" class="manageHeader__linkEN-title" value="{{this.title}}">
@@ -47,10 +42,8 @@
                         <label>Adres</label>
                         <input type="text" class="manageHeader__linkEN-url" value="{{this.url}}">
                     </p>
-                </div>
-            {{/each}}
-            <button type"button" class="manageHeader__add-link-en">Dodaj link</button>
-        </div>
+                </div>{{/each}}</div>
+        <button type"button" class="manageHeader__add-link-en">Dodaj link</button>
     </div>
 
     <div class="manageFooter">
@@ -67,12 +60,10 @@
             <input type="text" value="{{footer.year}}" class="manageFooter__year">
         </p>
         <h2>Nawigacja PL</h2>
-        <div class="manageFooter__linksPlContainer">
-            {{#each footer.links.pl}}
-                <div class="manageFooter__linkGroup" data-block-id="{{this.blockId}}">
-                    <button class="link__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-                    <button class="link__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-                    <button class="link__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+        <div class="manageFooter__linksPlContainer">{{#each footer.links.pl}}<div class="manageFooter__linkGroup block" data-block-id="{{this.blockId}}">
+                    <button class="footerLinkPl__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                    <button class="footerLinkPl__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    <button class="footerLinkPl__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
                     <p>
                         <label>Nazwa</label>
                         <input type="text" class="manageFooter__linkPL-title" value="{{this.title}}">
@@ -81,17 +72,13 @@
                         <label>Adres</label>
                         <input type="text" class="manageFooter__linkPL-url" value="{{this.url}}">
                     </p>
-                </div>
-            {{/each}}
-            <button type"button" class="manageFooter__add-link-pl">Dodaj link</button>
-        </div>
+                </div>{{/each}}</div>
+        <button type"button" class="manageFooter__add-link-pl">Dodaj link</button>
         <h2>Nawigacja EN</h2>
-        <div class="manageFooter__linksENContainer">
-            {{#each footer.links.en}}
-                <div class="manageFooter__linkGroup" data-block-id="{{this.blockId}}">
-                    <button class="link__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-                    <button class="link__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-                    <button class="link__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+        <div class="manageFooter__linksENContainer">{{#each footer.links.en}}<div class="manageFooter__linkGroup block" data-block-id="{{this.blockId}}">
+                    <button class="footerLinkEn__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                    <button class="footerLinkEn__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    <button class="footerLinkEn__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
                     <p>
                         <label>Nazwa</label>
                         <input type="text" class="manageFooter__linkEN-title" value="{{this.title}}">
@@ -100,17 +87,15 @@
                         <label>Adres</label>
                         <input type="text" class="manageFooter__linkEN-url" value="{{this.url}}">
                     </p>
-                </div>
-            {{/each}}
-            <button type"button" class="manageFooter__add-link-en">Dodaj link</button>
-        </div>
+                </div>{{/each}}</div>
+        <button type"button" class="manageFooter__add-link-en">Dodaj link</button>
         <h2>Biura PL</h2>
         <div class="manageFooter__officesPlContainer">
             {{#each footer.offices.pl}}
-                <div class="manageFooter__officeGroup" data-block-id="{{this.blockId}}">
-                    <button class="link__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-                    <button class="link__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-                    <button class="link__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                <div class="manageFooter__officeGroup block" data-block-id="{{this.blockId}}">
+                    <button class="footerOfficePl__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                    <button class="footerOfficePl__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    <button class="footerOfficePl__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
                     <p>
                         <label>Nazwa</label>
                         <input type="text" class="manageFooter__officePL-title" value="{{this.title}}">
@@ -142,10 +127,10 @@
         <h2>Biura EN</h2>
         <div class="manageFooter__officesENContainer">
             {{#each footer.offices.en}}
-                <div class="manageFooter__officeGroup" data-block-id="{{this.blockId}}">
-                    <button class="link__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-                    <button class="link__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-                    <button class="link__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                <div class="manageFooter__officeGroup block" data-block-id="{{this.blockId}}">
+                    <button class="footerOfficeEn__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                    <button class="footerOfficeEn__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    <button class="footerOfficeEn__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
                     <p>
                         <label>Nazwa</label>
                         <input type="text" class="manageFooter__officeEN-title" value="{{this.title}}">
