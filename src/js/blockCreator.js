@@ -30,7 +30,7 @@ export default function(store) {
     if (newBlockSubmit) {
         newBlockSubmit.addEventListener('click', function(){
             const newBlock = newBlockSelect.options[newBlockSelect.selectedIndex].value;    
-            store.dispatch({"type": 'CREATE_BLOCK', "blockId": idCounter-1, "sectionType": newBlock});
+            store.dispatch({"type": 'CREATE_BLOCK', "blockId": idCounter, "sectionType": newBlock});
             newBlockHTML(newBlock);
     });
     }
@@ -45,11 +45,12 @@ export default function(store) {
             </div>`;
         let node = document.createElement('div');
         node.className = 'block';
-        node.setAttribute('data-block-id',idCounter++);
+        node.setAttribute('data-block-id',idCounter);
         node.innerHTML = html;
         let container = document.querySelector('.block-container');
         container.appendChild(node);
-        postRenderFunction(block, idCounter-1);
+        postRenderFunction(block, idCounter);
+        idCounter += 1;
         /*let selector = '[data-block-id="'+(idCounter-1)+'"] .block-text__text';
         let newTextarea = document.querySelector(selector);
         if (newTextarea) {
@@ -65,6 +66,9 @@ export default function(store) {
                 mastHeadpost(blockId);
                 break;
             case "offices":
+                officePost(blockId);
+                break;
+            case "smallOffices":
                 officePost(blockId);
                 break;
             default:
@@ -116,7 +120,7 @@ export default function(store) {
             });
     }
     function officePost(blockId) {
-        store.dispatch({"type": 'CREATE_OFFICE', blockId: blockId, subblockId: "0",});
+        store.dispatch({"type": 'CREATE_OFFICE', blockId: blockId, subblockId: 0,});
     }
 
     function renderBlockBase(block) {
@@ -198,9 +202,43 @@ export default function(store) {
                     <label class="block-office__label">Email</label>
                     <input type="text" name="block-office__email" class="block-office__text block-office__email" placeholder="np. kontakt@architekt.com">
                 </div>
-            </div>
-        </div>
-        <button class="addOfficeButton">Dodaj biuro</button>
-        </div>`;
+                <div class="block-office__wrapper">
+                    <label class="block-office__label">Link do mapy</label>
+                    <input type="text" name="block-office__map" class="block-office__text block-office__map" placeholder="">
+                </div>
+            </div></div></div><button class="addOfficeButton">Dodaj biuro</button></div>`;
+    }
+
+    function renderSmallOfficesBase() {
+        return `<div class="officesBlock-container"><div class="subblock" data-subblock-id="0">
+            <button class="officeBlock__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+            <button class="officeBlock__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+            <button class="officeBlock__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <div class="office">
+                <div class="block-office__wrapper">
+                    <label class="block-office__label">Tytuł biura</label>
+                    <input type="text" name="block-office__title" class="block-office__text block-office__title" placeholder="np. Siedziba">
+                </div>
+                <div class="block-office__wrapper">
+                    <label class="block-office__label">Adres</label>
+                    <input type="text" name="blokc-office__address" class="block-office__text block-office__address" placeholder="np. ul. 3 Maja 60">
+                </div>
+                <div class="block-office__wrapper">
+                    <label class="block-office__label">Miejscowość</label>
+                    <input type="text" name="block-office__city" class="block-office__city block-office__text" placeholder="np. Wrocław">
+                </div>
+                <div class="block-office__wrapper">
+                    <label class="block-office__label">Kod pocztowy</label>
+                    <input type="text" name="block-office__postal" class="block-office__text block-office__postal" placeholder=" np. 50-000">
+                </div>
+                <div class="block-office__wrapper">
+                    <label class="block-office__label">Telefon</label>
+                    <input type="text" name="block-office__phone" class="block-office__text block-office__phone" placeholder="np. 123 456 789">
+                </div>
+                <div class="block-office__wrapper">
+                    <label class="block-office__label">Email</label>
+                    <input type="text" name="block-office__email" class="block-office__text block-office__email" placeholder="np. kontakt@architekt.com">
+                </div>
+            </div></div></div><button class="addSmallOfficeButton">Dodaj biuro</button></div>`;
     }
 }

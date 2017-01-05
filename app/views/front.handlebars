@@ -100,19 +100,18 @@
                 {{#equals this.sectionType 'offices'}}
                     <div class="content">
                         <div class="content__inner u-clearfix">
-                            <h2>{{this.content.title}}</h2>
-                            {{#each this.content.offices}}
+                            {{#each this.content}}
                             <div class="office u-clearfix">
                                 <p class="office__info">
-                                    {{this.title}}<br>
-                                    {{this.street}},<br>
-                                    {{this.city}}, {{this.postal}}<br>
-                                    tel: <a href="tel: {{this.tel}}">{{this.tel}}</a><br>
-                                    email: <a href="mailto: {{this.mail}}">{{this.tel}}</a>
+                                    {{this.content.title}}<br>
+                                    {{this.content.address}},<br>
+                                    {{this.content.city}}, {{this.content.postal}}<br>
+                                    tel: <a href="tel: {{this.content.phone}}">{{this.content.phone}}</a><br>
+                                    email: <a href="mailto: {{this.content.email}}">{{this.content.email}}</a>
                                 </p>
                                 <div class="office__map">
                                     <div class="embed-container">
-                                        <iframe src="{{this.map}}" width="600" height="450" frameborder="0" style="border:0"></iframe>
+                                        <iframe src="{{this.content.map}}" width="600" height="450" frameborder="0" style="border:0"></iframe>
                                     </div>
                                 </div>
                             </div>
@@ -156,13 +155,13 @@
                 {{#equals this.sectionType 'smallOffices'}}
                     <div class="content">
                         <div class="content__inner u-clearfix">
-                            {{#each this.content.offices}}
+                            {{#each this.content}}
                             <p>
-                                {{this.title}}<br>
-                                {{this.street}},<br>
-                                {{this.city}}, {{this.postal}}<br>
-                                tel: <a href="tel: {{this.phone}}">{{this.phone}}</a><br>
-                                email: <a href="mailto: {{this.mail}}">{{this.mail}}</a>
+                                {{this.content.title}}<br>
+                                {{this.content.address}},<br>
+                                {{this.content.city}}, {{this.content.postal}}<br>
+                                tel: <a href="tel: {{this.content.phone}}">{{this.content.phone}}</a><br>
+                                email: <a href="mailto: {{this.content.email}}">{{this.content.email}}</a>
                             </p>
                             {{/each}}
                             <a href="{{this.content.contactUrl}}">{{this.content.contactLinkTitle}}</a>

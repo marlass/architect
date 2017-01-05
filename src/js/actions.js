@@ -42,6 +42,8 @@ export default function(state = {}, action) {
             return blockOfficesHandler.setPhone(state, action);
         case 'SET_BLOCK_OFFICES_EMAIL':
             return blockOfficesHandler.setEmail(state, action);
+        case 'SET_BLOCK_OFFICES_MAP':
+            return blockOfficesHandler.setMap(state, action);
         case 'SET_OFFICE_UP':
             return blockOfficesHandler.setUp(state, action);
         case 'SET_OFFICE_DOWN':
