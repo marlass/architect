@@ -1,5 +1,6 @@
 import * as blockTextHandler from './blockTextHandler';
 import * as blockMastheadHandler from './blockMastheadHandler';
+import * as blockOfficesHandler from './blockOfficesHandler';
 import blockCreationHandler from './blockCreationHandler';
 import * as blockHandler from './blockHandler';
 
@@ -29,6 +30,26 @@ export default function(state = {}, action) {
             return blockHandler.setDown(state, action);
         case 'DELETE_BLOCK':
             return blockHandler.deleteBlock(state, action);
+        case 'SET_BLOCK_OFFICES_TITLE':
+            return blockOfficesHandler.setTitle(state, action);
+        case 'SET_BLOCK_OFFICES_ADDRESS':
+            return blockOfficesHandler.setAddress(state, action);
+        case 'SET_BLOCK_OFFICES_CITY':
+            return blockOfficesHandler.setCity(state, action);
+        case 'SET_BLOCK_OFFICES_POSTAL':
+            return blockOfficesHandler.setPostal(state, action);
+        case 'SET_BLOCK_OFFICES_PHONE':
+            return blockOfficesHandler.setPhone(state, action);
+        case 'SET_BLOCK_OFFICES_EMAIL':
+            return blockOfficesHandler.setEmail(state, action);
+        case 'SET_OFFICE_UP':
+            return blockOfficesHandler.setUp(state, action);
+        case 'SET_OFFICE_DOWN':
+            return blockOfficesHandler.setDown(state, action);
+        case 'DELETE_OFFICE':
+            return blockOfficesHandler.deleteOffice(state, action);
+        case 'CREATE_OFFICE':
+            return blockOfficesHandler.createOffice(state, action);
         default:
             return state;
     }
