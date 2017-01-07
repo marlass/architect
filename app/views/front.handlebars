@@ -100,6 +100,9 @@
                 {{#equals this.sectionType 'offices'}}
                     <div class="content">
                         <div class="content__inner u-clearfix">
+                            {{#if this.title}}
+                                <h2>{{this.title}}</h2>
+                            {{/if}}
                             {{#each this.content}}
                             <div class="office u-clearfix">
                                 <p class="office__info">
@@ -122,13 +125,15 @@
                 {{#equals this.sectionType 'team'}}
                     <div class="content">
                         <div class="content__inner u-clearfix">
-                            <h2>{{this.content.title}}</h2>
+                            {{#if this.title}}
+                                <h2>{{this.title}}</h2>
+                            {{/if}}
                             <div class="team u-clearfix">
-                                {{#each this.content.team}}
+                                {{#each this.content}}
                                 <figure class="team__member member">
-                                    <img class="member__img" src="{{this.img}}">
+                                    <img class="member__img" src="/static/uploads/team/{{this.content.img}}">
                                     <figcaption class="memeber__info">
-                                        {{this.info}}
+                                        {{this.content.title}}
                                     </figcaption>
                                 </figure>
                                 {{/each}}
@@ -139,15 +144,15 @@
                 {{#equals this.sectionType 'projectsBlock'}}
                     <div class="content">
                         <div class="content__inner u-clearfix">
-                            {{#each this.content.projects}}
-                            <div class="project {{#if this.big }}project--big{{/if}}">
-                                <a href="{{this.url}}" class="project__link"  style="background-image: url('{{this.img}}');">
-                                    <h2 class="project__title">{{this.title}}</h2>
+                            {{#each this.content}}
+                            <div class="project {{#if this.content.big }}project--big{{/if}}">
+                                <a href="{{this.content.page}}" class="project__link"  style="background-image: url('/static/uploads/{{this.content.img}}');">
+                                    <h2 class="project__title">{{this.content.title}}</h2>
                                 </a>
                             </div>
                             {{/each}}
-                            {{#if this.content.more.link }}
-                            <a href="{{this.content.more.link}}">{{this.content.more.title}}</a>
+                            {{#if this.linkTitle }}
+                                <a href="{{this.linkUrl}}">{{this.linkTitle}}</a>
                             {{/if}}
                         </div>
                     </div>
@@ -164,19 +169,24 @@
                                 email: <a href="mailto: {{this.content.email}}">{{this.content.email}}</a>
                             </p>
                             {{/each}}
-                            <a href="{{this.content.contactUrl}}">{{this.content.contactLinkTitle}}</a>
+                            {{#if this.linkTitle}}
+                            <a href="{{this.linkUrl}}">{{this.linkTitle}}</a>
+                            {{/if}}
                         </div>
                     </div>
                 {{/equals}}
                 {{#equals this.sectionType 'gallery'}}
                     <div class="content">
                         <div class="content__inner u-clearfix">
+                            {{#if this.title}}
+                                <h2>{{this.title}}</h2>
+                            {{/if}}
                             <div class="gallery u-clearfix">
-                                {{#each this.content.gallery}}
+                                {{#each this.content}}
                                 <figure class="gallery__item">
-                                    <img class="gallery__img" src="{{this.img}}" alt="{{this.title}}">
+                                    <img class="gallery__img" src="/static/uploads/{{this.content.img}}" alt="{{this.content.title}}">
                                     <figcaption class="gallery__caption">
-                                        {{this.title}}
+                                        {{this.content.title}}
                                     </figcaption>
                                 </figure>
                                 {{/each}}

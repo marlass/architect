@@ -13,7 +13,7 @@ import headerHandler from './headerHandler';
 
 if (document.querySelector('.js-page__newPage')){
     var store = redux.createStore(actions, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-    blockCreator(store);
+    blockCreator(store,window.__IMAGES__, window.__TEAM__, window.__MASTHEAD__,window.__PAGES__);
 } else if (document.querySelector('.js-page__manageHeader')) {
     var store = redux.createStore(headerActions, window.__PRESTATE__, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
     headerHandler(store);

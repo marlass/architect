@@ -1,31 +1,20 @@
-export function setSectionTitle(state, action) {
-    let poststate = Object.assign({},state);
-    for (let i = 0, len = poststate.content.length; i < len; i++) {
-        if (poststate.content[i].blockId === parseInt(action.blockId)) {
-            poststate.content[i].title = action.title;
-            return Object.assign({},state,poststate);
-        }
-    }
-    return state;
-}
-
-export function setSectionLinkTitle(state, action) {
+export function setBlockLinkTitle(state, action) {
     let poststate = Object.assign({},state);
     for (let i = 0, len = poststate.content.length; i < len; i++) {
         if (poststate.content[i].blockId === parseInt(action.blockId)) {
             poststate.content[i].linkTitle = action.title;
-            return Object.assign({},state,poststate);
+            return Object.assign({}, state, poststate);
         }
     }
     return state;
 }
 
-export function setSectionLinkUrl(state, action) {
+export function setBlockLinkUrl(state, action) {
     let poststate = Object.assign({},state);
     for (let i = 0, len = poststate.content.length; i < len; i++) {
         if (poststate.content[i].blockId === parseInt(action.blockId)) {
             poststate.content[i].linkUrl = action.url;
-            return Object.assign({},state,poststate);
+            return Object.assign({}, state, poststate);
         }
     }
     return state;
@@ -46,13 +35,13 @@ export function setTitle(state, action) {
     return state;
 }
 
-export function setAddress(state, action) {
+export function setImg(state, action) {
     let poststate = Object.assign({},state);
     for (let i = 0, len = poststate.content.length; i < len; i++) {
         if (poststate.content[i].blockId === parseInt(action.blockId)) {
             for (let l = 0; l < poststate.content[i].content.length; l++) {
                 if (poststate.content[i].content[l].subBlockId == action.subblockId) {
-                    poststate.content[i].content[l].content.address = action.address;
+                    poststate.content[i].content[l].content.img = action.img;
                     return Object.assign({},state,poststate);
                 }
             }
@@ -61,13 +50,13 @@ export function setAddress(state, action) {
     return state;
 }
 
-export function setCity(state, action) {
+export function setPage(state, action) {
     let poststate = Object.assign({},state);
     for (let i = 0, len = poststate.content.length; i < len; i++) {
         if (poststate.content[i].blockId === parseInt(action.blockId)) {
             for (let l = 0; l < poststate.content[i].content.length; l++) {
                 if (poststate.content[i].content[l].subBlockId == action.subblockId) {
-                    poststate.content[i].content[l].content.city = action.city;
+                    poststate.content[i].content[l].content.page = action.page;
                     return Object.assign({},state,poststate);
                 }
             }
@@ -76,13 +65,13 @@ export function setCity(state, action) {
     return state;
 }
 
-export function setPostal(state, action) {
+export function setBig(state, action) {
     let poststate = Object.assign({},state);
     for (let i = 0, len = poststate.content.length; i < len; i++) {
         if (poststate.content[i].blockId === parseInt(action.blockId)) {
             for (let l = 0; l < poststate.content[i].content.length; l++) {
                 if (poststate.content[i].content[l].subBlockId == action.subblockId) {
-                    poststate.content[i].content[l].content.postal = action.postal;
+                    poststate.content[i].content[l].content.big = parseInt(action.big) || 0;
                     return Object.assign({},state,poststate);
                 }
             }
@@ -91,50 +80,6 @@ export function setPostal(state, action) {
     return state;
 }
 
-export function setPhone(state, action) {
-    let poststate = Object.assign({},state);
-    for (let i = 0, len = poststate.content.length; i < len; i++) {
-        if (poststate.content[i].blockId === parseInt(action.blockId)) {
-            for (let l = 0; l < poststate.content[i].content.length; l++) {
-                if (poststate.content[i].content[l].subBlockId == action.subblockId) {
-                    poststate.content[i].content[l].content.phone = action.phone;
-                    return Object.assign({},state,poststate);
-                }
-            }
-        }
-    }
-    return state;
-}
-
-export function setEmail(state, action) {
-    let poststate = Object.assign({},state);
-    for (let i = 0, len = poststate.content.length; i < len; i++) {
-        if (poststate.content[i].blockId === parseInt(action.blockId)) {
-            for (let l = 0; l < poststate.content[i].content.length; l++) {
-                if (poststate.content[i].content[l].subBlockId == action.subblockId) {
-                    poststate.content[i].content[l].content.email = action.email;
-                    return Object.assign({},state,poststate);
-                }
-            }
-        }
-    }
-    return state;
-}
-
-export function setMap(state, action) {
-    let poststate = Object.assign({},state);
-    for (let i = 0, len = poststate.content.length; i < len; i++) {
-        if (poststate.content[i].blockId === parseInt(action.blockId)) {
-            for (let l = 0; l < poststate.content[i].content.length; l++) {
-                if (poststate.content[i].content[l].subBlockId == action.subblockId) {
-                    poststate.content[i].content[l].content.map = action.map;
-                    return Object.assign({},state,poststate);
-                }
-            }
-        }
-    }
-    return state;
-}
 
 export function setUp(state, action) {
     let poststate = Object.assign({},state);
@@ -170,7 +115,7 @@ export function setDown(state, action) {
     return state;
 }
 
-export function deleteOffice(state, action) {
+export function deleteProject(state, action) {
     let poststate = Object.assign({},state);
     let blockId = 0;
     let subBlockId = 0;
@@ -188,7 +133,7 @@ export function deleteOffice(state, action) {
     return Object.assign({},state,poststate);
 }
 
-export function createOffice(state, action) {
+export function createProject(state, action) {
     let postState = Object.assign({},state);
     let blockKey  = 0;
     for (let i = 0; i < postState.content.length; i++) {
@@ -203,12 +148,9 @@ export function createOffice(state, action) {
     postState.content[blockKey].content.push({subBlockId: action.subblockId,
         content: {
             title: '',
-            address: '',
-            city: '',
-            postal: '',
-            phone: '',
-            email: '',
-            map: ''
+            img: '',
+            page: '',
+            big: 0
         }});
     return Object.assign({},state, postState);
 }

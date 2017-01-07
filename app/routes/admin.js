@@ -142,7 +142,26 @@ module.exports = function(app) {
     });
 
     app.get('/admin/newPage', function(req, res) {
-        res.render('newPage', {layout: 'admin'});
+        const dirs = getDirectories(__dirname + '/../public/uploads/');
+        let dirsList = [];
+        dirs.forEach(function(a){
+            const files = getFilesInDir(__dirname + '/../public/uploads/' + a);
+            let fileList = [];
+            files.forEach(function(b){
+                fileList.push({path: b});
+            })
+            dirsList.push({path: a,photos: fileList});
+        })
+        let team = getFilesInDir(__dirname + '/../public/uploads/team/');
+        let masthead = getFilesInDir(__dirname + '/../public/uploads/masthead/');
+        Page.find({}, function(err, result) {
+            let pages = [];
+            result.forEach(function(page) {
+                pages.push(page.pageUrl);
+            });
+            res.render('newPage', {layout: 'admin',catalogs: dirsList, team, masthead, pages});
+        });
+        
     });
 
     app.post('/admin/savePage', function(req, res) {

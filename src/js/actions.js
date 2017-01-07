@@ -1,6 +1,8 @@
 import * as blockTextHandler from './blockTextHandler';
 import * as blockMastheadHandler from './blockMastheadHandler';
 import * as blockOfficesHandler from './blockOfficesHandler';
+import * as blockGalleryHandler from './blockGalleryHandler';
+import * as blockProjectsHandler from './blockProjectsHandler';
 import blockCreationHandler from './blockCreationHandler';
 import * as blockHandler from './blockHandler';
 
@@ -30,6 +32,12 @@ export default function(state = {}, action) {
             return blockHandler.setDown(state, action);
         case 'DELETE_BLOCK':
             return blockHandler.deleteBlock(state, action);
+        case 'SET_BLOCK_OFFICES_SECTION_TITLE':
+            return blockOfficesHandler.setSectionTitle(state, action);
+        case 'SET_BLOCK_OFFICES_SECTION_LINK_TITLE':
+            return blockOfficesHandler.setSectionLinkTitle(state, action);
+        case 'SET_BLOCK_OFFICES_SECTION_LINK_URL':
+            return blockOfficesHandler.setSectionLinkUrl(state, action);
         case 'SET_BLOCK_OFFICES_TITLE':
             return blockOfficesHandler.setTitle(state, action);
         case 'SET_BLOCK_OFFICES_ADDRESS':
@@ -52,6 +60,40 @@ export default function(state = {}, action) {
             return blockOfficesHandler.deleteOffice(state, action);
         case 'CREATE_OFFICE':
             return blockOfficesHandler.createOffice(state, action);
+        case 'SET_IMAGE_TITLE':
+            return blockGalleryHandler.setTitle(state, action);
+        case 'SET_IMAGE':
+            return blockGalleryHandler.setImage(state, action);
+        case 'SET_IMAGE_UP':
+            return blockGalleryHandler.setUp(state, action);
+        case 'SET_IMAGE_DOWN':
+            return blockGalleryHandler.setDown(state, action);
+        case 'DELETE_IMAGE':
+            return blockGalleryHandler.deleteImage(state, action);
+        case 'CREATE_IMAGE':
+            return blockGalleryHandler.createImage(state, action);
+        case 'SET_BLOCK_GALLERY_TITLE':
+            return blockGalleryHandler.setBlockTitle(state, action);
+        case 'SET_PROJECT_TITLE':
+            return blockProjectsHandler.setTitle(state, action);
+        case 'SET_PROJECT_IMAGE':
+            return blockProjectsHandler.setImg(state, action);
+        case 'SET_PROJECT_PAGE':
+            return blockProjectsHandler.setPage(state, action);
+        case 'SET_PROJECT_BIG':
+            return blockProjectsHandler.setBig(state, action);
+        case 'SET_PROJECT_UP':
+            return blockProjectsHandler.setUp(state, action);
+        case 'SET_PROJECT_DOWN':
+            return blockProjectsHandler.setDown(state, action);
+        case 'DELETE_PROJECT':
+            return blockProjectsHandler.deleteProject(state, action);
+        case 'CREATE_PROJECT':
+            return blockProjectsHandler.createProject(state, action);
+        case 'SET_BLOCK_PROJECT_LINK_TITLE':
+            return blockProjectsHandler.setBlockLinkTitle(state, action);
+        case 'SET_BLOCK_PROJECT_LINK_URL':
+            return blockProjectsHandler.setBlockLinkUrl(state, action);
         default:
             return state;
     }

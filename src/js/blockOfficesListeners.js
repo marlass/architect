@@ -172,6 +172,18 @@ export function blurList(e, store) {
         let title = e.target.value;
         store.dispatch({"type": 'SET_BLOCK_OFFICES_TITLE', "blockId": id,"subblockId": subBlock, "title": title});
     }
+    if (hasClass(e.target,'block-offices__section-title')) {
+        let input = e.target;
+        let id = input.closest('.block').getAttribute('data-block-id');
+        let title = e.target.value;
+        store.dispatch({"type": 'SET_BLOCK_OFFICES_SECTION_TITLE', "blockId": id, "title": title});
+    }
+    if (hasClass(e.target,'block-office__more-offices-title')) {
+        let input = e.target;
+        let id = input.closest('.block').getAttribute('data-block-id');
+        let title = e.target.value;
+        store.dispatch({"type": 'SET_BLOCK_OFFICES_SECTION_LINK_TITLE', "blockId": id, "title": title});
+    }
     if (hasClass(e.target,'block-office__address')) {
         let input = e.target;
         let id = input.closest('.block').getAttribute('data-block-id');
@@ -213,6 +225,15 @@ export function blurList(e, store) {
         let subBlock = input.closest('.subblock').getAttribute('data-subblock-id');
         let map = e.target.value;
         store.dispatch({"type": 'SET_BLOCK_OFFICES_MAP', "blockId": id,"subblockId": subBlock, "map": map});
+    }
+}
+
+export function changeList(e, store) {
+    if (hasClass(e.target,'block-office__more-link')) {
+        let input = e.target;
+        let id = input.closest('.block').getAttribute('data-block-id');
+        let url2 = e.target.options[e.target.selectedIndex].value;;
+        store.dispatch({"type": 'SET_BLOCK_OFFICES_SECTION_LINK_URL', "blockId": id, "url": url2});
     }
 }
 
