@@ -270,5 +270,58 @@ module.exports = function(app) {
                 res.json({'succ': 5});
             });
         });
+    });
+
+    app.get('/admin/pageList', function(req, res) {
+        Page.find({}, function(err, result) {
+            let pageList = [];
+            result.forEach(function(row){
+                pageList.push(row.pageUrl);
+            })
+            res.render('listPage',{layout: 'admin',pages: pageList});
+        })
+    });
+
+    app.post('/admin/deletePage', function(req, res) {
+        if (!req.body.page) {
+            Page.findOneAndRemove({pageUrl: null},function(err,result){
+            });
+        }
+        Page.findOneAndRemove({pageUrl: req.body.page}, function(err, resul) {
+            res.redirect('/admin/pageList');
+        })
+    });
+
+    app.post('/admin/editPage', function(req, res) {
+        const dirs = getDirectories(__dirname + '/../public/uploads/');
+        let dirsList = [];
+        dirs.forEach(function(a){
+            const files = getFilesInDir(__dirname + '/../public/uploads/' + a);
+            let fileList = [];
+            files.forEach(function(b){
+                fileList.push({path: b});
+            })
+            dirsList.push({path: a,photos: fileList});
+        })
+        let team = getFilesInDir(__dirname + '/../public/uploads/team/');
+        let masthead = getFilesInDir(__dirname + '/../public/uploads/masthead/');
+        let pages = [];
+        let page = {};
+        Page.find({}, function(err, result) {
+            result.forEach(function(page) {
+                pages.push(page.pageUrl);
+            });
+            if (!req.body.page) {
+                Page.findOne({pageUrl: null},function(err,result2){
+                    page = result2;
+                    res.render('editPage', {layout: 'admin',catalogs: dirsList, team, masthead, pages, page});
+                });
+            } else {
+                Page.findOne({pageUrl: req.body.page}, function(err, result2) {
+                    page = result2;
+                    res.render('editPage', {layout: 'admin',catalogs: dirsList, team, masthead, pages, page});
+                });
+            }
+        });        
     })
 }

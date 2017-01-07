@@ -17,6 +17,9 @@ if (document.querySelector('.js-page__newPage')){
 } else if (document.querySelector('.js-page__manageHeader')) {
     var store = redux.createStore(headerActions, window.__PRESTATE__, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
     headerHandler(store);
+} else if (document.querySelector('.js-page__editPage')) {
+    var store = redux.createStore(actions, window.__PRESTATE__, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+    blockCreator(store,window.__IMAGES__, window.__TEAM__, window.__MASTHEAD__,window.__PAGES__);
 }
 
 const saveHeaderBtn = document.querySelector('.manageHeader__saveButton');
@@ -28,6 +31,7 @@ const otherLangUrl = document.querySelector('.js__other-lang-url');
 
 const deleteCatalogForms = document.querySelectorAll('.deleteCatalogForm');
 const deletePhotoForms = document.querySelectorAll('.deletePhotoForm');
+const removePageForms = document.querySelectorAll('.removePageForm');
 if (deleteCatalogForms) {
     for (let i=0; i<deleteCatalogForms.length;i++){
         deleteCatalogForms[i].addEventListener('submit', function(e){
@@ -44,6 +48,17 @@ if (deletePhotoForms) {
         deletePhotoForms[i].addEventListener('submit', function(e){
             e.preventDefault();
             let result = window.confirm('Czy chcesz usunąć obraz?');
+            if (result) {
+                e.target.submit();
+            }
+        });
+    }
+}
+if (removePageForms) {
+    for (let i=0; i<removePageForms.length;i++){
+        removePageForms[i].addEventListener('submit', function(e){
+            e.preventDefault();
+            let result = window.confirm('Czy chcesz usunąć stronę?');
             if (result) {
                 e.target.submit();
             }

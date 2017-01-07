@@ -1,0 +1,18 @@
+<div class="js-page__listPage">
+    <table>
+        {{#each pages}}
+            <tr>
+                <td>{{this}}</td>
+                <td><form action="/admin/editPage" method="POST">
+                    <input type="hidden" name="page" value="{{this}}">
+                    <button type="submit">Edytuj stronę</button>
+                </form></td>
+                <td><form action="/admin/deletePage" method="POST" class="removePageForm">
+                    <input type="hidden" name="page" value="{{this}}">
+                    <button type="submit">Usuń stronę</button>
+                </form></td>
+            </tr>
+        {{/each}}
+    </table>
+    
+</div>
