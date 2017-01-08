@@ -19,21 +19,82 @@
         <p class="page-settings__wrapper">
             <label class="page-settings__label">Język strony</label>
             <select name="pageLang" class="js__lang-select page-settings__select">
-                <option value="en" {{#equals page.lang 'en'}}selected{{/equals}}>Angielski</option>
-                <option value="pl" {{#equals page.lang 'pl'}}selected{{/equals}}>Polski</option>
+                <option value="en"
+                {{#equals page.lang 'en'}}
+                    selected
+                {{/equals}}
+                >Angielski</option>
+                <option value="pl"
+                {{#equals page.lang 'pl'}}
+                    selected
+                {{/equals}}
+                >Polski</option>
             </select>
         </p>
         <p class="page-settings__wrapper"> 
             <label class="page-settings__label">Link do drugiej wersji językowej</label>
-            <input type="text" value="" name="otherLanguageUrl" class="page-settings__input js__other-lang-url">
-            <script>
-                document.querySelector('.js__other-lang-url').value = window.__PRESTATE__.secondurl;
-            </script>
+            <input type="text" value="{{page.secondurl}}" name="otherLanguageUrl" class="page-settings__input js__other-lang-url">
         </p>
         <button type="button" class="page-settings__submit js__save-page">Zapisz</button>
     </div>
     <div class="content-editor">
-        <div class="block-container"></div>
+        <div class="block-container">
+            {{#each page.content}}
+                <div class="block" data-block-id="{{this.blockId}}">
+                    <button class="block__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                <button class="block__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                <button class="block__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                <div class="block__content">
+                    {{#equals this.sectionType 'masthead'}}
+                        <div class="block-masthead">
+                            <div class="block-masthead__wrapper">
+                                <label class="block-masthead__label">Tytuł</label>
+                                <input type="text" name="block-masthead__title" class="block-masthead__input block-masthead__title" placeholder="np. Projekty" value="{{this.content.title}}">
+                            </div>
+                            <div class="block-masthead__bg-wrapper u-clearfix">
+                                <div>
+                                <h2>Wybierz tło</h2>
+                                {{#each ../masthead}}
+                                    <label for="{{../this.blockId}}-{{@index}}-{{this}}"><img style="width: 150px;height: 150px;object-fit:cover;float: left;" src="/static/uploads/masthead/{{this}}"></label><input type="radio" name="background" class="block-masthead__background" id="{{../this.blockId}}-{{@index}}-{{this}}" value="{{this}}" {{#equals this ../this.content.background}}checked{{/equals}}>
+                                {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                    {{/equals}}
+                    {{#equals this.sectionType 'text'}}
+                        <div class="block-text">
+                            <div class="block-text__wrapper">
+                                <label class="block-text__label">Tło</label>
+                                <input type="text" name="block-text__background" class="block-text__input block-text__background" placeholder="np. white" value="{{this.content.background}}">
+                            </div>
+                            <div class="block-text__wrapper">
+                                <label class="block-text__label">Treść</label>
+                                <textarea name="block-text__text" class="block-text__text" placeholder="np. Informacje o ofercie">{{this.content.text}}</textarea>
+                            </div>
+                        </div>
+                    {{/equals}}
+                    {{#equals this.sectionType 'calc'}}
+                        <h2>Kalkulator</h2>
+                    {{/equals}}
+                    {{#equals this.sectionType 'offices'}}
+                        offices
+                    {{/equals}}
+                    {{#equals this.sectionType 'team'}}
+                        team
+                    {{/equals}}
+                    {{#equals this.sectionType 'projectsBlock'}}
+                        projects
+                    {{/equals}}
+                    {{#equals this.sectionType 'smallOffices'}}
+                        smallOffices
+                    {{/equals}}
+                    {{#equals this.sectionType 'gallery'}}
+                        gallery
+                    {{/equals}}
+                </div>
+                </div>
+            {{/each}}
+        </div>
         <div class="new-block">
             <label class="new-block__label">Wybierz blok</label>
             <select name="new-block__select" class="new-block__select">

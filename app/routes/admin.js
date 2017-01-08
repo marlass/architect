@@ -312,12 +312,12 @@ module.exports = function(app) {
                 pages.push(page.pageUrl);
             });
             if (!req.body.page) {
-                Page.findOne({pageUrl: null},function(err,result2){
+                Page.findOne({pageUrl: null}).lean().exec(function(err,result2){
                     page = result2;
                     res.render('editPage', {layout: 'admin',catalogs: dirsList, team, masthead, pages, page});
                 });
             } else {
-                Page.findOne({pageUrl: req.body.page}, function(err, result2) {
+                Page.findOne({pageUrl: req.body.page}).lean().exec(function(err, result2) {
                     page = result2;
                     res.render('editPage', {layout: 'admin',catalogs: dirsList, team, masthead, pages, page});
                 });
