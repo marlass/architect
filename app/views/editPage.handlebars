@@ -41,7 +41,7 @@
         <div class="block-container">
             {{#each page.content}}
                 <div class="block" data-block-id="{{this.blockId}}">
-                    <button class="block__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                <button class="block__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
                 <button class="block__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
                 <button class="block__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
                 <div class="block__content">
@@ -77,19 +77,189 @@
                         <h2>Kalkulator</h2>
                     {{/equals}}
                     {{#equals this.sectionType 'offices'}}
-                        offices
+                        <div class="block-offices__wrapper">
+                            <label>Tytuł sekcji</label>
+                            <input value="{{this.title}}" type="text" placeholder=" np. Biura" class="block-offices__section-title" name="block-offices__section-title"></div>
+                        <div class="officesBlock-container">
+                            {{#each this.content}}
+                            <div class="subblock" data-subblock-id="{{this.subBlockId}}">
+                            <button class="officeBlock__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                            <button class="officeBlock__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                            <button class="officeBlock__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            <div class="office">
+                                <div class="block-office__wrapper">
+                                    <label class="block-office__label">Tytuł biura</label>
+                                    <input type="text" name="block-office__title" class="block-office__text block-office__title" placeholder="np. Siedziba" value="{{this.content.title}}">
+                                </div>
+                                <div class="block-office__wrapper">
+                                    <label class="block-office__label">Adres</label>
+                                    <input type="text" name="block-office__address" class="block-office__text block-office__address" placeholder="np. ul. 3 Maja 60" value="{{this.content.address}}">
+                                </div>
+                                <div class="block-office__wrapper">
+                                    <label class="block-office__label">Miejscowość</label>
+                                    <input type="text" name="block-office__city" class="block-office__city block-office__text" placeholder="np. Wrocław" value="{{this.content.city}}">
+                                </div>
+                                <div class="block-office__wrapper">
+                                    <label class="block-office__label">Kod pocztowy</label>
+                                    <input type="text" name="block-office__postal" class="block-office__text block-office__postal" placeholder=" np. 50-000" value="{{this.content.postal}}">
+                                </div>
+                                <div class="block-office__wrapper">
+                                    <label class="block-office__label">Telefon</label>
+                                    <input type="text" name="block-office__phone" class="block-office__text block-office__phone" placeholder="np. 123 456 789" value="{{this.content.phone}}">
+                                </div>
+                                <div class="block-office__wrapper">
+                                    <label class="block-office__label">Email</label>
+                                    <input type="text" name="block-office__email" class="block-office__text block-office__email" placeholder="np. kontakt@architekt.com" value="{{this.content.email}}">
+                                </div>
+                                <div class="block-office__wrapper">
+                                    <label class="block-office__label">Link do mapy</label>
+                                    <input type="text" name="block-office__map" class="block-office__text block-office__map" placeholder="" value="{{this.content.map}}">
+                                </div>
+                            </div></div>
+                            {{/each}}
+                            </div><button class="addOfficeButton">Dodaj biuro</button></div>
                     {{/equals}}
                     {{#equals this.sectionType 'team'}}
-                        team
+                        <div class="block-gallery__wrapper"><label>Tytuł sekcji</label>
+                            <input type="text" placeholder=" np. Zespół" class="block-gallery__section-title" name="block-gallery__section-title" value="{{this.title}}">
+                        </div><div class="galleryBlock-container">
+                        {{#each this.content}}
+                        <div class="subblock" data-subblock-id="{{this.subBlockId}}">
+                        <button class="galleryBlock__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                        <button class="galleryBlock__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                        <button class="galleryBlock__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                        <div class="image">
+                            <div class="block-gallery__wrapper">
+                                <label class="block-gallery__label">Podpis</label>
+                                <input type="text" name="block-gallery__title" class="block-gallery__text block-gallery__title" value="{{this.content.title}}" placeholder="np. Specjalista od ogrodów">
+                            </div>
+                            <div class="block-gallery__preview">
+                                <img src="/static/img/placeholder.png">
+                            </div>
+                            <div class="block-gallery__wrapper block-gallery__wrapper-image">
+                                {{#each ../../team}}
+                                    <label for="{{../../this.blockId}}-{{../this.subBlockId}}-{{@index}}-{{this}}"><img style="width: 150px;height: 150px;object-fit:cover;float: left;" src="/static/uploads/masthead/{{this}}"></label><input type="radio" name="background" class="block-masthead__background" id="{{../../this.blockId}}-{{../this.subBlockId}}-{{@index}}-{{this}}" value="{{this}}" {{#equals this ../this.content.background}}checked{{/equals}}>
+                                {{/each}}
+                            </div>
+                        </div>
+                        </div>
+                        {{/each}}
+                        </div><button class="addImageButton addImageButtonTeam">Dodaj zdjęcie</button>
                     {{/equals}}
                     {{#equals this.sectionType 'projectsBlock'}}
-                        projects
+                        <div class="block-project__wrapper">
+                            <label>Nazwa linku do strony projektów</label>
+                            <!-- TODO set mroe link -->
+                            <input type="text" placeholder=" np. Zobacz więcej projektów" class="block-project__more-project-title" name="block-project__more-project-title">
+                        </div>
+                        <!-- TODO set more url -->
+                        <div class="block-project__wrapper block-project__wrapper-more-link"></div>
+                        <div class="projectsBlock-container">
+                        {{#each this.content}}
+                        <div class="subblock" data-subblock-id="{{this.subBlockId}}">
+                        <button class="projectBlock__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                        <button class="projectBlock__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                        <button class="projectBlock__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                        <div class="project">
+                            <div class="block-project__wrapper">
+                                <label class="block-project__label">Tytuł projektu</label>
+                                <input type="text" name="block-project__title" class="block-project__text block-project__title" placeholder="np. willa na wzgórzu" value="{{this.content.title}}">
+                            </div>
+                            <div class="block-project__wrapper block-project__wrapper-select">
+                            <!-- TODO select page -->
+                            </div>
+                            <div class="block-project__wrapper">
+                                <input type="checkbox" name="block-project__big" class="block-project__checkbox block-project__big" id="block-project__big-0" value="1">
+                                <label for="block-project__big-0">Duża sekcja</label>
+                            </div>
+                            <div class="block-project__preview">
+                                <img src="/static/img/placeholder.png">
+                            </div>
+                            <div class="block-project__wrapper block-project__wrapper-image">
+                            <!-- TODO IMAGE ACCORDION -->
+                            </div>
+                        </div>
+                        </div>
+                        {{/each}}
+                        </div><button class="addProjectButton">Dodaj projekt</button>                
                     {{/equals}}
                     {{#equals this.sectionType 'smallOffices'}}
-                        smallOffices
+                        <!--TODO more link title --> 
+                        <div class="block-office__wrapper"><label>Nazwa linku do strony kontaktowej</label>
+                            <input type="text" placeholder=" np. Więcej informacji" class="block-office__more-offices-title" name="block-office__more-offices-title">
+                        </div>
+                        <!-- TODO more link url -->
+                        <div class="block-office__wrapper block-office__wrapper-more-link"></div>
+                        <div class="officesBlock-container">
+                            {{#each this.content}}
+                            <div class="subblock" data-subblock-id="{{this.subBlockId}}">
+                            <button class="officeBlock__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                            <button class="officeBlock__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                            <button class="officeBlock__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            <div class="office">
+                                <div class="block-office__wrapper">
+                                    <label class="block-office__label">Tytuł biura</label>
+                                    <input type="text" name="block-office__title" class="block-office__text block-office__title" placeholder="np. Siedziba" value="{{this.content.title}}">
+                                </div>
+                                <div class="block-office__wrapper">
+                                    <label class="block-office__label">Adres</label>
+                                    <input type="text" name="blokc-office__address" class="block-office__text block-office__address" placeholder="np. ul. 3 Maja 60" value="{{this.content.address}}">
+                                </div>
+                                <div class="block-office__wrapper">
+                                    <label class="block-office__label">Miejscowość</label>
+                                    <input type="text" name="block-office__city" class="block-office__city block-office__text" placeholder="np. Wrocław" value="{{this.content.city}}">
+                                </div>
+                                <div class="block-office__wrapper">
+                                    <label class="block-office__label">Kod pocztowy</label>
+                                    <input type="text" name="block-office__postal" class="block-office__text block-office__postal" placeholder=" np. 50-000" value="{{this.content.postal}}">
+                                </div>
+                                <div class="block-office__wrapper">
+                                    <label class="block-office__label">Telefon</label>
+                                    <input type="text" name="block-office__phone" class="block-office__text block-office__phone" placeholder="np. 123 456 789" value="{{this.content.phone}}">
+                                </div>
+                                <div class="block-office__wrapper">
+                                    <label class="block-office__label">Email</label>
+                                    <input type="text" name="block-office__email" class="block-office__text block-office__email" placeholder="np. kontakt@architekt.com" value="{{this.content.email}}">
+                                </div>
+                            </div></div>
+                            {{/each}}
+                            </div><button class="addSmallOfficeButton">Dodaj biuro</button></div>                    
                     {{/equals}}
                     {{#equals this.sectionType 'gallery'}}
-                        gallery
+                        <div class="block-gallery__wrapper">
+                            <label>Tytuł sekcji</label>
+                            <input type="text" placeholder=" np. Galeria" class="block-gallery__section-title" name="block-gallery__section-title" value="{{this.title}}"></div>
+                        <div class="galleryBlock-container">
+                        {{#each this.content}}
+                        <div class="subblock" data-subblock-id="{{this.subBlockId}}">
+                        <button class="galleryBlock__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                        <button class="galleryBlock__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                        <button class="galleryBlock__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                        <div class="image">
+                            <div class="block-gallery__wrapper">
+                                <label class="block-gallery__wrapper">Podpis</label>
+                                <input type="text" name="block-gallery__title" class="block-gallery__text block-gallery__title" placeholder="np. Projekt budynku" value="{{this.content.title}}">
+                            </div>
+                            <div class="block-gallery__preview">
+                                <img src="/static/img/placeholder.png">
+                            </div>
+                            <div class="block-gallery__wrapper block-gallery__wrapper-image">
+                                <div>
+                                    {{#each ../../catalogs}}
+                                        <div class="dir">
+                                            {{#each this.photos}}
+                                                <label for="{{../../../this.blockId}}-{{../../this.subBlockId}}-{{../@index}}-{{../this.path}}/{{this.path}}">
+                                                <img style="width: 150px; height: 150px; object-fit: cover;float: left;" src="/static/uploads/{{../this.path}}/{{this.path}}"></label>
+                                                <input type="radio" name="img{{../../../this.blockId}}-{{../../this.subBlockId}}" class="block-gallery__image" id="{{../../../this.blockId}}-{{../../this.subBlockId}}-{{../@index}}-{{../this.path}}/{{this.path}}">
+                                            {{/each}}
+                                        </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        {{/each}}
+                        </div><button class="addImageButton">Dodaj zdjęcie</button>                
                     {{/equals}}
                 </div>
                 </div>
