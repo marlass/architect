@@ -66,14 +66,14 @@ export function clickList(e, store, catalog, pages) {
             <div class="project">
                 <div class="block-project__wrapper">
                     <label class="block-project__label">Tytuł projektu</label>
-                    <input type="text" name="block-project__title" class="block-project__text block-project__title" placeholder=" np. willa na wzgórzu">
+                    <input type="text" name="block-project__title-${blockId}-${id}" class="block-project__text block-project__title" placeholder=" np. willa na wzgórzu">
                 </div>
                 <div class="block-project__wrapper block-project__wrapper-select">
 
                 </div>
-                <div class="block-proejct__wrapper">
-                    <input type="checkbox" name="block-project__big" class="block-project__checkbox block-project__big" id="block-project__big-${id}">
-                    <label for="block-project__big-${id}">Duża sekcja</label>
+                <div class="block-project__wrapper">
+                    <input type="checkbox" name="block-project__big-${blockId}-${id}" class="block-project__checkbox block-project__big" id="block-project__big-${blockId}-${id}">
+                    <label for="block-project__big-${blockId}-${id}">Duża sekcja</label>
                 </div>
                 <div class="block-project__preview">
                     <img src="/static/img/placeholder.png">
@@ -95,34 +95,33 @@ export function clickList(e, store, catalog, pages) {
 
 function projectPost(blockId, subBlockId,catalog,pages) {
     let html = '';
-        let timestamp = Date.now();
-        catalog.forEach(function(dir){
-            let subhtml = '';
-            dir.photos.forEach(function(pic) {
-                subhtml += '<label for="'+timestamp+dir.path+'/'+pic.path+'"><img style="width: 100px;height: 100px;object-fit:cover;float: left" src="/static/uploads/'+dir.path+'/'+pic.path+'"></label><input type="radio" name="img'+blockId+'-'+subBlockId+'" class="block-project__image" id="'+timestamp+dir.path+'/'+pic.path+'" value="'+dir.path+'/'+pic.path+'">';
-            }, this);
-            html += '<div class="dir">'+subhtml+'</div>';
+    catalog.forEach(function(dir){
+        let subhtml = '';
+        dir.photos.forEach(function(pic) {
+            subhtml += '<label for="'+dir.path+'/'+pic.path+'-'+blockId+'-'+subBlockId+'"><img style="width: 100px;height: 100px;object-fit:cover;float: left" src="/static/uploads/'+dir.path+'/'+pic.path+'"></label><input type="radio" name="img-'+blockId+'-'+subBlockId+'" class="block-project__image" id="'+dir.path+'/'+pic.path+'-'+blockId+'-'+subBlockId+'" value="'+dir.path+'/'+pic.path+'">';
         }, this);
-        let qs = `[data-block-id="${blockId}"] [data-subblock-id="${subBlockId}"] .block-project__wrapper-image`;
-        let radioContainer = document.querySelector(qs);
-        if (radioContainer) {
-            let p = document.createElement('div');
-            p.innerHTML = html;
-            radioContainer.appendChild(p);
-        }
+        html += '<div class="dir">'+subhtml+'</div>';
+    }, this);
+    let qs = `[data-block-id="${blockId}"] [data-subblock-id="${subBlockId}"] .block-project__wrapper-image`;
+    let radioContainer = document.querySelector(qs);
+    if (radioContainer) {
+        let p = document.createElement('div');
+        p.innerHTML = html;
+        radioContainer.appendChild(p);
+    }
 
-        html = '<label for="block-project__page-0">Wybierz stronę projektu</label><select name="block-project__page-'+subBlockId+'" class="block-project__page" id="block-project__page-'+subBlockId+'"><option value="" disabled selected>Wybierz stronę projektu</option>';
-        pages.forEach(function(page) {
-            html += '<option value="'+page+'">'+page+'</option>';
-        }, this);
-        html += '</select>';
-        qs = `[data-block-id="${blockId}"] [data-subblock-id="${subBlockId}"] .block-project__wrapper-select`;
-        let selectContainer = document.querySelector(qs);
-        if (selectContainer) {
-            let p = document.createElement('div');
-            p.innerHTML = html;
-            radioContainer.appendChild(p);
-        }
+    html = '<label for="block-project__page-'+blockId+'-'+subBlockId+'">Wybierz stronę projektu</label><select name="block-project__page-'+blockId+'-'+subBlockId+'" class="block-project__page" id="block-project__page-'+blockId+'-'+subBlockId+'"><option value="" disabled selected>Wybierz stronę projektu</option>';
+    pages.forEach(function(page) {
+        html += '<option value="'+page+'">'+page+'</option>';
+    }, this);
+    html += '</select>';
+    qs = `[data-block-id="${blockId}"] [data-subblock-id="${subBlockId}"] .block-project__wrapper-select`;
+    let selectContainer = document.querySelector(qs);
+    if (selectContainer) {
+        let p = document.createElement('div');
+        p.innerHTML = html;
+        radioContainer.appendChild(p);
+    }
 }
 
 export function blurList(e, store) {

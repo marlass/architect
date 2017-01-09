@@ -110,10 +110,9 @@ function galleryPost(blockId, subBlockId,catalog) {
 }
 
 function teamPost(blockId, subBlockId, team) {
-    var timestamp = Date.now();
     let html = '';
     team.forEach(function(pic) {
-        html += '<label for="'+timestamp+pic+'"><img style="width: 100px;height: 100px;object-fit:cover;float: left" src="/static/uploads/team/'+pic+'"></label><input type="radio" name="img'+blockId+'-'+subBlockId+'" class="block-gallery__image" id="'+timestamp+pic+'" value="'+pic+'">';
+        html += '<label for="'+pic+'-'+blockId+'-'+subBlockId+'"><img style="width: 100px;height: 100px;object-fit:cover;float: left" src="/static/uploads/team/'+pic+'"></label><input type="radio" name="img-'+blockId+'-'+subBlockId+'" class="block-gallery__image" id="'+pic+'-'+blockId+'-'+subBlockId+'" value="'+pic+'">';
     }, this);
     let qs = `[data-block-id="${blockId}"] [data-subblock-id="${subBlockId}"] .block-gallery__wrapper-image`;
     let radioContainer = document.querySelector(qs);

@@ -36,6 +36,15 @@ export default function(store, catalog, team, masthead, pages) {
 
     let idCounter = 0;
 
+    let state = store.getState();
+    if (state.content){
+        for (let i = 0; i < state.content.length; i++) {
+            if (state.content[i].blockId >= idCounter) {
+                idCounter = state.content[i].blockId+1;
+            }
+        }
+    }
+
     if (newBlockSubmit) {
         newBlockSubmit.addEventListener('click', function(){
             const newBlock = newBlockSelect.options[newBlockSelect.selectedIndex].value;    
@@ -50,7 +59,7 @@ export default function(store, catalog, team, masthead, pages) {
             <button class="block__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
             <button class="block__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
             <div class="block__content">
-                ${renderBlockBase(block)}
+                ${renderBlockBase(block,idCounter)}
             </div>`;
         let node = document.createElement('div');
         node.className = 'block';
@@ -98,7 +107,7 @@ export default function(store, catalog, team, masthead, pages) {
     function mastHeadpost(blockId) {
         let html = '<h2>Wybierz tło</h2>';
         masthead.forEach(function(element) {
-            html += '<label for="'+blockId+'-'+element+'"><img style="width:150px;height:150px;object-fit:cover;float:left" src="/static/uploads/masthead/'+element+'"></label><input type="radio" name="background'+blockId+'" class="block-masthead__background" id="'+blockId+'-'+element+'" value="'+element+'">';
+            html += '<label for="'+blockId+'-'+element+'"><img style="width:150px;height:150px;object-fit:cover;float:left" src="/static/uploads/masthead/'+element+'"></label><input type="radio" name="background-'+blockId+'" class="block-masthead__background" id="'+blockId+'-'+element+'" value="'+element+'">';
         }, this);
         let qs = `[data-block-id="${blockId}"] .block-masthead__bg-wrapper`;
         let radioContainer = document.querySelector(qs);
@@ -114,7 +123,7 @@ export default function(store, catalog, team, masthead, pages) {
     }
 
     function smallOfficePost(blockId) {
-        let html = '<label>Wybierz link do strony kontaktu</label><select name="block-office__more-link" class="block-office__more-link"><option value="" disabled selected>Wybierz stronę kontaktową</option>';
+        let html = '<label>Wybierz link do strony kontaktu</label><select name="block-office__more-link-'+blockId+'" class="block-office__more-link"><option value="" disabled selected>Wybierz stronę kontaktową</option>';
         pages.forEach(function(page) {
             html += '<option value="'+page+'">'+page+'</option>';
         }, this);
@@ -130,11 +139,10 @@ export default function(store, catalog, team, masthead, pages) {
 
     function galleryPost(blockId) {
         let html = '';
-        let timestamp = Date.now();
         catalog.forEach(function(dir){
             let subhtml = '';
             dir.photos.forEach(function(pic) {
-                subhtml += '<label for="'+timestamp+dir.path+'/'+pic.path+'"><img style="width: 100px;height: 100px;object-fit:cover;float: left" src="/static/uploads/'+dir.path+'/'+pic.path+'"></label><input type="radio" name="img'+blockId+'-0" class="block-gallery__image" id="'+timestamp+dir.path+'/'+pic.path+'" value="'+dir.path+'/'+pic.path+'">';
+                subhtml += '<label for="'+dir.path+'/'+pic.path+'-'+blockId+'-0"><img style="width: 100px;height: 100px;object-fit:cover;float: left" src="/static/uploads/'+dir.path+'/'+pic.path+'"></label><input type="radio" name="img-'+blockId+'-0" class="block-gallery__image" id="'+dir.path+'/'+pic.path+'-'+blockId+'-0" value="'+dir.path+'/'+pic.path+'">';
             }, this);
             html += '<div class="dir">'+subhtml+'</div>';
         }, this);
@@ -149,10 +157,9 @@ export default function(store, catalog, team, masthead, pages) {
     }
 
     function teamPost(blockId) {
-        let timestamp = Date.now();
         let html = '';
         team.forEach(function(pic) {
-            html += '<label for="'+timestamp+pic+'"><img style="width: 100px;height: 100px;object-fit:cover;float: left" src="/static/uploads/team/'+pic+'"></label><input type="radio" name="img'+blockId+'-0" class="block-gallery__image" id="'+timestamp+pic+'" value="'+pic+'">';
+            html += '<label for="'+pic+'-'+blockId+'-0"><img style="width: 100px;height: 100px;object-fit:cover;float: left" src="/static/uploads/team/'+pic+'"></label><input type="radio" name="img-'+blockId+'-0" class="block-gallery__image" id="'+pic+'-'+blockId+'-0" value="'+pic+'">';
         }, this);
         let qs = `[data-block-id="${blockId}"] .block-gallery__wrapper-image`;
         let radioContainer = document.querySelector(qs);
@@ -166,11 +173,10 @@ export default function(store, catalog, team, masthead, pages) {
 
     function projectsPost(blockId) {
         let html = '';
-        let timestamp = Date.now();
         catalog.forEach(function(dir){
             let subhtml = '';
             dir.photos.forEach(function(pic) {
-                subhtml += '<label for="'+timestamp+dir.path+'/'+pic.path+'"><img style="width: 100px;height: 100px;object-fit:cover;float: left" src="/static/uploads/'+dir.path+'/'+pic.path+'"></label><input type="radio" name="img'+blockId+'-0" class="block-project__image" id="'+timestamp+dir.path+'/'+pic.path+'" value="'+dir.path+'/'+pic.path+'">';
+                subhtml += '<label for="'+dir.path+'/'+pic.path+'-'+blockId+'-0"><img style="width: 100px;height: 100px;object-fit:cover;float: left" src="/static/uploads/'+dir.path+'/'+pic.path+'"></label><input type="radio" name="img-'+blockId+'-0" class="block-project__image" id="'+dir.path+'/'+pic.path+'-'+blockId+'-0" value="'+dir.path+'/'+pic.path+'">';
             }, this);
             html += '<div class="dir">'+subhtml+'</div>';
         }, this);
@@ -182,7 +188,7 @@ export default function(store, catalog, team, masthead, pages) {
             radioContainer.appendChild(p);
         }
 
-        html = '<label for="block-project__page-0">Wybierz stronę projektu</label><select name="block-project__page-0" class="block-project__page" id="block-project__page-0"><option value="" disabled selected>Wybierz stronę projektu</option>';
+        html = '<label for="block-project__page-'+blockId+'-0">Wybierz stronę projektu</label><select name="block-project__page-'+blockId+'-0" class="block-project__page" id="block-project__page-'+blockId+'-0"><option value="" disabled selected>Wybierz stronę projektu</option>';
         pages.forEach(function(page) {
             html += '<option value="'+page+'">'+page+'</option>';
         }, this);
@@ -194,7 +200,7 @@ export default function(store, catalog, team, masthead, pages) {
             p.innerHTML = html;
             selectContainer.appendChild(p);
         }
-        html = '<label>Wybierz link do strony z projektami</label><select name="block-project__more-link" class="block-project__more-link"><option value="" disabled selected>Wybierz stronę z projektami</option>';
+        html = '<label>Wybierz link do strony z projektami</label><select name="block-project__more-link-'+blockId+'" class="block-project__more-link"><option value="" disabled selected>Wybierz stronę z projektami</option>';
         pages.forEach(function(page) {
             html += '<option value="'+page+'">'+page+'</option>';
         }, this);
@@ -209,58 +215,58 @@ export default function(store, catalog, team, masthead, pages) {
         store.dispatch({"type": 'CREATE_PROJECT', blockId: blockId, subblockId: 0});
     }
 
-    function renderBlockBase(block) {
+    function renderBlockBase(block,blockId) {
         switch (block) {
             case "masthead":
-                return renderMastheadBase();
+                return renderMastheadBase(blockId);
             case "text":
-                return renderTextBase();
+                return renderTextBase(blockId);
             case "calc":
-                return renderCalcBase();
+                return renderCalcBase(blockId);
             case "offices":
-                return renderOfficesBase();
+                return renderOfficesBase(blockId);
             case "team":
-                return renderTeamBase();
+                return renderTeamBase(blockId);
             case "projectsBlock":
-                return renderProjectsBase();
+                return renderProjectsBase(blockId);
             case "smallOffices":
-                return renderSmallOfficesBase();
+                return renderSmallOfficesBase(blockId);
             case "gallery":
-                return renderGalleryBase();
+                return renderGalleryBase(blockId);
             default:
                 return '';
         }
     }
 
-    function renderMastheadBase() {        
+    function renderMastheadBase(blockId) {        
         return `
             <div class="block-masthead">
                 <div class="block-masthead__wrapper">
                     <label class="block-masthead__label">Tytuł</label>
-                    <input type="text" name="block-masthead__title" class="block-masthead__input block-masthead__title" placeholder="np. Projekty">
+                    <input type="text" name="block-masthead__title-${blockId}" class="block-masthead__input block-masthead__title" placeholder="np. Projekty">
                 </div>
                 <div class="block-masthead__bg-wrapper u-clearfix">
                 </div>
             </div>`;
     }
 
-    function renderTextBase() {
+    function renderTextBase(blockId) {
         return `
             <div class="block-text">
                 <div class="block-text__wrapper">
                     <label class="block-text__label">Tło</label>
-                    <input type="text" name="block-text__background" class="block-text__input block-text__background" placeholder="np. white">
+                    <input type="text" name="block-text__background-${blockId}" class="block-text__input block-text__background" placeholder="np. white">
                 </div>
                 <div class="block-text__wrapper">
                     <label class="block-text__label">Treść</label>
-                    <textarea name="block-text__text" class="block-text__text" placeholder="np. Informacje o ofercie"></textarea>
+                    <textarea name="block-text__text-${blockId}" class="block-text__text" placeholder="np. Informacje o ofercie"></textarea>
                 </div>
             </div>`;
     }
 
-    function renderOfficesBase() {
+    function renderOfficesBase(blockId) {
         return `<div class="block-offices__wrapper"><label>Tytuł sekcji</label>
-                <input type="text" placeholder=" np. Biura" class="block-offices__section-title" name="block-offices__section-title"></div>
+                <input type="text" placeholder=" np. Biura" class="block-offices__section-title" name="block-offices__section-title-${blockId}"></div>
         <div class="officesBlock-container"><div class="subblock" data-subblock-id="0">
             <button class="officeBlock__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
             <button class="officeBlock__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
@@ -268,38 +274,38 @@ export default function(store, catalog, team, masthead, pages) {
             <div class="office">
                 <div class="block-office__wrapper">
                     <label class="block-office__label">Tytuł biura</label>
-                    <input type="text" name="block-office__title" class="block-office__text block-office__title" placeholder="np. Siedziba">
+                    <input type="text" name="block-office__title-${blockId}-0" class="block-office__text block-office__title" placeholder="np. Siedziba">
                 </div>
                 <div class="block-office__wrapper">
                     <label class="block-office__label">Adres</label>
-                    <input type="text" name="blokc-office__address" class="block-office__text block-office__address" placeholder="np. ul. 3 Maja 60">
+                    <input type="text" name="blokc-office__address-${blockId}-0" class="block-office__text block-office__address" placeholder="np. ul. 3 Maja 60">
                 </div>
                 <div class="block-office__wrapper">
                     <label class="block-office__label">Miejscowość</label>
-                    <input type="text" name="block-office__city" class="block-office__city block-office__text" placeholder="np. Wrocław">
+                    <input type="text" name="block-office__city-${blockId}-0" class="block-office__city block-office__text" placeholder="np. Wrocław">
                 </div>
                 <div class="block-office__wrapper">
                     <label class="block-office__label">Kod pocztowy</label>
-                    <input type="text" name="block-office__postal" class="block-office__text block-office__postal" placeholder=" np. 50-000">
+                    <input type="text" name="block-office__postal-${blockId}-0" class="block-office__text block-office__postal" placeholder=" np. 50-000">
                 </div>
                 <div class="block-office__wrapper">
                     <label class="block-office__label">Telefon</label>
-                    <input type="text" name="block-office__phone" class="block-office__text block-office__phone" placeholder="np. 123 456 789">
+                    <input type="text" name="block-office__phone-${blockId}-0" class="block-office__text block-office__phone" placeholder="np. 123 456 789">
                 </div>
                 <div class="block-office__wrapper">
                     <label class="block-office__label">Email</label>
-                    <input type="text" name="block-office__email" class="block-office__text block-office__email" placeholder="np. kontakt@architekt.com">
+                    <input type="text" name="block-office__email-${blockId}-0" class="block-office__text block-office__email" placeholder="np. kontakt@architekt.com">
                 </div>
                 <div class="block-office__wrapper">
                     <label class="block-office__label">Link do mapy</label>
-                    <input type="text" name="block-office__map" class="block-office__text block-office__map" placeholder="">
+                    <input type="text" name="block-office__map-${blockId}-0" class="block-office__text block-office__map" placeholder="">
                 </div>
-            </div></div></div><button class="addOfficeButton">Dodaj biuro</button></div>`;
+            </div></div></div><button class="addOfficeButton">Dodaj biuro</button>`;
     }
 
-    function renderSmallOfficesBase() {
+    function renderSmallOfficesBase(blockId) {
         return `<div class="block-office__wrapper"><label>Nazwa linku do strony kontaktowej</label>
-                <input type="text" placeholder=" np. Więcej informacji" class="block-office__more-offices-title" name="block-office__more-offices-title">
+                <input type="text" placeholder=" np. Więcej informacji" class="block-office__more-offices-title" name="block-office__more-offices-title-${blockId}">
             </div><div class="block-office__wrapper block-office__wrapper-more-link"></div>
         <div class="officesBlock-container"><div class="subblock" data-subblock-id="0">
             <button class="officeBlock__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
@@ -308,41 +314,41 @@ export default function(store, catalog, team, masthead, pages) {
             <div class="office">
                 <div class="block-office__wrapper">
                     <label class="block-office__label">Tytuł biura</label>
-                    <input type="text" name="block-office__title" class="block-office__text block-office__title" placeholder="np. Siedziba">
+                    <input type="text" name="block-office__title-${blockId}-0" class="block-office__text block-office__title" placeholder="np. Siedziba">
                 </div>
                 <div class="block-office__wrapper">
                     <label class="block-office__label">Adres</label>
-                    <input type="text" name="blokc-office__address" class="block-office__text block-office__address" placeholder="np. ul. 3 Maja 60">
+                    <input type="text" name="blokc-office__address-${blockId}-0" class="block-office__text block-office__address" placeholder="np. ul. 3 Maja 60">
                 </div>
                 <div class="block-office__wrapper">
                     <label class="block-office__label">Miejscowość</label>
-                    <input type="text" name="block-office__city" class="block-office__city block-office__text" placeholder="np. Wrocław">
+                    <input type="text" name="block-office__city-${blockId}-0" class="block-office__city block-office__text" placeholder="np. Wrocław">
                 </div>
                 <div class="block-office__wrapper">
                     <label class="block-office__label">Kod pocztowy</label>
-                    <input type="text" name="block-office__postal" class="block-office__text block-office__postal" placeholder=" np. 50-000">
+                    <input type="text" name="block-office__postal-${blockId}-0" class="block-office__text block-office__postal" placeholder=" np. 50-000">
                 </div>
                 <div class="block-office__wrapper">
                     <label class="block-office__label">Telefon</label>
-                    <input type="text" name="block-office__phone" class="block-office__text block-office__phone" placeholder="np. 123 456 789">
+                    <input type="text" name="block-office__phone-${blockId}-0" class="block-office__text block-office__phone" placeholder="np. 123 456 789">
                 </div>
                 <div class="block-office__wrapper">
                     <label class="block-office__label">Email</label>
-                    <input type="text" name="block-office__email" class="block-office__text block-office__email" placeholder="np. kontakt@architekt.com">
+                    <input type="text" name="block-office__email-${blockId}-0" class="block-office__text block-office__email" placeholder="np. kontakt@architekt.com">
                 </div>
-            </div></div></div><button class="addSmallOfficeButton">Dodaj biuro</button></div>`;
+            </div></div></div><button class="addSmallOfficeButton">Dodaj biuro</button>`;
     }
 
-    function renderGalleryBase() {
+    function renderGalleryBase(blockId) {
         return `<div class="block-gallery__wrapper"><label>Tytuł sekcji</label>
-                <input type="text" placeholder=" np. Galeria" class="block-gallery__section-title" name="block-gallery__section-title"></div><div class="galleryBlock-container"><div class="subblock" data-subblock-id="0">
+                <input type="text" placeholder=" np. Galeria" class="block-gallery__section-title" name="block-gallery__section-title-${blockId}"></div><div class="galleryBlock-container"><div class="subblock" data-subblock-id="0">
             <button class="galleryBlock__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
             <button class="galleryBlock__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
             <button class="galleryBlock__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
             <div class="image">
                 <div class="block-gallery__wrapper">
                     <label class="block-gallery__wrapper">Podpis</label>
-                    <input type="text" name="block-gallery__title" class="block-gallery__text block-gallery__title" placeholder="np. Projekt budynku">
+                    <input type="text" name="block-gallery__title-${blockId}-0" class="block-gallery__text block-gallery__title" placeholder="np. Projekt budynku">
                 </div>
                 <div class="block-gallery__preview">
                     <img src="/static/img/placeholder.png">
@@ -353,9 +359,9 @@ export default function(store, catalog, team, masthead, pages) {
         </div></div><button class="addImageButton">Dodaj zdjęcie</button>`;
     }
 
-    function renderTeamBase() {
+    function renderTeamBase(blockId) {
         return `<div class="block-gallery__wrapper"><label>Tytuł sekcji</label>
-                <input type="text" placeholder=" np. Zespół" class="block-gallery__section-title" name="block-gallery__section-title">
+                <input type="text" placeholder=" np. Zespół" class="block-gallery__section-title" name="block-gallery__section-title-${blockId}">
             </div><div class="galleryBlock-container"><div class="subblock" data-subblock-id="0">
             <button class="galleryBlock__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
             <button class="galleryBlock__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
@@ -363,7 +369,7 @@ export default function(store, catalog, team, masthead, pages) {
             <div class="image">
                 <div class="block-gallery__wrapper">
                     <label class="block-gallery__label">Podpis</label>
-                    <input type="text" name="block-gallery__title" class="block-gallery__text block-gallery__title" placeholder="np. Specjalista od ogrodów">
+                    <input type="text" name="block-gallery__title-${blockId}-0" class="block-gallery__text block-gallery__title" placeholder="np. Specjalista od ogrodów">
                 </div>
                 <div class="block-gallery__preview">
                     <img src="/static/img/placeholder.png">
@@ -375,14 +381,14 @@ export default function(store, catalog, team, masthead, pages) {
     }
 
 
-    function renderCalcBase() {
+    function renderCalcBase(blockId) {
         return `<h2>Kalkulator</h2>`;
     }
 
 
-    function renderProjectsBase () {
+    function renderProjectsBase (blockId) {
         return `<div class="block-project__wrapper"><label>Nazwa linku do strony projektów</label>
-                <input type="text" placeholder=" np. Zobacz więcej projektów" class="block-project__more-project-title" name="block-project__more-project-title">
+                <input type="text" placeholder=" np. Zobacz więcej projektów" class="block-project__more-project-title" name="block-project__more-project-title-${blockId}">
             </div>
             <div class="block-project__wrapper block-project__wrapper-more-link"></div>
             <div class="projectsBlock-container"><div class="subblock" data-subblock-id="0">
@@ -392,13 +398,13 @@ export default function(store, catalog, team, masthead, pages) {
             <div class="project">
                 <div class="block-project__wrapper">
                     <label class="block-project__label">Tytuł projektu</label>
-                    <input type="text" name="block-project__title" class="block-project__text block-project__title" placeholder=" np. willa na wzgórzu">
+                    <input type="text" name="block-project__title-${blockId}-0" class="block-project__text block-project__title" placeholder=" np. willa na wzgórzu">
                 </div>
                 <div class="block-project__wrapper block-project__wrapper-select">
 
                 </div>
                 <div class="block-project__wrapper">
-                    <input type="checkbox" name="block-project__big" class="block-project__checkbox block-project__big" id="block-project__big-0" value="1">
+                    <input type="checkbox" name="block-project__big-${blockId}-0" class="block-project__checkbox block-project__big" id="block-project__big-0" value="1">
                     <label for="block-project__big-0">Duża sekcja</label>
                 </div>
                 <div class="block-project__preview">

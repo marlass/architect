@@ -65,11 +65,11 @@
                         <div class="block-text">
                             <div class="block-text__wrapper">
                                 <label class="block-text__label">Tło</label>
-                                <input type="text" name="block-text__background" class="block-text__input block-text__background" placeholder="np. white" value="{{this.content.background}}">
+                                <input type="text" name="block-text__background-{{this.blockId}}" class="block-text__input block-text__background" placeholder="np. white" value="{{this.content.background}}">
                             </div>
                             <div class="block-text__wrapper">
                                 <label class="block-text__label">Treść</label>
-                                <textarea name="block-text__text" class="block-text__text" placeholder="np. Informacje o ofercie">{{this.content.text}}</textarea>
+                                <textarea name="block-text__text-{{this.blockId}}" class="block-text__text" placeholder="np. Informacje o ofercie">{{this.content.text}}</textarea>
                             </div>
                         </div>
                     {{/equals}}
@@ -79,7 +79,7 @@
                     {{#equals this.sectionType 'offices'}}
                         <div class="block-offices__wrapper">
                             <label>Tytuł sekcji</label>
-                            <input value="{{this.title}}" type="text" placeholder=" np. Biura" class="block-offices__section-title" name="block-offices__section-title"></div>
+                            <input value="{{this.title}}" type="text" placeholder=" np. Biura" class="block-offices__section-title" name="block-offices__section-title-{{this.blockId}}"></div>
                         <div class="officesBlock-container">
                             {{#each this.content}}
                             <div class="subblock" data-subblock-id="{{this.subBlockId}}">
@@ -89,39 +89,39 @@
                             <div class="office">
                                 <div class="block-office__wrapper">
                                     <label class="block-office__label">Tytuł biura</label>
-                                    <input type="text" name="block-office__title" class="block-office__text block-office__title" placeholder="np. Siedziba" value="{{this.content.title}}">
+                                    <input type="text" name="block-office__title-{{../this.blockId}}" class="block-office__text block-office__title" placeholder="np. Siedziba" value="{{this.content.title}}">
                                 </div>
                                 <div class="block-office__wrapper">
                                     <label class="block-office__label">Adres</label>
-                                    <input type="text" name="block-office__address" class="block-office__text block-office__address" placeholder="np. ul. 3 Maja 60" value="{{this.content.address}}">
+                                    <input type="text" name="block-office__address-{{../this.blockId}}" class="block-office__text block-office__address" placeholder="np. ul. 3 Maja 60" value="{{this.content.address}}">
                                 </div>
                                 <div class="block-office__wrapper">
                                     <label class="block-office__label">Miejscowość</label>
-                                    <input type="text" name="block-office__city" class="block-office__city block-office__text" placeholder="np. Wrocław" value="{{this.content.city}}">
+                                    <input type="text" name="block-office__city-{{../this.blockId}}" class="block-office__city block-office__text" placeholder="np. Wrocław" value="{{this.content.city}}">
                                 </div>
                                 <div class="block-office__wrapper">
                                     <label class="block-office__label">Kod pocztowy</label>
-                                    <input type="text" name="block-office__postal" class="block-office__text block-office__postal" placeholder=" np. 50-000" value="{{this.content.postal}}">
+                                    <input type="text" name="block-office__postal-{{../this.blockId}}" class="block-office__text block-office__postal" placeholder=" np. 50-000" value="{{this.content.postal}}">
                                 </div>
                                 <div class="block-office__wrapper">
                                     <label class="block-office__label">Telefon</label>
-                                    <input type="text" name="block-office__phone" class="block-office__text block-office__phone" placeholder="np. 123 456 789" value="{{this.content.phone}}">
+                                    <input type="text" name="block-office__phone-{{../this.blockId}}" class="block-office__text block-office__phone" placeholder="np. 123 456 789" value="{{this.content.phone}}">
                                 </div>
                                 <div class="block-office__wrapper">
                                     <label class="block-office__label">Email</label>
-                                    <input type="text" name="block-office__email" class="block-office__text block-office__email" placeholder="np. kontakt@architekt.com" value="{{this.content.email}}">
+                                    <input type="text" name="block-office__email-{{../this.blockId}}" class="block-office__text block-office__email" placeholder="np. kontakt@architekt.com" value="{{this.content.email}}">
                                 </div>
                                 <div class="block-office__wrapper">
                                     <label class="block-office__label">Link do mapy</label>
-                                    <input type="text" name="block-office__map" class="block-office__text block-office__map" placeholder="" value="{{this.content.map}}">
+                                    <input type="text" name="block-office__map-{{../this.blockId}}" class="block-office__text block-office__map" placeholder="" value="{{this.content.map}}">
                                 </div>
                             </div></div>
                             {{/each}}
-                            </div><button class="addOfficeButton">Dodaj biuro</button></div>
+                            </div><button class="addOfficeButton">Dodaj biuro</button>
                     {{/equals}}
                     {{#equals this.sectionType 'team'}}
                         <div class="block-gallery__wrapper"><label>Tytuł sekcji</label>
-                            <input type="text" placeholder=" np. Zespół" class="block-gallery__section-title" name="block-gallery__section-title" value="{{this.title}}">
+                            <input type="text" placeholder=" np. Zespół" class="block-gallery__section-title" name="block-gallery__section-title-{{this.blockId}}" value="{{this.title}}">
                         </div><div class="galleryBlock-container">
                         {{#each this.content}}
                         <div class="subblock" data-subblock-id="{{this.subBlockId}}">
@@ -131,14 +131,14 @@
                         <div class="image">
                             <div class="block-gallery__wrapper">
                                 <label class="block-gallery__label">Podpis</label>
-                                <input type="text" name="block-gallery__title" class="block-gallery__text block-gallery__title" value="{{this.content.title}}" placeholder="np. Specjalista od ogrodów">
+                                <input type="text" name="block-gallery__title-{{../this.blockId}}-{{this.subBlockId}}" class="block-gallery__text block-gallery__title" value="{{this.content.title}}" placeholder="np. Specjalista od ogrodów">
                             </div>
                             <div class="block-gallery__preview">
                                 <img src="/static/img/placeholder.png">
                             </div>
                             <div class="block-gallery__wrapper block-gallery__wrapper-image">
                                 {{#each ../../team}}
-                                    <label for="{{../../this.blockId}}-{{../this.subBlockId}}-{{@index}}-{{this}}"><img style="width: 150px;height: 150px;object-fit:cover;float: left;" src="/static/uploads/team/{{this}}"></label><input type="radio" name="background" class="block-masthead__background" id="{{../../this.blockId}}-{{../this.subBlockId}}-{{@index}}-{{this}}" value="{{this}}" {{#equals this ../this.content.background}}checked{{/equals}}>
+                                    <label for="{{../../this.blockId}}-{{../this.subBlockId}}-{{@index}}-{{this}}"><img style="width: 150px;height: 150px;object-fit:cover;float: left;" src="/static/uploads/team/{{this}}"></label><input type="radio" name="img-'{{../../this.blockId}}-{{../this.subBlockId}}" class="block-gallery__image" id="{{../../this.blockId}}-{{../this.subBlockId}}-{{@index}}-{{this}}" value="{{this}}" {{#equals this ../this.content.img}}checked{{/equals}}>
                                 {{/each}}
                             </div>
                         </div>
@@ -149,10 +149,19 @@
                     {{#equals this.sectionType 'projectsBlock'}}
                         <div class="block-project__wrapper">
                             <label>Nazwa linku do strony projektów</label>
-                            <input type="text" placeholder=" np. Zobacz więcej projektów" class="block-project__more-project-title" name="block-project__more-project-title" value="{{this.linkTitle}}">
+                            <input type="text" placeholder=" np. Zobacz więcej projektów" class="block-project__more-project-title" name="block-project__more-project-title-{{this.blockId}}" value="{{this.linkTitle}}">
                         </div>
-                        <!-- TODO set more url -->
-                        <div class="block-project__wrapper block-project__wrapper-more-link"></div>
+                        <div class="block-project__wrapper block-project__wrapper-more-link">
+                            <div>
+                                <label>Wybierz link do strony z projektami</label>
+                                <select name="block-project__more-link-{{this.blockId}}" class="block-project__more-link">
+                                    <option value="" disabled  {{#equals this.linkUrl ''}}selected{{/equals}}>Wybierz stronę z projektami</option>
+                                    {{#each ../pages}}
+                                        <option value="{{this}}" {{#equals ../this.linkUrl this}}selected{{/equals}}>{{this}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
                         <div class="projectsBlock-container">
                         {{#each this.content}}
                         <div class="subblock" data-subblock-id="{{this.subBlockId}}">
@@ -162,20 +171,41 @@
                         <div class="project">
                             <div class="block-project__wrapper">
                                 <label class="block-project__label">Tytuł projektu</label>
-                                <input type="text" name="block-project__title" class="block-project__text block-project__title" placeholder="np. willa na wzgórzu" value="{{this.content.title}}">
+                                <input type="text" name="block-project__title-{{../this.blockId}}-{{this.subBlockId}}" class="block-project__text block-project__title" placeholder="np. willa na wzgórzu" value="{{this.content.title}}">
                             </div>
                             <div class="block-project__wrapper block-project__wrapper-select">
-                            <!-- TODO select page -->
+                                <div>
+                                    <label for="block-project__page-{{../../blockId}}-{{../subBlockId}}">Wybierz stronę projektu</label>
+                                    <select name="block-project__page-{{../../blockId}}-{{../subBlockId}}" class="block-project__page" id="block-project__page-{{../../blockId}}-{{../subBlockId}}">
+                                        <option value="" disabled {{#equals this.content.page ''}}selected{{/equals}}>Wybierz stronę projektu</option>
+                                        {{#each ../../pages}}
+                                        <option value="{{this}}" {{#equals ../this.content.page this}}selected{{/equals}}>{{this}}</option>
+                                        {{/each}}
+                                    </select>
+                                </div>
                             </div>
                             <div class="block-project__wrapper">
-                                <input type="checkbox" name="block-project__big" class="block-project__checkbox block-project__big" id="block-project__big-0" value="1">
-                                <label for="block-project__big-0">Duża sekcja</label>
+                                <input type="checkbox" name="block-project__big" class="block-project__checkbox block-project__big" id="block-project__big-{{this.blockId}}-{{this.subBlockId}}" value="1" {{#equals this.content.big 1}}checked{{/equals}}>
+                                <label for="block-project__big-{{this.blockId}}-{{this.subBlockId}}">Duża sekcja</label>
                             </div>
                             <div class="block-project__preview">
                                 <img src="/static/img/placeholder.png">
                             </div>
                             <div class="block-project__wrapper block-project__wrapper-image">
-                            <!-- TODO IMAGE ACCORDION -->
+                                <div>
+                                    {{#each ../../catalogs}}
+                                        <div class="dir">
+                                            {{#each this.photos}}
+                                                <label for="{{../../../this.blockId}}-{{../../this.subBlockId}}-{{../this.path}}/{{this.path}}">
+                                                <img style="width: 150px; height: 150px; object-fit: cover;float: left;" src="/static/uploads/{{../this.path}}/{{this.path}}"></label>
+                                                <input type="radio" name="img-{{../../../this.blockId}}-{{../../this.subBlockId}}" class="block-project__image" id="{{../../../this.blockId}}-{{../../this.subBlockId}}-{{../this.path}}/{{this.path}}" 
+                                                {{#equalsImg ../this.path this.path ../../this.content.img}}
+                                                    checked
+                                                {{/equalsImg}}>
+                                            {{/each}}
+                                        </div>
+                                    {{/each}}
+                                </div>
                             </div>
                         </div>
                         </div>
@@ -184,10 +214,19 @@
                     {{/equals}}
                     {{#equals this.sectionType 'smallOffices'}}
                         <div class="block-office__wrapper"><label>Nazwa linku do strony kontaktowej</label>
-                            <input type="text" placeholder=" np. Więcej informacji" class="block-office__more-offices-title" name="block-office__more-offices-title" value="{{this.linkTitle}}">
+                            <input type="text" placeholder=" np. Więcej informacji" class="block-office__more-offices-title" name="block-office__more-offices-title-{{this.blockId}}" value="{{this.linkTitle}}">
                         </div>
-                        <!-- TODO more link url -->
-                        <div class="block-office__wrapper block-office__wrapper-more-link"></div>
+                        <div class="block-office__wrapper block-office__wrapper-more-link">
+                            <div>
+                                <label>Wybierz link do strony kontaktu</label>
+                                <select name="block-office__more-link-{{this.blockId}}" class="block-office__more-link">
+                                    <option value="" disabled {{#equals this.linkUrl ''}}selected{{/equals}}>Wybierz stronę kontaktową</option>
+                                    {{#each ../pages}}
+                                        <option value="{{this}}" {{#equals ../this.linkUrl this}}selected{{/equals}}>{{this}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
                         <div class="officesBlock-container">
                             {{#each this.content}}
                             <div class="subblock" data-subblock-id="{{this.subBlockId}}">
@@ -197,36 +236,36 @@
                             <div class="office">
                                 <div class="block-office__wrapper">
                                     <label class="block-office__label">Tytuł biura</label>
-                                    <input type="text" name="block-office__title" class="block-office__text block-office__title" placeholder="np. Siedziba" value="{{this.content.title}}">
+                                    <input type="text" name="block-office__title-{{../this.blockId}}-{{this.subBlockId}}" class="block-office__text block-office__title" placeholder="np. Siedziba" value="{{this.content.title}}">
                                 </div>
                                 <div class="block-office__wrapper">
                                     <label class="block-office__label">Adres</label>
-                                    <input type="text" name="blokc-office__address" class="block-office__text block-office__address" placeholder="np. ul. 3 Maja 60" value="{{this.content.address}}">
+                                    <input type="text" name="blokc-office__address-{{../this.blockId}}-{{this.subBlockId}}" class="block-office__text block-office__address" placeholder="np. ul. 3 Maja 60" value="{{this.content.address}}">
                                 </div>
                                 <div class="block-office__wrapper">
                                     <label class="block-office__label">Miejscowość</label>
-                                    <input type="text" name="block-office__city" class="block-office__city block-office__text" placeholder="np. Wrocław" value="{{this.content.city}}">
+                                    <input type="text" name="block-office__city-{{../this.blockId}}-{{this.subBlockId}}" class="block-office__city block-office__text" placeholder="np. Wrocław" value="{{this.content.city}}">
                                 </div>
                                 <div class="block-office__wrapper">
                                     <label class="block-office__label">Kod pocztowy</label>
-                                    <input type="text" name="block-office__postal" class="block-office__text block-office__postal" placeholder=" np. 50-000" value="{{this.content.postal}}">
+                                    <input type="text" name="block-office__postal-{{../this.blockId}}-{{this.subBlockId}}" class="block-office__text block-office__postal" placeholder=" np. 50-000" value="{{this.content.postal}}">
                                 </div>
                                 <div class="block-office__wrapper">
                                     <label class="block-office__label">Telefon</label>
-                                    <input type="text" name="block-office__phone" class="block-office__text block-office__phone" placeholder="np. 123 456 789" value="{{this.content.phone}}">
+                                    <input type="text" name="block-office__phone-{{../this.blockId}}-{{this.subBlockId}}" class="block-office__text block-office__phone" placeholder="np. 123 456 789" value="{{this.content.phone}}">
                                 </div>
                                 <div class="block-office__wrapper">
                                     <label class="block-office__label">Email</label>
-                                    <input type="text" name="block-office__email" class="block-office__text block-office__email" placeholder="np. kontakt@architekt.com" value="{{this.content.email}}">
+                                    <input type="text" name="block-office__email-{{../this.blockId}}-{{this.subBlockId}}" class="block-office__text block-office__email" placeholder="np. kontakt@architekt.com" value="{{this.content.email}}">
                                 </div>
                             </div></div>
                             {{/each}}
-                            </div><button class="addSmallOfficeButton">Dodaj biuro</button></div>                    
+                            </div><button class="addSmallOfficeButton">Dodaj biuro</button>                    
                     {{/equals}}
                     {{#equals this.sectionType 'gallery'}}
                         <div class="block-gallery__wrapper">
                             <label>Tytuł sekcji</label>
-                            <input type="text" placeholder=" np. Galeria" class="block-gallery__section-title" name="block-gallery__section-title" value="{{this.title}}"></div>
+                            <input type="text" placeholder=" np. Galeria" class="block-gallery__section-title" name="block-gallery__section-title-{{this.blockId}}" value="{{this.title}}"></div>
                         <div class="galleryBlock-container">
                         {{#each this.content}}
                         <div class="subblock" data-subblock-id="{{this.subBlockId}}">
@@ -236,7 +275,7 @@
                         <div class="image">
                             <div class="block-gallery__wrapper">
                                 <label class="block-gallery__wrapper">Podpis</label>
-                                <input type="text" name="block-gallery__title" class="block-gallery__text block-gallery__title" placeholder="np. Projekt budynku" value="{{this.content.title}}">
+                                <input type="text" name="block-gallery__title-{{../this.blockId}}-{{this.subBlockId}}" class="block-gallery__text block-gallery__title" placeholder="np. Projekt budynku" value="{{this.content.title}}">
                             </div>
                             <div class="block-gallery__preview">
                                 <img src="/static/img/placeholder.png">
@@ -248,8 +287,10 @@
                                             {{#each this.photos}}
                                                 <label for="{{../../../this.blockId}}-{{../../this.subBlockId}}-{{../this.path}}/{{this.path}}">
                                                 <img style="width: 150px; height: 150px; object-fit: cover;float: left;" src="/static/uploads/{{../this.path}}/{{this.path}}"></label>
-                                                <!-- TODO selected to fix -->
-                                                <input type="radio" name="img{{../../../this.blockId}}-{{../../this.subBlockId}}" class="block-gallery__image" id="{{../../../this.blockId}}-{{../../this.subBlockId}}-{{../this.path}}/{{this.path}}" {{#equals ../this.paththis.path ../../this.content.img}}selected{{/equals}}>
+                                                <input type="radio" name="img-{{../../../this.blockId}}-{{../../this.subBlockId}}" class="block-gallery__image" id="{{../../../this.blockId}}-{{../../this.subBlockId}}-{{../this.path}}/{{this.path}}" 
+                                                {{#equalsImg ../this.path this.path ../../this.content.img}}
+                                                    checked
+                                                {{/equalsImg}}>
                                             {{/each}}
                                         </div>
                                     {{/each}}

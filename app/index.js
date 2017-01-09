@@ -1,4 +1,5 @@
 const express = require('express');
+const minifyHTML = require('express-minify-html');
 const express_handlebars  = require('express-handlebars');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
@@ -26,11 +27,30 @@ app.engine('handlebars', express_handlebars({
       }
         return options.inverse(this);
     },
+    equalsImg: function(dir, path, test, options) {
+      if (dir+'/'+path === test) {
+        return options.fn(this)
+      }
+    },
     json: function(context) {
       return JSON.stringify(context);
     }
   }
 }));
+
+app.use(minifyHTML({
+    override:      true,
+    exception_url: false,
+    htmlMinifier: {
+        removeComments:            true,
+        collapseWhitespace:        true,
+        collapseBooleanAttributes: false,
+        removeAttributeQuotes:     false,
+        removeEmptyAttributes:     false,
+        minifyJS:                  false
+    }
+}));
+
 app.set('view engine', 'handlebars');
 
 app.set('superSecret', config.secret);

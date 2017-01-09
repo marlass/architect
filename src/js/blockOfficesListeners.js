@@ -66,31 +66,31 @@ export function clickList(e, store) {
             <div class="office">
                 <div class="block-office__wrapper">
                     <label class="block-office__label">Tytuł biura</label>
-                    <input type="text" name="block-office__title" class="block-office__text block-office__title" placeholder="np. Siedziba">
+                    <input type="text" name="block-office__title-${blockId}-${id}" class="block-office__text block-office__title" placeholder="np. Siedziba">
                 </div>
                 <div class="block-office__wrapper">
                     <label class="block-office__label">Adres</label>
-                    <input type="text" name="blokc-office__address" class="block-office__text block-office__address" placeholder="np. ul. 3 Maja 60">
+                    <input type="text" name="block-office__address-${blockId}-${id}" class="block-office__text block-office__address" placeholder="np. ul. 3 Maja 60">
                 </div>
                 <div class="block-office__wrapper">
                     <label class="block-office__label">Miejscowość</label>
-                    <input type="text" name="block-office__city" class="block-office__city block-office__text" placeholder="np. Wrocław">
+                    <input type="text" name="block-office__city-${blockId}-${id}" class="block-office__city block-office__text" placeholder="np. Wrocław">
                 </div>
                 <div class="block-office__wrapper">
                     <label class="block-office__label">Kod pocztowy</label>
-                    <input type="text" name="block-office__postal" class="block-office__text block-office__postal" placeholder=" np. 50-000">
+                    <input type="text" name="block-office__postal-${blockId}-${id}" class="block-office__text block-office__postal" placeholder=" np. 50-000">
                 </div>
                 <div class="block-office__wrapper">
                     <label class="block-office__label">Telefon</label>
-                    <input type="text" name="block-office__phone" class="block-office__text block-office__phone" placeholder="np. 123 456 789">
+                    <input type="text" name="block-office__phone-${blockId}-${id}" class="block-office__text block-office__phone" placeholder="np. 123 456 789">
                 </div>
                 <div class="block-office__wrapper">
                     <label class="block-office__label">Email</label>
-                    <input type="text" name="block-office__email" class="block-office__text block-office__email" placeholder="np. kontakt@architekt.com">
+                    <input type="text" name="block-office__email-${blockId}-${id}" class="block-office__text block-office__email" placeholder="np. kontakt@architekt.com">
                 </div>
                 <div class="block-office__wrapper">
                     <label class="block-office__label">Link do mapy</label>
-                    <input type="text" name="block-office__map" class="block-office__text block-office__map" placeholder="">
+                    <input type="text" name="block-office__map-${blockId}-${id}" class="block-office__text block-office__map" placeholder="">
                 </div>
             </div>`;
         let node = document.createElement('div');
@@ -130,27 +130,27 @@ export function clickList(e, store) {
             <div class="office">
                 <div class="block-office__wrapper">
                     <label class="block-office__label">Tytuł biura</label>
-                    <input type="text" name="block-office__title" class="block-office__text block-office__title" placeholder="np. Siedziba">
+                    <input type="text" name="block-office__title-${blockId}-${id}" class="block-office__text block-office__title" placeholder="np. Siedziba">
                 </div>
                 <div class="block-office__wrapper">
                     <label class="block-office__label">Adres</label>
-                    <input type="text" name="blokc-office__address" class="block-office__text block-office__address" placeholder="np. ul. 3 Maja 60">
+                    <input type="text" name="block-office__address-${blockId}-${id}" class="block-office__text block-office__address" placeholder="np. ul. 3 Maja 60">
                 </div>
                 <div class="block-office__wrapper">
                     <label class="block-office__label">Miejscowość</label>
-                    <input type="text" name="block-office__city" class="block-office__city block-office__text" placeholder="np. Wrocław">
+                    <input type="text" name="block-office__city-${blockId}-${id}" class="block-office__city block-office__text" placeholder="np. Wrocław">
                 </div>
                 <div class="block-office__wrapper">
                     <label class="block-office__label">Kod pocztowy</label>
-                    <input type="text" name="block-office__postal" class="block-office__text block-office__postal" placeholder=" np. 50-000">
+                    <input type="text" name="block-office__postal-${blockId}-${id}" class="block-office__text block-office__postal" placeholder=" np. 50-000">
                 </div>
                 <div class="block-office__wrapper">
                     <label class="block-office__label">Telefon</label>
-                    <input type="text" name="block-office__phone" class="block-office__text block-office__phone" placeholder="np. 123 456 789">
+                    <input type="text" name="block-office__phone-${blockId}-${id}" class="block-office__text block-office__phone" placeholder="np. 123 456 789">
                 </div>
                 <div class="block-office__wrapper">
                     <label class="block-office__label">Email</label>
-                    <input type="text" name="block-office__email" class="block-office__text block-office__email" placeholder="np. kontakt@architekt.com">
+                    <input type="text" name="block-office__email-${blockId}-${id}" class="block-office__text block-office__email" placeholder="np. kontakt@architekt.com">
                 </div>
             </div>`;
         let node = document.createElement('div');
