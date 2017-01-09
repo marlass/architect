@@ -9,6 +9,8 @@ services:
     command: sh -c 'npm install; npm install -g nodemon ; nodemon index.js'
     ports:
       - "3003:3003"
+      - "80:80"
+      - "443:443"
     depends_on:
       - mongo
     networks:
