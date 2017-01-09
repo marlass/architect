@@ -96,10 +96,9 @@ export default function(store, catalog, team, masthead, pages) {
     }
 
     function mastHeadpost(blockId) {
-        let timestamp = Date.now();
         let html = '<h2>Wybierz tło</h2>';
         masthead.forEach(function(element) {
-            html += '<label for="'+timestamp+element+'"><img style="width:150px;height:150px;object-fit:cover;float:left" src="/static/uploads/masthead/'+element+'"></label><input type="radio" name="background" class="block-masthead__background" id="'+timestamp+element+'" value="'+element+'">';
+            html += '<label for="'+blockId+'-'+element+'"><img style="width:150px;height:150px;object-fit:cover;float:left" src="/static/uploads/masthead/'+element+'"></label><input type="radio" name="background'+blockId+'" class="block-masthead__background" id="'+blockId+'-'+element+'" value="'+element+'">';
         }, this);
         let qs = `[data-block-id="${blockId}"] .block-masthead__bg-wrapper`;
         let radioContainer = document.querySelector(qs);

@@ -55,7 +55,7 @@
                                 <div>
                                 <h2>Wybierz tło</h2>
                                 {{#each ../masthead}}
-                                    <label for="{{../this.blockId}}-{{@index}}-{{this}}"><img style="width: 150px;height: 150px;object-fit:cover;float: left;" src="/static/uploads/masthead/{{this}}"></label><input type="radio" name="background" class="block-masthead__background" id="{{../this.blockId}}-{{@index}}-{{this}}" value="{{this}}" {{#equals this ../this.content.background}}checked{{/equals}}>
+                                    <label for="{{../this.blockId}}-{{this}}"><img style="width: 150px;height: 150px;object-fit:cover;float: left;" src="/static/uploads/masthead/{{this}}"></label><input type="radio" name="background{{../this.blockId}}" class="block-masthead__background" id="{{../this.blockId}}-{{this}}" value="{{this}}" {{#equals this ../this.content.background}}checked{{/equals}}>
                                 {{/each}}
                                 </div>
                             </div>
@@ -138,7 +138,7 @@
                             </div>
                             <div class="block-gallery__wrapper block-gallery__wrapper-image">
                                 {{#each ../../team}}
-                                    <label for="{{../../this.blockId}}-{{../this.subBlockId}}-{{@index}}-{{this}}"><img style="width: 150px;height: 150px;object-fit:cover;float: left;" src="/static/uploads/masthead/{{this}}"></label><input type="radio" name="background" class="block-masthead__background" id="{{../../this.blockId}}-{{../this.subBlockId}}-{{@index}}-{{this}}" value="{{this}}" {{#equals this ../this.content.background}}checked{{/equals}}>
+                                    <label for="{{../../this.blockId}}-{{../this.subBlockId}}-{{@index}}-{{this}}"><img style="width: 150px;height: 150px;object-fit:cover;float: left;" src="/static/uploads/team/{{this}}"></label><input type="radio" name="background" class="block-masthead__background" id="{{../../this.blockId}}-{{../this.subBlockId}}-{{@index}}-{{this}}" value="{{this}}" {{#equals this ../this.content.background}}checked{{/equals}}>
                                 {{/each}}
                             </div>
                         </div>
@@ -149,8 +149,7 @@
                     {{#equals this.sectionType 'projectsBlock'}}
                         <div class="block-project__wrapper">
                             <label>Nazwa linku do strony projektów</label>
-                            <!-- TODO set mroe link -->
-                            <input type="text" placeholder=" np. Zobacz więcej projektów" class="block-project__more-project-title" name="block-project__more-project-title">
+                            <input type="text" placeholder=" np. Zobacz więcej projektów" class="block-project__more-project-title" name="block-project__more-project-title" value="{{this.linkTitle}}">
                         </div>
                         <!-- TODO set more url -->
                         <div class="block-project__wrapper block-project__wrapper-more-link"></div>
@@ -184,9 +183,8 @@
                         </div><button class="addProjectButton">Dodaj projekt</button>                
                     {{/equals}}
                     {{#equals this.sectionType 'smallOffices'}}
-                        <!--TODO more link title --> 
                         <div class="block-office__wrapper"><label>Nazwa linku do strony kontaktowej</label>
-                            <input type="text" placeholder=" np. Więcej informacji" class="block-office__more-offices-title" name="block-office__more-offices-title">
+                            <input type="text" placeholder=" np. Więcej informacji" class="block-office__more-offices-title" name="block-office__more-offices-title" value="{{this.linkTitle}}">
                         </div>
                         <!-- TODO more link url -->
                         <div class="block-office__wrapper block-office__wrapper-more-link"></div>
@@ -248,9 +246,10 @@
                                     {{#each ../../catalogs}}
                                         <div class="dir">
                                             {{#each this.photos}}
-                                                <label for="{{../../../this.blockId}}-{{../../this.subBlockId}}-{{../@index}}-{{../this.path}}/{{this.path}}">
+                                                <label for="{{../../../this.blockId}}-{{../../this.subBlockId}}-{{../this.path}}/{{this.path}}">
                                                 <img style="width: 150px; height: 150px; object-fit: cover;float: left;" src="/static/uploads/{{../this.path}}/{{this.path}}"></label>
-                                                <input type="radio" name="img{{../../../this.blockId}}-{{../../this.subBlockId}}" class="block-gallery__image" id="{{../../../this.blockId}}-{{../../this.subBlockId}}-{{../@index}}-{{../this.path}}/{{this.path}}">
+                                                <!-- TODO selected to fix -->
+                                                <input type="radio" name="img{{../../../this.blockId}}-{{../../this.subBlockId}}" class="block-gallery__image" id="{{../../../this.blockId}}-{{../../this.subBlockId}}-{{../this.path}}/{{this.path}}" {{#equals ../this.paththis.path ../../this.content.img}}selected{{/equals}}>
                                             {{/each}}
                                         </div>
                                     {{/each}}
