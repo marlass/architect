@@ -62,7 +62,8 @@ export function setDown(state, action) {
     for (let i = 0, len = poststate.content.length; i < len; i++) {
         if (poststate.content[i].blockId === parseInt(action.blockId)) {
             for (let l = 0; l < poststate.content[i].content.length; l++) {
-                if (poststate.content[i].content[l].subBlockId == action.subblockId && l < poststate.content[i].content.length-1) {
+                if (poststate.content[i].content[l].subBlockId == action.subblockId
+                && l < poststate.content[i].content.length-1) {
                     let nextBlock = Object.assign({},poststate.content[i].content[l+1]);
                     poststate.content[i].content[l+1]= poststate.content[i].content[l];
                     poststate.content[i].content[l] = nextBlock;

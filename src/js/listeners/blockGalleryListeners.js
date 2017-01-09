@@ -1,4 +1,4 @@
-import hasClass from './hasClass';
+import hasClass from './../hasClass';
 
 export function clickList(e, store, catalog, team) {
     if (hasClass(e.target,'galleryBlock__up') || hasClass(e.target.parentNode,'galleryBlock__up')) {
@@ -10,7 +10,7 @@ export function clickList(e, store, catalog, team) {
         let prevBlock = subblock.previousSibling;
         if (subblock != subblock.parentNode.firstChild && prevBlock) {
             subblock.parentNode.insertBefore(subblock, prevBlock);
-            store.dispatch({"type": 'SET_IMAGE_UP', "blockId": id, "subblockId": subblockId});
+            store.dispatch({type: 'SET_IMAGE_UP', blockId: id, subblockId: subblockId});
         }        
     }
 
@@ -23,7 +23,7 @@ export function clickList(e, store, catalog, team) {
         let nextBlock = subblock.nextSibling;
         if (subblock != subblock.parentNode.lastChild && nextBlock) {
             nextBlock.parentNode.insertBefore(nextBlock, subblock);
-            store.dispatch({"type": 'SET_IMAGE_DOWN', "blockId": id, "subblockId": subblockId});
+            store.dispatch({type: 'SET_IMAGE_DOWN', blockId: id, subblockId: subblockId});
         }       
         
     }
@@ -36,7 +36,7 @@ export function clickList(e, store, catalog, team) {
         let subblock = input.closest('.subblock');
         let parent = subblock.parentNode;
         parent.removeChild(subblock);
-        store.dispatch({"type": 'DELETE_IMAGE', "blockId": id, "subblockId": subblockId});
+        store.dispatch({type: 'DELETE_IMAGE', blockId: id, subblockId: subblockId});
     }
 
     if (hasClass(e.target, 'addImageButton')) {
@@ -57,7 +57,6 @@ export function clickList(e, store, catalog, team) {
                         id = state.content[blockIndex].content[i].subBlockId + 1;
                     }
                 }
-
             }
         }
         let html = `<button class="galleryBlock__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
@@ -86,7 +85,7 @@ export function clickList(e, store, catalog, team) {
         } else {
             galleryPost(blockId, id,catalog);
         }
-        store.dispatch({"type": 'CREATE_IMAGE', "blockId": blockId, "subblockId": id});
+        store.dispatch({type: 'CREATE_IMAGE', blockId: blockId, subblockId: id});
     }    
 }
 
@@ -129,14 +128,14 @@ export function blurList(e, store) {
         let id = input.closest('.block').getAttribute('data-block-id');
         let subBlock = input.closest('.subblock').getAttribute('data-subblock-id');
         let title = e.target.value;
-        store.dispatch({"type": 'SET_IMAGE_TITLE', "blockId": id,"subblockId": subBlock, "title": title});
+        store.dispatch({type: 'SET_IMAGE_TITLE', blockId: id, subblockId: subBlock, title: title});
     }
 
     if (hasClass(e.target,'block-gallery__section-title')) {
         let input = e.target;
         let id = input.closest('.block').getAttribute('data-block-id');
         let title = e.target.value;
-        store.dispatch({"type": 'SET_BLOCK_GALLERY_TITLE', "blockId": id, "title": title});
+        store.dispatch({type: 'SET_BLOCK_GALLERY_TITLE', blockId: id, title: title});
     }
 }
 
@@ -146,7 +145,6 @@ export function changeList(e, store) {
         let id = input.closest('.block').getAttribute('data-block-id');
         let subId = input.closest('.subblock').getAttribute('data-subblock-id');
         let img = e.target.value;
-        store.dispatch({"type": 'SET_IMAGE', "blockId": id,"subblockId": subId, "img": img});
+        store.dispatch({type: 'SET_IMAGE', blockId: id, subblockId: subId, img: img});
     }
 }
-

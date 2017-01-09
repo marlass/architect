@@ -6,10 +6,10 @@ closestPolyfill();
 import * as isomorphicFetch from 'isomorphic-fetch';
 import * as redux from 'redux';
 
-import actions from './actions.js';
-import headerActions from './headerActions.js';
+import actions from './actions/actions.js';
+import headerActions from './actions/headerActions.js';
 import blockCreator from './blockCreator';
-import headerHandler from './headerHandler';
+import headerHandler from './header';
 
 if (document.querySelector('.js-page__newPage')){
     var store = redux.createStore(actions, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());

@@ -16,7 +16,8 @@ export function setDown(state, action) {
     let preState = Object.assign({},state);
     let block = {};
     for (let i = 0, len = state.content.length; i < len; i++) {
-        if (state.content[i].blockId === parseInt(action.blockId) && i < state.content.length-1 ) {
+        if (state.content[i].blockId === parseInt(action.blockId)
+        && i < state.content.length-1 ) {
             let nextBlock = Object.assign({},state.content[i+1]);
             state.content[i+1] = state.content[i];
             state.content[i] = nextBlock;

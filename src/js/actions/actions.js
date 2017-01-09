@@ -1,10 +1,10 @@
-import * as blockTextHandler from './blockTextHandler';
-import * as blockMastheadHandler from './blockMastheadHandler';
-import * as blockOfficesHandler from './blockOfficesHandler';
-import * as blockGalleryHandler from './blockGalleryHandler';
-import * as blockProjectsHandler from './blockProjectsHandler';
-import blockCreationHandler from './blockCreationHandler';
-import * as blockHandler from './blockHandler';
+import * as blockTextHandler from './../handlers/blockTextHandler';
+import * as blockMastheadHandler from './../handlers/blockMastheadHandler';
+import * as blockOfficesHandler from './../handlers/blockOfficesHandler';
+import * as blockGalleryHandler from './../handlers/blockGalleryHandler';
+import * as blockProjectsHandler from './../handlers/blockProjectsHandler';
+import blockCreationHandler from './../handlers/blockCreationHandler';
+import * as blockHandler from './../handlers/blockHandler';
 
 export default function(state = {}, action) {
     switch (action.type) {

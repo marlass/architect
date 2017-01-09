@@ -1,4 +1,4 @@
-import hasClass from './hasClass';
+import hasClass from './../hasClass';
 
 export function clickList(store, e) {
     // Header link PL

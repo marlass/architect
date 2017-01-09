@@ -1,4 +1,4 @@
-import hasClass from './hasClass';
+import hasClass from './../hasClass';
 
 export function clickList(e, store, catalog, pages) {
     if (hasClass(e.target,'projectBlock__up') || hasClass(e.target.parentNode,'projectBlock__up')) {
@@ -10,7 +10,7 @@ export function clickList(e, store, catalog, pages) {
         let prevBlock = subblock.previousSibling;
         if (subblock != subblock.parentNode.firstChild && prevBlock) {
             subblock.parentNode.insertBefore(subblock, prevBlock);
-            store.dispatch({"type": 'SET_PROJECT_UP', "blockId": id, "subblockId": subblockId});
+            store.dispatch({type: 'SET_PROJECT_UP', blockId: id, subblockId: subblockId});
         }        
     }
 
@@ -23,7 +23,7 @@ export function clickList(e, store, catalog, pages) {
         let nextBlock = subblock.nextSibling;
         if (subblock != subblock.parentNode.lastChild && nextBlock) {
             nextBlock.parentNode.insertBefore(nextBlock, subblock);
-            store.dispatch({"type": 'SET_PROJECT_DOWN', "blockId": id, "subblockId": subblockId});
+            store.dispatch({type: 'SET_PROJECT_DOWN', blockId: id, subblockId: subblockId});
         }       
         
     }
@@ -36,7 +36,7 @@ export function clickList(e, store, catalog, pages) {
         let subblock = input.closest('.subblock');
         let parent = subblock.parentNode;
         parent.removeChild(subblock);
-        store.dispatch({"type": 'DELETE_PROJECT', "blockId": id, "subblockId": subblockId});
+        store.dispatch({type: 'DELETE_PROJECT', blockId: id, subblockId: subblockId});
     }
 
     if (hasClass(e.target, 'addProjectButton')) {
@@ -57,7 +57,6 @@ export function clickList(e, store, catalog, pages) {
                         id = state.content[blockIndex].content[i].subBlockId + 1;
                     }
                 }
-
             }
         }
         let html = `<button class="projectBlock__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
@@ -89,7 +88,7 @@ export function clickList(e, store, catalog, pages) {
         let container = document.querySelector(qs);
         container.appendChild(node);
         projectPost(blockId, id,catalog,pages);
-        store.dispatch({"type": 'CREATE_PROJECT', "blockId": blockId, "subblockId": id});
+        store.dispatch({type: 'CREATE_PROJECT', blockId: blockId, subblockId: id});
     }    
 }
 
@@ -130,7 +129,7 @@ export function blurList(e, store) {
         let id = input.closest('.block').getAttribute('data-block-id');
         let subBlock = input.closest('.subblock').getAttribute('data-subblock-id');
         let title = e.target.value;
-        store.dispatch({"type": 'SET_PROJECT_TITLE', "blockId": id,"subblockId": subBlock, "title": title});
+        store.dispatch({type: 'SET_PROJECT_TITLE', blockId: id, subblockId: subBlock, title: title});
     }
 
     if (hasClass(e.target,'block-project__more-project-title')) {

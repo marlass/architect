@@ -1,5 +1,5 @@
-import * as linkListeners from './linkListeners'; 
-import * as officeListeners from './officeListeners';
+import * as linkListeners from './listeners/linkListeners'; 
+import * as officeListeners from './listeners/officeListeners';
 
 export default function(store) {
 

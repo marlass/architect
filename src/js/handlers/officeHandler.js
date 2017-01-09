@@ -105,7 +105,8 @@ export function setOfficeUp(state, action, lang) {
     let postState = Object.assign({},state);
     if (postState.footer && postState.footer.offices && postState.footer.offices[lang]) {
         for (let i = 0, len = postState.footer.offices[lang].length; i < len; i++) {
-            if (postState.footer.offices[lang][i].blockId === parseInt(action.blockId) && i > 0 ) {
+            if (postState.footer.offices[lang][i].blockId === parseInt(action.blockId)
+            && i > 0 ) {
                 let prevBlock = Object.assign({},postState.footer.offices[lang][i-1]);
                 postState.footer.offices[lang][i-1] = postState.footer.offices[lang][i];
                 postState.footer.offices[lang][i] = prevBlock;
@@ -120,7 +121,8 @@ export function setOfficeDown(state, action, lang) {
     let postState = Object.assign({},state);
     if (postState.footer && postState.footer.offices && postState.footer.offices[lang]) {
         for (let i = 0, len = postState.footer.offices[lang].length; i < len; i++) {
-            if (postState.footer.offices[lang][i].blockId === parseInt(action.blockId) && i < postState.footer.offices[lang].length-1 ) {
+            if (postState.footer.offices[lang][i].blockId === parseInt(action.blockId)
+            && i < postState.footer.offices[lang].length-1 ) {
                 let nextBlock = Object.assign({},postState.footer.offices[lang][i+1]);
                 postState.footer.offices[lang][i+1] = postState.footer.offices[lang][i];
                 postState.footer.offices[lang][i] = nextBlock;

@@ -1,7 +1,7 @@
-import * as titlesHandler from './titlesHandler';
-import * as yearHandler from './yearHandler';
-import * as linkHandler from './linkHandler';
-import * as officeHandler from './officeHandler';
+import * as titlesHandler from './../handlers/titlesHandler';
+import * as yearHandler from './../handlers/yearHandler';
+import * as linkHandler from './../handlers/linkHandler';
+import * as officeHandler from './../handlers/officeHandler';
 
 export default function(state = {}, action) {
     switch (action.type) {

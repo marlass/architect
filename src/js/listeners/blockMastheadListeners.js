@@ -1,7 +1,6 @@
-import hasClass from './hasClass';
+import hasClass from './../hasClass';
 
-export function clickList(e, store) {
-    
+export function clickList(e, store) {    
 }
 
 export function blurList(e, store) {
@@ -9,7 +8,7 @@ export function blurList(e, store) {
         let input = e.target;
         let id = input.closest('.block').getAttribute('data-block-id');
         let title = e.target.value;
-        store.dispatch({"type": 'SET_BLOCK_MASTHEAD_TITLE', "blockId": id, "title": title});
+        store.dispatch({type: 'SET_BLOCK_MASTHEAD_TITLE', blockId: id, title: title});
     }
 }
 
@@ -18,6 +17,6 @@ export function changeList(e, store) {
         let input = e.target;
         let id = input.closest('.block').getAttribute('data-block-id');
         let bg = e.target.value;
-        store.dispatch({"type": 'SET_BLOCK_MASTHEAD_BACKGROUND', "blockId": id, "background": bg});
+        store.dispatch({type: 'SET_BLOCK_MASTHEAD_BACKGROUND', blockId: id, background: bg});
     }
 }

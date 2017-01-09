@@ -9,16 +9,17 @@ const mime = require('mime');
 const header = require('../pages/header');
 const footer = require('../pages/footer');
 
-const multer  = require('multer')
+const multer  = require('multer');
 
-var storage = multer.diskStorage({
+let storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, __dirname + '/../public/uploads/'+req.body.catalog);
   },
   filename: function (req, file, cb) {
     cb(null, file.fieldname + '-' + Date.now() + '.' + mime.extension(file.mimetype));
   }
-})
+});
+
 let upload = multer({storage: storage});
 
 const fs = require('fs');
@@ -143,14 +144,14 @@ module.exports = function(app) {
 
     app.get('/admin/newPage', function(req, res) {
         const dirs = getDirectories(__dirname + '/../public/uploads/');
-        let dirsList = [];
+        let catalogs = [];
         dirs.forEach(function(a){
             const files = getFilesInDir(__dirname + '/../public/uploads/' + a);
             let fileList = [];
             files.forEach(function(b){
                 fileList.push({path: b});
             })
-            dirsList.push({path: a,photos: fileList});
+            catalogs.push({path: a,photos: fileList});
         })
         let team = getFilesInDir(__dirname + '/../public/uploads/team/');
         let masthead = getFilesInDir(__dirname + '/../public/uploads/masthead/');
@@ -159,7 +160,7 @@ module.exports = function(app) {
             result.forEach(function(page) {
                 pages.push(page.pageUrl);
             });
-            res.render('newPage', {layout: 'admin',catalogs: dirsList, team, masthead, pages});
+            res.render('newPage', {layout: 'admin',catalogs, team, masthead, pages});
         });
         
     });
@@ -185,16 +186,16 @@ module.exports = function(app) {
 
     app.get('/admin/managePhotos', function(req, res) {
         const dirs = getDirectories(__dirname + '/../public/uploads/');
-        let dirsList = [];
+        let catalogs = [];
         dirs.forEach(function(a){
             const files = getFilesInDir(__dirname + '/../public/uploads/' + a);
             let fileList = [];
             files.forEach(function(b){
                 fileList.push({path: b});
             })
-            dirsList.push({path: a,photos: fileList});
+            catalogs.push({path: a,photos: fileList});
         })
-        res.render('managePhotos', {layout: 'admin',catalogs: dirsList});
+        res.render('managePhotos', {layout: 'admin', catalogs});
     });
 
     app.post('/admin/getPhotos', function(req, res) {
@@ -227,9 +228,9 @@ module.exports = function(app) {
         if( fs.existsSync(path) ) {
             fs.readdirSync(path).forEach(function(file,index){
                 var curPath = path + "/" + file;
-                if(fs.lstatSync(curPath).isDirectory()) { // recurse
+                if(fs.lstatSync(curPath).isDirectory()) {
                     deleteFolderRecursive(curPath);
-                } else { // delete file
+                } else {
                     fs.unlinkSync(curPath);
                 }
             });
@@ -239,7 +240,7 @@ module.exports = function(app) {
 
     app.post('/admin/deleteCatalog', function (req, res) {
         let catalog = req.body.catalog;
-        let path = __dirname + '/../public/uploads/'+catalog;
+        let path = __dirname + '/../public/uploads/' + catalog;
         deleteFolderRecursive(path);
         res.redirect('/admin/managePhotos');
     });
@@ -247,7 +248,7 @@ module.exports = function(app) {
     app.get('/admin/manageHeader', function(req, res) {
         Header.findOne({}).lean().exec(function(err, header) {
             Footer.findOne({}).lean().exec(function(err, footer) {
-                res.render('manageHeader', {layout: 'admin', header: header, footer: footer});
+                res.render('manageHeader', {layout: 'admin', header, footer});
             });
         });        
     });
@@ -262,29 +263,31 @@ module.exports = function(app) {
         });
     });
 
+    /* init header */
     app.get('/admin/setHeader', function(req, res) {
         Header.update( {}, header, { upsert : true, strict: false }, function(err) {
             if (err) throw err;
             Footer.update( {}, footer, { upsert : true, strict: false }, function(err) {
                 if (err) throw err;
-                res.json({'succ': 5});
+                res.json({succ: 'true'});
             });
         });
     });
 
     app.get('/admin/pageList', function(req, res) {
         Page.find({}, function(err, result) {
-            let pageList = [];
+            let pages = [];
             result.forEach(function(row){
-                pageList.push(row.pageUrl);
+                pages.push(row.pageUrl);
             })
-            res.render('listPage',{layout: 'admin',pages: pageList});
+            res.render('listPage',{layout: 'admin', pages});
         })
     });
 
     app.post('/admin/deletePage', function(req, res) {
         if (!req.body.page) {
             Page.findOneAndRemove({pageUrl: null},function(err,result){
+                res.redirect('/admin/pageList');
             });
         }
         Page.findOneAndRemove({pageUrl: req.body.page}, function(err, resul) {
@@ -294,14 +297,14 @@ module.exports = function(app) {
 
     app.post('/admin/editPage', function(req, res) {
         const dirs = getDirectories(__dirname + '/../public/uploads/');
-        let dirsList = [];
+        let catalogs = [];
         dirs.forEach(function(a){
             const files = getFilesInDir(__dirname + '/../public/uploads/' + a);
             let fileList = [];
             files.forEach(function(b){
                 fileList.push({path: b});
             })
-            dirsList.push({path: a,photos: fileList});
+            catalogs.push({path: a,photos: fileList});
         })
         let team = getFilesInDir(__dirname + '/../public/uploads/team/');
         let masthead = getFilesInDir(__dirname + '/../public/uploads/masthead/');
@@ -314,12 +317,12 @@ module.exports = function(app) {
             if (!req.body.page) {
                 Page.findOne({pageUrl: null}).lean().exec(function(err,result2){
                     page = result2;
-                    res.render('editPage', {layout: 'admin',catalogs: dirsList, team, masthead, pages, page});
+                    res.render('editPage', {layout: 'admin', catalogs, team, masthead, pages, page});
                 });
             } else {
                 Page.findOne({pageUrl: req.body.page}).lean().exec(function(err, result2) {
                     page = result2;
-                    res.render('editPage', {layout: 'admin',catalogs: dirsList, team, masthead, pages, page});
+                    res.render('editPage', {layout: 'admin', catalogs, team, masthead, pages, page});
                 });
             }
         });        

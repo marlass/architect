@@ -1,9 +1,9 @@
-import * as blockTextListeners from './blockTextListeners';
-import * as blockMastheadListeners from './blockMastheadListeners';
-import * as blockOfficesListeners from './blockOfficesListeners';
-import * as blockGalleryListeners from './blockGalleryListeners';
-import * as blockProjectsListeners from './blockProjectsListeners';
-import * as block from './blockListeners';
+import * as blockTextListeners from './listeners/blockTextListeners';
+import * as blockMastheadListeners from './listeners/blockMastheadListeners';
+import * as blockOfficesListeners from './listeners/blockOfficesListeners';
+import * as blockGalleryListeners from './listeners/blockGalleryListeners';
+import * as blockProjectsListeners from './listeners/blockProjectsListeners';
+import * as block from './listeners/blockListeners';
 
 
 export default function(store, catalog, team, masthead, pages) {

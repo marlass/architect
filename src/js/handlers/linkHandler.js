@@ -1,6 +1,7 @@
 export function setLinkName(state, action, lang, section) {
     let postState = Object.assign({},state);
-    if (postState[section] && postState[section]["links"] && postState[section]["links"][lang]) {
+    if (postState[section] && postState[section]["links"]
+    && postState[section]["links"][lang]) {
         for (let i = 0, len = postState[section]["links"][lang].length; i < len; i++) {
             if (postState[section]["links"][lang][i].blockId === parseInt(action.blockId)) {
                 postState[section]["links"][lang][i].title = action.name;
@@ -13,7 +14,8 @@ export function setLinkName(state, action, lang, section) {
 
 export function setLinkUrl(state, action, lang, section) {
     let postState = Object.assign({},state);
-    if (postState[section] && postState[section]["links"] && postState[section]["links"][lang]) {
+    if (postState[section] && postState[section]["links"]
+    && postState[section]["links"][lang]) {
         for (let i = 0, len = postState[section]["links"][lang].length; i < len; i++) {
             if (postState[section]["links"][lang][i].blockId === parseInt(action.blockId)) {
                 postState[section]["links"][lang][i].url = action.url;
@@ -51,9 +53,11 @@ export function createLink(state, action, lang, section) {
 
 export function setLinkUp(state, action, lang, section) {
     let postState = Object.assign({},state);
-    if (postState[section] && postState[section]["links"] && postState[section]["links"][lang]) {
+    if (postState[section] && postState[section]["links"]
+    && postState[section]["links"][lang]) {
         for (let i = 0, len = postState[section]["links"][lang].length; i < len; i++) {
-            if (postState[section]["links"][lang][i].blockId === parseInt(action.blockId) && i > 0 ) {
+            if (postState[section]["links"][lang][i].blockId === parseInt(action.blockId)
+            && i > 0 ) {
                 let prevBlock = Object.assign({},postState[section]["links"][lang][i-1]);
                 postState[section]["links"][lang][i-1] = postState[section]["links"][lang][i];
                 postState[section]["links"][lang][i] = prevBlock;
@@ -66,9 +70,11 @@ export function setLinkUp(state, action, lang, section) {
 
 export function setLinkDown(state, action, lang, section) {
     let postState = Object.assign({},state);
-    if (postState[section] && postState[section]["links"] && postState[section]["links"][lang]) {
+    if (postState[section] && postState[section]["links"]
+    && postState[section]["links"][lang]) {
         for (let i = 0, len = postState[section]["links"][lang].length; i < len; i++) {
-            if (postState[section]["links"][lang][i].blockId === parseInt(action.blockId) && i < postState[section]["links"][lang].length-1 ) {
+            if (postState[section]["links"][lang][i].blockId === parseInt(action.blockId)
+            && i < postState[section]["links"][lang].length-1 ) {
                 let nextBlock = Object.assign({},postState[section]["links"][lang][i+1]);
                 postState[section]["links"][lang][i+1] = postState[section]["links"][lang][i];
                 postState[section]["links"][lang][i] = nextBlock;

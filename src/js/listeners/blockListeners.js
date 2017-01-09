@@ -1,4 +1,4 @@
-import hasClass from './hasClass';
+import hasClass from './../hasClass';
 
 export function clickList(e, store) {
     if (hasClass(e.target,'block__up') || hasClass(e.target.parentNode,'block__up')) {
@@ -8,7 +8,7 @@ export function clickList(e, store) {
         let prevBlock = block.previousSibling;
         if (block != block.parentNode.firstChild && prevBlock) {
             block.parentNode.insertBefore(block, prevBlock);
-            store.dispatch({"type": 'SET_BLOCK_UP', "blockId": id});
+            store.dispatch({type: 'SET_BLOCK_UP', blockId: id});
         }        
     }
     if (hasClass(e.target,'block__down') || hasClass(e.target.parentNode,'block__down')) {
@@ -18,7 +18,7 @@ export function clickList(e, store) {
         let nextBlock = block.nextSibling;
         if (block != block.parentNode.lastChild && nextBlock) {
             nextBlock.parentNode.insertBefore(nextBlock, block);
-            store.dispatch({"type": 'SET_BLOCK_DOWN', "blockId": id});
+            store.dispatch({type: 'SET_BLOCK_DOWN', blockId: id});
         }       
         
     }
@@ -28,6 +28,6 @@ export function clickList(e, store) {
         let block = input.closest('.block');
         let parent = block.parentNode;
         parent.removeChild(block);
-        store.dispatch({"type": 'DELETE_BLOCK', "blockId": id});
+        store.dispatch({type: 'DELETE_BLOCK', blockId: id});
     }
 }

@@ -7,8 +7,8 @@ export default function (state, action) {
     };
     if (state.content) {
         state.content.push(block);
-        return Object.assign({},preState,{"content": state.content});
+        return Object.assign({}, preState, {content: state.content});
     } else {
-        return Object.assign({},preState, {"content": [block]});
+        return Object.assign({}, preState, {content: [block]});
     }
 }
