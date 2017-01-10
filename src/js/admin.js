@@ -10,6 +10,9 @@ import actions from './actions/actions.js';
 import headerActions from './actions/headerActions.js';
 import blockCreator from './blockCreator';
 import headerHandler from './header';
+import toast from './toast';
+
+const Message = toast();
 
 if (document.querySelector('.js-page__newPage')){
     var store = redux.createStore(actions, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
@@ -20,6 +23,16 @@ if (document.querySelector('.js-page__newPage')){
 } else if (document.querySelector('.js-page__editPage')) {
     var store = redux.createStore(actions, window.__PRESTATE__, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
     blockCreator(store,window.__IMAGES__, window.__TEAM__, window.__MASTHEAD__,window.__PAGES__);
+}
+
+const showToast = document.querySelector('.showToast');
+if (showToast) {
+    new Message(showToast.innerHTML,{type: 'success'}).show();
+}
+
+const showToast2 = document.querySelector('.toast');
+if (showToast2) {
+    new Message(showToast2.innerHTML, {type: showToast2.innerHTML}).show();
 }
 
 const saveHeaderBtn = document.querySelector('.manageHeader__saveButton');
@@ -110,8 +123,10 @@ if (saveBtn) {
         
         fetch('/admin/savePage/', req)
             .then(function(res) {
+                new Message('Pomyślnie zapisano', {type: 'success'}).show();
             })
             .catch(function(res) {
+                new Message('Spróbuj ponownie', {type: 'error'}).show();
             });
     });
 }
@@ -131,8 +146,10 @@ if (saveHeaderBtn) {
         
         fetch('/admin/saveHeader/', req)
             .then(function(res) {
+                new Message('Pomyślnie zapisano', {type: 'success'}).show();
             })
             .catch(function(res) {
+                new Message('Spróbuj ponownie', {type: 'error'}).show();
             });
     });
 }

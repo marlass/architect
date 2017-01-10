@@ -12,12 +12,12 @@ const footer = require('../pages/footer');
 const multer  = require('multer');
 
 let storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, __dirname + '/../public/uploads/'+req.body.catalog);
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now() + '.' + mime.extension(file.mimetype));
-  }
+    destination: function (req, file, cb) {
+        cb(null, __dirname + '/../public/uploads/'+req.body.catalog);
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + '.' + mime.extension(file.mimetype));
+    }
 });
 
 let upload = multer({storage: storage});
@@ -100,7 +100,13 @@ module.exports = function(app) {
 
     /* Change password view */
     app.get('/admin/changePassword', function(req, res) {
-        res.render('changePassword');
+        const type = req.query.type || 'success';
+        if (req.query.status) {
+            res.render('changePassword', {layout: 'admin', status: req.query.status, type});
+        } else {
+            res.render('changePassword', {layout: 'admin'});
+        }
+        
     });
 
     /* Change password logic */
@@ -115,10 +121,10 @@ module.exports = function(app) {
 
         if (newPasswort === newPasswortRepeat) {
             User.findOne({ username: config.admin }, function (err, user) {
-                if (err) { res.json({success: false, message: 'User not found'}) }
+                if (err) { res.redirect('/admin/changePassword?status=U%C5%BCytkownik%20nie%20istnieje&type=error') }
                 isValidPassword(user.password,oldPassword,function (err, match) {
                     if (err)
-                    res.json({status: false, message: 'Wrong password'});
+                    res.redirect('/admin/changePassword?status=Niepoprawne%20has%C5%82o&type=error')
                     if (match) {
                         var salt = bcrypt.genSaltSync(10);
                         bcrypt.hash(newPasswort, salt, null, function(err, hash) {
@@ -126,19 +132,19 @@ module.exports = function(app) {
 
                             user.save(function(err) {
                                 if (err) {
-                                    res.json({success: false, message: 'Saving problem'});
+                                    res.redirect('/admin/changePassword?status=Spr%C3%B3buj%20ponownie&type=error')
                                 } else {
-                                    res.json({ success: true });
+                                    res.redirect('/admin/changePassword?status=Zmieniono%20has%C5%82o&type=success')
                                 }
                             });
                         }); 
                     } else {
-                        res.json({status: false, message: 'Wrong password'});
+                        res.redirect('/admin/changePassword?status=Niepoprawne%20has%C5%82o&type=error')
                     }
                 });      
             });
         } else {
-            res.json({success: false, message: 'Passwords do not match'});
+            res.redirect('/admin/changePassword?status=Has%C5%82a%20si%C4%99%20nie%20zgadzaj%C4%85&type=error')
         }
     });
 
@@ -167,8 +173,10 @@ module.exports = function(app) {
 
     app.post('/admin/savePage', function(req, res) {
         Page.update( { pageUrl : req.body.pageUrl }, req.body, { upsert : true, strict: false }, function(err) {
-            if (err) throw err;
-            res.json(req.body);
+            if (err) { 
+                res.json({status: false});
+            }
+            res.json({status: true});
         });
     });
 
@@ -195,7 +203,11 @@ module.exports = function(app) {
             })
             catalogs.push({path: a,photos: fileList});
         })
-        res.render('managePhotos', {layout: 'admin', catalogs});
+        if (req.query.status) {
+            res.render('managePhotos', {layout: 'admin', catalogs, status: req.query.status});
+        } else {
+            res.render('managePhotos', {layout: 'admin', catalogs});
+        }
     });
 
     app.post('/admin/getPhotos', function(req, res) {
@@ -210,18 +222,18 @@ module.exports = function(app) {
         if (CatalogRegexp.test(catalog) && !fs.existsSync(path)) {
             fs.mkdirSync(path,0744);
         }
-        res.redirect('/admin/managePhotos');
+        res.redirect('/admin/managePhotos?status=Katalog%20dodany');
     });
 
     app.post('/admin/uploadPhotos', upload.array('photos'), function(req, res) {
-        res.redirect('/admin/managePhotos');
+        res.redirect('/admin/managePhotos?status=Dodano%20obrazy');
     });
 
     app.post('/admin/deletePhoto', function (req, res) {
         let photo = req.body.photo;
         let path = __dirname + '/../public/uploads/'+photo;
         fs.unlinkSync(path);
-        res.redirect('/admin/managePhotos');
+        res.redirect('/admin/managePhotos?status=Usuni%C4%99to%20obraz');
     });
 
     function deleteFolderRecursive(path) {
@@ -242,7 +254,7 @@ module.exports = function(app) {
         let catalog = req.body.catalog;
         let path = __dirname + '/../public/uploads/' + catalog;
         deleteFolderRecursive(path);
-        res.redirect('/admin/managePhotos');
+        res.redirect('/admin/managePhotos?status=Usuni%C4%99to%20katalog');
     });
 
     app.get('/admin/manageHeader', function(req, res) {
@@ -255,10 +267,14 @@ module.exports = function(app) {
 
     app.post('/admin/saveHeader', function(req, res) {
         Header.update( {}, req.body.header, { upsert : true, strict: false }, function(err) {
-            if (err) throw err;
+            if (err) {
+                res.json({status: false});
+            }
             Footer.update( {}, req.body.footer, { upsert : true, strict: false }, function(err) {
-                if (err) throw err;
-                res.json(req.body);
+                if (err) {
+                    res.json({status: false});
+                }
+                res.json({status: true});
             });
         });
     });
@@ -266,10 +282,14 @@ module.exports = function(app) {
     /* init header */
     app.get('/admin/setHeader', function(req, res) {
         Header.update( {}, header, { upsert : true, strict: false }, function(err) {
-            if (err) throw err;
+            if (err) {
+                res.json({status: false});
+            }
             Footer.update( {}, footer, { upsert : true, strict: false }, function(err) {
-                if (err) throw err;
-                res.json({succ: 'true'});
+                if (err) {
+                    res.json({status: false});
+                }
+                res.json({status: true});
             });
         });
     });
@@ -280,19 +300,25 @@ module.exports = function(app) {
             result.forEach(function(row){
                 pages.push(row.pageUrl);
             })
-            res.render('listPage',{layout: 'admin', pages});
+            const type = req.query.type || 'success';
+            if (req.query.status) {
+                res.render('listPage', {layout: 'admin',pages, status: req.query.status, type});
+            } else {
+                res.render('listPage', {layout: 'admin', pages});
+            }
         })
     });
 
     app.post('/admin/deletePage', function(req, res) {
         if (!req.body.page) {
             Page.findOneAndRemove({pageUrl: null},function(err,result){
-                res.redirect('/admin/pageList');
+                res.redirect('/admin/pageList?status=Usuni%C4%99to%20stron%C4%99&type=success');
             });
+        } else {
+            Page.findOneAndRemove({pageUrl: req.body.page}, function(err, resul) {
+                res.redirect('/admin/pageList?status=Usuni%C4%99to%20stron%C4%99&type=success');
+            })
         }
-        Page.findOneAndRemove({pageUrl: req.body.page}, function(err, resul) {
-            res.redirect('/admin/pageList');
-        })
     });
 
     app.post('/admin/editPage', function(req, res) {

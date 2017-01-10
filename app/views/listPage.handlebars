@@ -1,18 +1,26 @@
 <div class="js-page__listPage">
-    <table>
-        {{#each pages}}
-            <tr>
-                <td>{{this}}</td>
-                <td><form action="/admin/editPage" method="POST">
-                    <input type="hidden" name="page" value="{{this}}">
-                    <button type="submit">Edytuj stronę</button>
-                </form></td>
-                <td><form action="/admin/deletePage" method="POST" class="removePageForm">
-                    <input type="hidden" name="page" value="{{this}}">
-                    <button type="submit">Usuń stronę</button>
-                </form></td>
-            </tr>
-        {{/each}}
-    </table>
-    
+    {{#if status}}
+        <div class="toast" style="display: none">{{status}}</div>
+    {{/if}}
+    {{#if type}}
+        <div class="toast-status" style="display: none">{{type}}</div>
+    {{/if}}
+    <div class="pageList">
+        <h2 class="pageList__title">Lista stron</h2>
+        <table class="pageList__table">
+            {{#each pages}}
+                <tr class="pageList__row">
+                    <td class="pageList__page"><a href="{{this}}" target="_blank">{{this}}</a></td>
+                    <td class="pageList__edit"><form action="/admin/editPage" method="POST">
+                        <input type="hidden" name="page" value="{{this}}">
+                        <button type="submit" class="pageList__editButton"><i class="fa fa-pencil" aria-hidden="true"></i>Edytuj stronę</button>
+                    </form></td>
+                    <td class="pageList__delete"><form action="/admin/deletePage" method="POST" class="removePageForm">
+                        <input type="hidden" name="page" value="{{this}}">
+                        <button type="submit" class="pageList__deleteButton"><i class="fa fa-trash" aria-hidden="true"></i>Usuń stronę</button>
+                    </form></td>
+                </tr>
+            {{/each}}
+        </table>
+    </div>
 </div>
