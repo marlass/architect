@@ -12,10 +12,13 @@ const postcss_single_charset = require('postcss-single-charset');
 const bs = require('browser-sync').create();
 const sourcemaps = require('gulp-sourcemaps');
 const stylelint = require('stylelint');
+const imagemin = require('gulp-imagemin');
+const shell = require('gulp-shell');
 
 const config = {
     src: {
-        sass: "./src/scss/"
+        sass: "./src/scss/",
+        uploadedImages: './app/public/uploads/'
     },
     dest: {
         css: "./app/public/css/"
@@ -45,14 +48,28 @@ function compileSass(){
         .pipe(bs.reload({stream:true}));
 }
 
+function uploadedImages(){
+    return gulp.src(config.src.uploadedImages + '**/*.+(jpeg|jpg|png|tiff|webp|svg|gif)')
+        .pipe(imagemin())
+        
+}
+
+function uploadedImages2() {
+    return gulp.src('./gulpfile.js')
+        .pipe(shell('npm run uploadedImages'))
+}   
+
 function watch(){
     gulp.watch(config.src.sass + "*.scss", styles);
+    gulp.watch(config.src.uploadedImages + "**/*.+(jpeg|jpg|png|tiff|webp|svg|gif)", gulp.series(uploadedImages,uploadedImages2));
 }
 
 const styles = gulp.series(compileSass);
 
 gulp.task('styles', styles);
+gulp.task('uploadedImages', uploadedImages);
+gulp.task('uploadedImages', uploadedImages2);
 gulp.task('watch', gulp.parallel(server, watch));
-gulp.task('build', styles);
+gulp.task('build', gulp.parallel(styles, gulp.series(uploadedImages, uploadedImages2)));
 
 gulp.task('default', watch);
