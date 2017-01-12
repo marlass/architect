@@ -1,47 +1,56 @@
 {{#if status}}
     <div class="showToast" style="display: none">{{status}}</div>
 {{/if}}
-<div class="addCatalog">
-    <form method="POST" action="/admin/addCatalog">
-        <p class="addCatalog__wrapper">
-            <label>Nazwa katalogu</label>
-            <input type="text" name="catalog" placeholder="budowaStadionu">
-        </p>
-        <button type="submit">Dodaj katalog</button>
-    </form>
-</div>
-<div class="uploadPhotos">
-    <form method="POST" action="/admin/uploadPhotos" enctype='multipart/form-data'>
-        <p class="uploadPhotos__wrapper">
-            <label>Wybierz katalog</label>
-            <select name="catalog">
-                {{#each catalogs}}
-                    <option value="{{this.path}}">{{this.path}}</option>
-                {{/each}}
-            </select>
-        </p>
-        <p class="uploadPhotos_wrapper">
-            <label>Wybierz zdjęcia</label>
-            <input type="file" multiple name="photos">
-        </p>
-        <button type="submit">Dodaj zdjęcia</button>
-    </form>
+<div class="u-clearfix">
+    <div class="uploadPhotos photosUpload">
+        <h2 class="photosUpload__title">Dodaj zdjęcia</h2>
+        <form method="POST" action="/admin/uploadPhotos" enctype="multipart/form-data" class="photosUpload__form" >
+            <p class="uploadPhotos__wrapper photosUpload__wrapper">
+                <label class="photosUpload__label">Wybierz katalog</label>
+                <select name="catalog" class="photosUpload__select">
+                    {{#each catalogs}}
+                        <option value="{{this.path}}">{{this.path}}</option>
+                    {{/each}}
+                </select>
+            </p>
+            <p class="uploadPhotos_wrapper photosUpload__wrapper">
+                <label class="photosUpload__label">Wybierz zdjęcia</label>
+                <input type="file" multiple name="photos" class="photosUpload__select" placeholder="Wybierz zdjęcia">
+            </p>
+            <button type="submit" class="photosUpload__submit">Dodaj zdjęcia</button>
+        </form>
+    </div>
+    <div class="addCatalog photosAddCatalog">
+        <h2 class="photosAddCatalog__title">Dodawanie katalogu</h2>
+        <form method="POST" action="/admin/addCatalog" class="photosAddCatalog__form">
+            <p class="addCatalog__wrapper photosAddCatalog__wrapper">
+                <label class="photosAddCatalog__label">Nazwa katalogu</label>
+                <input type="text" name="catalog" placeholder="budowaStadionu" class="photosAddCatalog__input">
+            </p>
+            <button type="submit" class="photosAddCatalog__submit">Dodaj katalog</button>
+        </form>
+    </div>
 </div>
 {{#each catalogs}}
-    <div class="catalog">
-        <h2>{{this.path}}</h2>
-        <form method="POST" action="/admin/deleteCatalog" class="deleteCatalogForm">
-            <input type="hidden" name="catalog" value="{{this.path}}">
-            <button type="submit">Usuń katalog</button>
-        </form>
+    <div class="catalog photosCatalog">
+        <div class="u-clearfix">
+            <h2 class="photosCatalog__title"><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>
+    {{this.path}}</h2>
+            <form method="POST" action="/admin/deleteCatalog" class="deleteCatalogForm photosCatalog__form">
+                <input type="hidden" name="catalog" value="{{this.path}}">
+                <button type="submit" class="photosCatalog__submit">Usuń katalog</button>
+            </form>
+        </div>
+        <div class="photosCatalog__photos photosCatalog__photos--hidden u-clearfix">
         {{#each this.photos}}
-            <div class="catalog__photo-wrapper">
+            <div class="catalog__photo-wrapper photosCatalog__photoWrapper">
                 <form method="POST" action="/admin/deletePhoto" class="deletePhotoForm">
                     <input type="hidden" name="photo" value="{{../this.path}}/{{this.path}}">
-                    <button type="submit">Usuń zdjęcie</button>
+                    <button type="submit" class="photosCatalog__deletePhotoSubmit"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></button>
                 </form>
-                <img src="/static/uploads/{{../this.path}}/{{this.path}}" class="catalog__photo" style="width: 200px;height: 200px;float: left;">
+                <img src="/static/uploads/{{../this.path}}/{{this.path}}" class="catalog__photo photosCatalog__photo">
             </div>
         {{/each}}
+        </div>
     </div>
 {{/each}}

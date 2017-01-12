@@ -38,4 +38,12 @@ jspm_packages
 
 # Uploads folder
 /app/public/uploads
-/app/public/uploads_resized
+/app/public/uploads_resized_200
+/app/public/uploads_resized_320
+/app/public/uploads_resized_640
+/app/public/uploads_resized_960
+/app/public/uploads_resized_1024
+/app/public/uploads_resized_1280
+/app/public/uploads_resized_1600
+/app/public/uploads_resized_1920
+/app/public/uploads_resized_3840

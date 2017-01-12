@@ -12,6 +12,8 @@ import blockCreator from './blockCreator';
 import headerHandler from './header';
 import toast from './toast';
 
+import hasClass from './hasClass';
+
 const Message = toast();
 
 if (document.querySelector('.js-page__newPage')){
@@ -153,4 +155,33 @@ if (saveHeaderBtn) {
             });
     });
 }
+
+
+document.addEventListener('click', function (e) {
+    if (hasClass(e.target,'photosCatalog__title') || hasClass(e.target.parentNode,'photosCatalog__title')) {
+        let block = e.target.closest('.photosCatalog');
+        let photos = block.querySelector('.photosCatalog__photos');
+        toggleClass(photos, 'photosCatalog__photos--hidden');
+        let i = e.target.parentNode.parentNode.querySelector('.photosCatalog__title i');
+        toggleClass(i,'fa-plus-circle');
+        toggleClass(i,'fa-minus-circle');
+    }
+}, true);
+
+function toggleClass(el, className) {
+    if (el.classList) {
+        el.classList.toggle(className);
+    } else {
+        var classes = el.className.split(' ');
+        var existingIndex = classes.indexOf(className);
+
+        if (existingIndex >= 0)
+            classes.splice(existingIndex, 1);
+        else
+            classes.push(className);
+
+    el.className = classes.join(' ');
+    }
+}
+
 
