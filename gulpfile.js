@@ -14,6 +14,7 @@ const sourcemaps = require('gulp-sourcemaps');
 const stylelint = require('stylelint');
 const imagemin = require('gulp-imagemin');
 const shell = require('gulp-shell');
+const wait = require('gulp-wait');
 
 const config = {
     src: {
@@ -49,9 +50,10 @@ function compileSass(){
 }
 
 function uploadedImages(){
-    return gulp.src(config.src.uploadedImages + '**/*.+(jpeg|jpg|png|tiff|webp|svg|gif)')
-        .pipe(imagemin())
-        
+    return gulp.src(config.src.uploadedImages + "**/*.+(jpeg|jpg|png|tiff|webp|svg|gif)")
+        .pipe(plumber())
+        .pipe(wait(3000))
+        .pipe(imagemin())        
 }
 
 function uploadedImages2() {
@@ -68,7 +70,7 @@ const styles = gulp.series(compileSass);
 
 gulp.task('styles', styles);
 gulp.task('uploadedImages', uploadedImages);
-gulp.task('uploadedImages', uploadedImages2);
+gulp.task('uploadedImages2', uploadedImages2);
 gulp.task('watch', gulp.parallel(server, watch));
 gulp.task('build', gulp.parallel(styles, gulp.series(uploadedImages, uploadedImages2)));
 

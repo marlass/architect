@@ -16,7 +16,7 @@ let storage = multer.diskStorage({
         cb(null, __dirname + '/../public/uploads/'+req.body.catalog);
     },
     filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + '.' + mime.extension(file.mimetype));
+        cb(null, file.originalname + '-' + file.fieldname + '-' + Date.now() + '.' + mime.extension(file.mimetype));
     }
 });
 
@@ -226,6 +226,7 @@ module.exports = function(app) {
     });
 
     app.post('/admin/uploadPhotos', upload.array('photos'), function(req, res) {
+        console.log('error before multiple upload');
         res.redirect('/admin/managePhotos?status=Dodano%20obrazy');
     });
 
@@ -233,6 +234,24 @@ module.exports = function(app) {
         let photo = req.body.photo;
         let path = __dirname + '/../public/uploads/'+photo;
         fs.unlinkSync(path);
+        let path200 = __dirname + '/../public/uploads_resized_200/'+photo;
+        fs.unlinkSync(path200);
+        let path320 = __dirname + '/../public/uploads_resized_320/'+photo;
+        fs.unlinkSync(path320);
+        let path640 = __dirname + '/../public/uploads_resized_640/'+photo;
+        fs.unlinkSync(path640);
+        let path960 = __dirname + '/../public/uploads_resized_960/'+photo;
+        fs.unlinkSync(path960);
+        let path1024 = __dirname + '/../public/uploads_resized_1024/'+photo;
+        fs.unlinkSync(path1024);
+        let path1280 = __dirname + '/../public/uploads_resized_1280/'+photo;
+        fs.unlinkSync(path1280);
+        let path1600 = __dirname + '/../public/uploads_resized_1600/'+photo;
+        fs.unlinkSync(path1600);
+        let path1920 = __dirname + '/../public/uploads_resized_1920/'+photo;
+        fs.unlinkSync(path1920);
+        let path3840 = __dirname + '/../public/uploads_resized_3840/'+photo;
+        fs.unlinkSync(path3840);
         res.redirect('/admin/managePhotos?status=Usuni%C4%99to%20obraz');
     });
 
@@ -254,6 +273,24 @@ module.exports = function(app) {
         let catalog = req.body.catalog;
         let path = __dirname + '/../public/uploads/' + catalog;
         deleteFolderRecursive(path);
+        let path200 = __dirname + '/../public/uploads_resized_200/' + catalog;
+        deleteFolderRecursive(path200);
+        let path320 = __dirname + '/../public/uploads_resized_320/' + catalog;
+        deleteFolderRecursive(path320);
+        let path640 = __dirname + '/../public/uploads_resized_640/' + catalog;
+        deleteFolderRecursive(path640);
+        let path960 = __dirname + '/../public/uploads_resized_960/' + catalog;
+        deleteFolderRecursive(path960);
+        let path1024 = __dirname + '/../public/uploads_resized_1024/' + catalog;
+        deleteFolderRecursive(path1024);
+        let path1280 = __dirname + '/../public/uploads_resized_1280/' + catalog;
+        deleteFolderRecursive(path1280);
+        let path1600 = __dirname + '/../public/uploads_resized_1600/' + catalog;
+        deleteFolderRecursive(path1600);
+        let path1920 = __dirname + '/../public/uploads_resized_1920/' + catalog;
+        deleteFolderRecursive(path1920);
+        let path3840 = __dirname + '/../public/uploads_resized_3840/' + catalog;
+        deleteFolderRecursive(path3840);
         res.redirect('/admin/managePhotos?status=Usuni%C4%99to%20katalog');
     });
 
