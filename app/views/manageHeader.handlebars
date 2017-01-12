@@ -5,151 +5,158 @@
         window.__PRESTATE__.footer = {{{json footer}}};
     </script>
     <button class="manageHeader__saveButton adminMainSaveButton"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i>Zapisz</button>
-    <div class="manageHeader">
-        <p class="manageHeader__wrapper">
-            <label>Nazwa firmy PL</label>
-            <input type="text" value="{{header.title.pl}}" class="manageHeader__title-pl">
+    <h1 class="headerManagment__main-title">Nagłówek</h1>
+    <div class="manageHeader headerManagment">
+        <h2 class="headerManagment__title">Ogólne dane</h2>
+        <p class="manageHeader__wrapper headerManagment__wrapper">
+            <label class="headerManagment__label">Nazwa firmy PL</label>
+            <input type="text" value="{{header.title.pl}}" class="manageHeader__title-pl headerManagment__input">
         </p>
-        <p class="manageHeader__wrapper">
-            <label>Nazwa firmy EN</label>
-            <input type="text" value="{{header.title.en}}" class="manageHeader__title-en">
+        <p class="manageHeader__wrapper headerManagment__wrapper">
+            <label class="headerManagment__label">Nazwa firmy EN</label>
+            <input type="text" value="{{header.title.en}}" class="manageHeader__title-en headerManagment__input">
         </p>
-        <h2>Nawigacja PL</h2>
-        <div class="manageHeader__linksPlContainer">{{#each header.links.pl}}<div class="manageHeader__linkGroup block" data-block-id="{{this.blockId}}">
-                    <button class="headerLinkPl__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-                    <button class="headerLinkPl__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-                    <button class="headerLinkPl__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                    <p>
-                        <label>Nazwa</label>
-                        <input type="text" class="manageHeader__linkPL-title" value="{{this.title}}">
+        <h2 class="headerManagment__title">Nawigacja PL</h2>
+        <div class="manageHeader__linksPlContainer">{{#each header.links.pl}}<div class="manageHeader__linkGroup block u-clearfix" data-block-id="{{this.blockId}}">
+                    <button class="headerLinkPl__up headerManagment__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                    <button class="headerLinkPl__down headerManagment__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    <button class="headerLinkPl__delete headerManagment__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <p class="headerManagment__wrapper--table">
+                        <label class="headerManagment__label--table">Nazwa</label>
+                        <input type="text" class="manageHeader__linkPL-title headerManagment__input--table" value="{{this.title}}">
                     </p>
-                    <p>
-                        <label>Adres</label>
-                        <input type="text" class="manageHeader__linkPL-url" value="{{this.url}}">
+                    <p class="headerManagment__wrapper--table">
+                        <label class="headerManagment__label--table">Adres</label>
+                        <input type="text" class="manageHeader__linkPL-url headerManagment__input--table" value="{{this.url}}">
                     </p>
                 </div>{{/each}}</div>
-        <button type="button" class="manageHeader__add-link-pl">Dodaj link</button>
-        <h2>Nawigacja EN</h2>
-        <div class="manageHeader__linksENContainer">{{#each header.links.en}}<div class="manageHeader__linkGroup block" data-block-id="{{this.blockId}}">
-                    <button class="headerLinkEn__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-                    <button class="headerLinkEn__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-                    <button class="headerLinkEn__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                    <p>
-                        <label>Nazwa</label>
-                        <input type="text" class="manageHeader__linkEN-title" value="{{this.title}}">
+        <button type="button" class="manageHeader__add-link-pl headerManagment__addButton">Dodaj link</button>
+        <h2 class="headerManagment__title">Nawigacja EN</h2>
+        <div class="manageHeader__linksENContainer">{{#each header.links.en}}<div class="manageHeader__linkGroup block u-clearfix" data-block-id="{{this.blockId}}">
+                    <button class="headerLinkEn__up headerManagment__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                    <button class="headerLinkEn__down headerManagment__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    <button class="headerLinkEn__delete headerManagment__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <p class="headerManagment__wrapper--table">
+                        <label class="headerManagment__label--table">Nazwa</label>
+                        <input type="text" class="manageHeader__linkEN-title headerManagment__input--table" value="{{this.title}}">
                     </p>
-                    <p>
-                        <label>Adres</label>
-                        <input type="text" class="manageHeader__linkEN-url" value="{{this.url}}">
+                    <p class="headerManagment__wrapper--table">
+                        <label class="headerManagment__label--table">Adres</label>
+                        <input type="text" class="manageHeader__linkEN-url headerManagment__input--table" value="{{this.url}}">
                     </p>
                 </div>{{/each}}</div>
-        <button type="button" class="manageHeader__add-link-en">Dodaj link</button>
+        <button type="button" class="manageHeader__add-link-en headerManagment__addButton">Dodaj link</button>
     </div>
-
-    <div class="manageFooter">
-        <p class="manageFooter__wrapper">
-            <label>Nazwa firmy PL</label>
-            <input type="text" value="{{footer.title.pl}}" class="manageFooter__title-pl">
+    <h1 class="headerManagment__main-title">Stopka</h1>
+    <div class="manageFooter headerManagment">
+        <h2 class="headerManagment__title">Ogólne dane</h2>
+        <p class="manageFooter__wrapper headerManagment__wrapper--third">
+            <label class="headerManagment__label">Nazwa firmy PL</label>
+            <input type="text" value="{{footer.title.pl}}" class="manageFooter__title-pl headerManagment__input">
         </p>
-        <p class="manageFooter__wrapper">
-            <label>Nazwa firmy EN</label>
-            <input type="text" value="{{footer.title.en}}" class="manageFooter__title-en">
+        <p class="manageFooter__wrapper headerManagment__wrapper--third">
+            <label class="headerManagment__label">Nazwa firmy EN</label>
+            <input type="text" value="{{footer.title.en}}" class="manageFooter__title-en headerManagment__input">
         </p>
-        <p class="manageFooter__wrapper">
-            <label>Rok</label>
-            <input type="text" value="{{footer.year}}" class="manageFooter__year">
+        <p class="manageFooter__wrapper headerManagment__wrapper--third">
+            <label class="headerManagment__label">Rok</label>
+            <input type="text" value="{{footer.year}}" class="manageFooter__year headerManagment__input">
         </p>
-        <h2>Nawigacja PL</h2>
-        <div class="manageFooter__linksPlContainer">{{#each footer.links.pl}}<div class="manageFooter__linkGroup block" data-block-id="{{this.blockId}}">
-                    <button class="footerLinkPl__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-                    <button class="footerLinkPl__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-                    <button class="footerLinkPl__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                    <p>
-                        <label>Nazwa</label>
-                        <input type="text" class="manageFooter__linkPL-title" value="{{this.title}}">
+        <h2 class="headerManagment__title">Nawigacja PL</h2>
+        <div class="manageFooter__linksPlContainer">{{#each footer.links.pl}}<div class="manageFooter__linkGroup block u-clearfix" data-block-id="{{this.blockId}}">
+                    <button class="footerLinkPl__up headerManagment__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                    <button class="footerLinkPl__down headerManagment__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    <button class="footerLinkPl__delete headerManagment__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <p class="headerManagment__wrapper--table">
+                        <label class="headerManagment__label--table">Nazwa</label>
+                        <input type="text" class="manageFooter__linkPL-title headerManagment__input--table" value="{{this.title}}">
                     </p>
-                    <p>
-                        <label>Adres</label>
-                        <input type="text" class="manageFooter__linkPL-url" value="{{this.url}}">
-                    </p>
-                </div>{{/each}}</div>
-        <button type="button" class="manageFooter__add-link-pl">Dodaj link</button>
-        <h2>Nawigacja EN</h2>
-        <div class="manageFooter__linksENContainer">{{#each footer.links.en}}<div class="manageFooter__linkGroup block" data-block-id="{{this.blockId}}">
-                    <button class="footerLinkEn__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-                    <button class="footerLinkEn__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-                    <button class="footerLinkEn__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                    <p>
-                        <label>Nazwa</label>
-                        <input type="text" class="manageFooter__linkEN-title" value="{{this.title}}">
-                    </p>
-                    <p>
-                        <label>Adres</label>
-                        <input type="text" class="manageFooter__linkEN-url" value="{{this.url}}">
+                    <p class="headerManagment__wrapper--table">
+                        <label class="headerManagment__label--table">Adres</label>
+                        <input type="text" class="manageFooter__linkPL-url headerManagment__input--table" value="{{this.url}}">
                     </p>
                 </div>{{/each}}</div>
-        <button type="button" class="manageFooter__add-link-en">Dodaj link</button>
-        <h2>Biura PL</h2>
-        <div class="manageFooter__officesPlContainer">{{#each footer.offices.pl}}<div class="manageFooter__officeGroup block" data-block-id="{{this.blockId}}">
-                    <button class="footerOfficePl__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-                    <button class="footerOfficePl__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-                    <button class="footerOfficePl__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                    <p>
-                        <label>Nazwa</label>
-                        <input type="text" class="manageFooter__officePL-title" value="{{this.title}}">
+        <button type="button" class="manageFooter__add-link-pl headerManagment__addButton">Dodaj link</button>
+        <h2 class="headerManagment__title">Nawigacja EN</h2>
+        <div class="manageFooter__linksENContainer">{{#each footer.links.en}}<div class="manageFooter__linkGroup block u-clearfix" data-block-id="{{this.blockId}}">
+                    <button class="footerLinkEn__up headerManagment__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                    <button class="footerLinkEn__down headerManagment__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    <button class="footerLinkEn__delete headerManagment__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <p class="headerManagment__wrapper--table">
+                        <label class="headerManagment__label--table">Nazwa</label>
+                        <input type="text" class="manageFooter__linkEN-title headerManagment__input--table" value="{{this.title}}">
                     </p>
-                    <p>
-                        <label>Adres</label>
-                        <input type="text" class="manageFooter__officePL-address" value="{{this.address}}">
-                    </p>
-                    <p>
-                        <label>Miejscowość</label>
-                        <input type="text" class="manageFooter__officePL-city" value="{{this.city}}">
-                    </p>
-                    <p>
-                        <label>Kod pocztowy</label>
-                        <input type="text" class="manageFooter__officePL-postal" value="{{this.postal}}">
-                    </p>
-                    <p>
-                        <label>Telefon</label>
-                        <input type="text" class="manageFooter__officePL-phone" value="{{this.phone}}">
-                    </p>
-                    <p>
-                        <label>E-mail</label>
-                        <input type="text" class="manageFooter__officePL-email" value="{{this.email}}">
+                    <p class="headerManagment__wrapper--table">
+                        <label class="headerManagment__label--table">Adres</label>
+                        <input type="text" class="manageFooter__linkEN-url headerManagment__input--table" value="{{this.url}}">
                     </p>
                 </div>{{/each}}</div>
-        <button type="button" class="manageFooter__add-office-pl">Dodaj biuro</button>
-        <h2>Biura EN</h2>
-        <div class="manageFooter__officesENContainer">{{#each footer.offices.en}}<div class="manageFooter__officeGroup block" data-block-id="{{this.blockId}}">
-                    <button class="footerOfficeEn__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-                    <button class="footerOfficeEn__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-                    <button class="footerOfficeEn__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                    <p>
-                        <label>Nazwa</label>
-                        <input type="text" class="manageFooter__officeEN-title" value="{{this.title}}">
-                    </p>
-                    <p>
-                        <label>Adres</label>
-                        <input type="text" class="manageFooter__officeEN-address" value="{{this.address}}">
-                    </p>
-                    <p>
-                        <label>Miejscowość</label>
-                        <input type="text" class="manageFooter__officeEN-city" value="{{this.city}}">
-                    </p>
-                    <p>
-                        <label>Kod pocztowy</label>
-                        <input type="text" class="manageFooter__officeEN-postal" value="{{this.postal}}">
-                    </p>
-                    <p>
-                        <label>Telefon</label>
-                        <input type="text" class="manageFooter__officeEN-phone" value="{{this.phone}}">
-                    </p>
-                    <p>
-                        <label>E-mail</label>
-                        <input type="text" class="manageFooter__officeEN-email" value="{{this.email}}">
-                    </p>
+        <button type="button" class="manageFooter__add-link-en headerManagment__addButton">Dodaj link</button>
+        <h2 class="headerManagment__title">Biura PL</h2>
+        <div class="manageFooter__officesPlContainer">{{#each footer.offices.pl}}<div class="manageFooter__officeGroup block u-clearfix" data-block-id="{{this.blockId}}">
+                    <button class="footerOfficePl__up headerManagment__up headerManagment__up--office"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                    <button class="footerOfficePl__down headerManagment__down headerManagment__down--office"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    <button class="footerOfficePl__delete headerManagment__delete headerManagment__delete--office"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <div class="headerManagment__office">
+                        <p class="headerManagment__wrapper--office u-clearfix">
+                            <label class="headerManagment__label--office">Nazwa</label>
+                            <input type="text" class="manageFooter__officePL-title headerManagment__input--office" value="{{this.title}}">
+                        </p>
+                        <p class="headerManagment__wrapper--office u-clearfix">
+                            <label class="headerManagment__label--office">Adres</label>
+                            <input type="text" class="manageFooter__officePL-address headerManagment__input--office" value="{{this.address}}">
+                        </p>
+                        <p class="headerManagment__wrapper--office u-clearfix">
+                            <label class="headerManagment__label--office">Miejscowość</label>
+                            <input type="text" class="manageFooter__officePL-city headerManagment__input--office" value="{{this.city}}">
+                        </p>
+                        <p class="headerManagment__wrapper--office u-clearfix">
+                            <label class="headerManagment__label--office">Kod pocztowy</label>
+                            <input type="text" class="manageFooter__officePL-postal headerManagment__input--office" value="{{this.postal}}">
+                        </p>
+                        <p class="headerManagment__wrapper--office u-clearfix">
+                            <label class="headerManagment__label--office">Telefon</label>
+                            <input type="text" class="manageFooter__officePL-phone headerManagment__input--office" value="{{this.phone}}">
+                        </p>
+                        <p class="headerManagment__wrapper--office u-clearfix">
+                            <label class="headerManagment__label--office">E-mail</label>
+                            <input type="text" class="manageFooter__officePL-email headerManagment__input--office" value="{{this.email}}">
+                        </p>
+                    </div>
                 </div>{{/each}}</div>
-        <button type="button" class="manageFooter__add-office-en">Dodaj biuro</button>
+        <button type="button" class="manageFooter__add-office-pl headerManagment__addButton">Dodaj biuro</button>
+        <h2 class="headerManagment__title">Biura EN</h2>
+        <div class="manageFooter__officesENContainer">{{#each footer.offices.en}}<div class="manageFooter__officeGroup block u-clearfix" data-block-id="{{this.blockId}}">
+                    <button class="footerOfficeEn__up headerManagment__up headerManagment__up--office"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                    <button class="footerOfficeEn__down headerManagment__down headerManagment__down--office"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    <button class="footerOfficeEn__delete headerManagment__delete headerManagment__delete--office"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <div class="headerManagment__office">
+                        <p class="headerManagment__wrapper--office u-clearfix">
+                            <label class="headerManagment__label--office">Nazwa</label>
+                            <input type="text" class="manageFooter__officeEN-title headerManagment__input--office" value="{{this.title}}">
+                        </p>
+                        <p class="headerManagment__wrapper--office u-clearfix">
+                            <label class="headerManagment__label--office">Adres</label>
+                            <input type="text" class="manageFooter__officeEN-address headerManagment__input--office" value="{{this.address}}">
+                        </p>
+                        <p class="headerManagment__wrapper--office u-clearfix">
+                            <label class="headerManagment__label--office">Miejscowość</label>
+                            <input type="text" class="manageFooter__officeEN-city headerManagment__input--office" value="{{this.city}}">
+                        </p>
+                        <p class="headerManagment__wrapper--office u-clearfix">
+                            <label class="headerManagment__label--office">Kod pocztowy</label>
+                            <input type="text" class="manageFooter__officeEN-postal headerManagment__input--office" value="{{this.postal}}">
+                        </p>
+                        <p class="headerManagment__wrapper--office u-clearfix">
+                            <label class="headerManagment__label--office">Telefon</label>
+                            <input type="text" class="manageFooter__officeEN-phone headerManagment__input--office" value="{{this.phone}}">
+                        </p>
+                        <p class="headerManagment__wrapper--office u-clearfix">
+                            <label class="headerManagment__label--office">E-mail</label>
+                            <input type="text" class="manageFooter__officeEN-email headerManagment__input--office" value="{{this.email}}">
+                        </p>
+                    </div>
+                </div>{{/each}}</div>
+        <button type="button" class="manageFooter__add-office-en headerManagment__addButton">Dodaj biuro</button>
     </div>
 </div>

@@ -136,13 +136,13 @@ export function clickList(store, e) {
                 }
             }
         }
-        let html = `<button class="headerLinkPl__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-                    <button class="headerLinkPl__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-                    <button class="headerLinkPl__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                    <p><label>Nazwa</label><input type="text" class="manageHeader__linkPL-title" value="">
-                    </p><p><label>Adres</label><input type="text" class="manageHeader__linkPL-url" value=""></p>`;
+        let html = `<button class="headerLinkPl__up headerManagment__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                    <button class="headerLinkPl__down headerManagment__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    <button class="headerLinkPl__delete headerManagment__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <p class="headerManagment__wrapper--table"><label class="headerManagment__label--table">Nazwa</label><input type="text" class="manageHeader__linkPL-title headerManagment__input--table" value="">
+                    </p><p class="headerManagment__wrapper--table"><label class="headerManagment__label--table">Adres</label><input type="text" class="manageHeader__linkPL-url headerManagment__input--table" value=""></p>`;
         let node = document.createElement('div');
-        node.className = 'manageHeader__linkGroup block';
+        node.className = 'manageHeader__linkGroup block u-clearfix';
         node.setAttribute('data-block-id',id);
         node.innerHTML = html;
         let container = document.querySelector('.manageHeader__linksPlContainer');
@@ -159,13 +159,13 @@ export function clickList(store, e) {
                 }
             }
         }
-        let html = `<button class="headerLinkEn__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-                    <button class="headerLinkEn__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-                    <button class="headerLinkEn__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                    <p><label>Nazwa</label><input type="text" class="manageHeader__linkEN-title" value="">
-                    </p><p><label>Adres</label><input type="text" class="manageHeader__linkEN-url" value=""></p>`;
+        let html = `<button class="headerLinkEn__up headerManagment__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                    <button class="headerLinkEn__down headerManagment__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    <button class="headerLinkEn__delete headerManagment__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <p class="headerManagment__wrapper--table"><label class="headerManagment__label--table">Nazwa</label><input type="text" class="manageHeader__linkEN-title headerManagment__input--table" value="">
+                    </p><p class="headerManagment__wrapper--table"><label class="headerManagment__label--table">Adres</label><input type="text" class="manageHeader__linkEN-url headerManagment__input--table" value=""></p>`;
         let node = document.createElement('div');
-        node.className = 'manageHeader__linkGroup block';
+        node.className = 'manageHeader__linkGroup block u-clearfix';
         node.setAttribute('data-block-id',id);
         node.innerHTML = html;
         let container = document.querySelector('.manageHeader__linksENContainer');
@@ -182,13 +182,13 @@ export function clickList(store, e) {
                 }
             }
         }
-        let html = `<button class="footerLinkPl__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-                    <button class="footerLinkPl__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-                    <button class="footerLinkPl__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                    <p><label>Nazwa</label><input type="text" class="manageFooter__linkPL-title" value="">
-                    </p><p><label>Adres</label><input type="text" class="manageFooter__linkPL-url" value=""></p>`;
+        let html = `<button class="footerLinkPl__up headerManagment__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                    <button class="footerLinkPl__down headerManagment__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    <button class="footerLinkPl__delete headerManagment__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <p class="headerManagment__wrapper--table"><label class="headerManagment__label--table">Nazwa</label><input type="text" class="manageFooter__linkPL-title headerManagment__input--table" value="">
+                    </p><p class="headerManagment__wrapper--table"><label class="headerManagment__label--table">Adres</label><input type="text" class="manageFooter__linkPL-url headerManagment__input--table" value=""></p>`;
         let node = document.createElement('div');
-        node.className = 'manageFooter__linkGroup block';
+        node.className = 'manageFooter__linkGroup block u-clearfix';
         node.setAttribute('data-block-id',id);
         node.innerHTML = html;
         let container = document.querySelector('.manageFooter__linksPlContainer');
@@ -205,13 +205,13 @@ export function clickList(store, e) {
                 }
             }
         }
-        let html = `<button class="footerLinkEn__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-                    <button class="footerLinkEn__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-                    <button class="footerLinkEn__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                    <p><label>Nazwa</label><input type="text" class="manageFooter__linkEN-title" value="">
-                    </p><p><label>Adres</label><input type="text" class="manageFooter__linkEN-url" value=""></p>`;
+        let html = `<button class="footerLinkEn__up headerManagment__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                    <button class="footerLinkEn__down headerManagment__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    <button class="footerLinkEn__delete headerManagment__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <p class="headerManagment__wrapper--table"><label class="headerManagment__label--table">Nazwa</label><input type="text" class="manageFooter__linkEN-title headerManagment__input--table" value="">
+                    </p><p class="headerManagment__wrapper--table"><label class="headerManagment__label--table">Adres</label><input type="text" class="manageFooter__linkEN-url headerManagment__input--table" value=""></p>`;
         let node = document.createElement('div');
-        node.className = 'manageFooter__linkGroup block';
+        node.className = 'manageFooter__linkGroup block u-clearfix';
         node.setAttribute('data-block-id',id);
         node.innerHTML = html;
         let container = document.querySelector('.manageFooter__linksENContainer');

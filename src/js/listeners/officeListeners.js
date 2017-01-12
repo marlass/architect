@@ -74,18 +74,18 @@ export function clickList(store, e) {
                 }
             }
         }
-        let html = `<button class="footerOfficePl__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-                    <button class="footerOfficePl__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-                    <button class="footerOfficePl__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                    <p><label>Nazwa</label><input type="text" class="manageFooter__officePL-title" value="">
-                    </p><p><label>Adres</label><input type="text" class="manageFooter__officePL-address" value="">
-                    </p><p><label>Miejscowość</label><input type="text" class="manageFooter__officePL-city" value="">
-                    </p><p><label>Kod pocztowy</label><input type="text" class="manageFooter__officePL-postal" value="">
-                    </p><p><label>Telefon</label><input type="text" class="manageFooter__officePL-phone" value="">
-                    </p><p><label>E-mail</label><input type="text" class="manageFooter__officePL-email" value="">
-                    </p>`;
+        let html = `<button class="footerOfficePl__up headerManagment__up headerManagment__up--office"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                    <button class="footerOfficePl__down headerManagment__down headerManagment__down--office"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    <button class="footerOfficePl__delete headerManagment__delete headerManagment__delete--office"><i class="fa fa-trash" aria-hidden="true"></i></button><div class="headerManagment__office">
+                    <p class="headerManagment__wrapper--office u-clearfix"><label class="headerManagment__label--office">Nazwa</label><input type="text" class="manageFooter__officePL-title headerManagment__input--office" value="">
+                    </p><p class="headerManagment__wrapper--office u-clearfix"><label class="headerManagment__label--office">Adres</label><input type="text" class="manageFooter__officePL-address headerManagment__input--office" value="">
+                    </p><p class="headerManagment__wrapper--office u-clearfix"><label class="headerManagment__label--office">Miejscowość</label><input type="text" class="manageFooter__officePL-city headerManagment__input--office" value="">
+                    </p><p class="headerManagment__wrapper--office u-clearfix"><label class="headerManagment__label--office">Kod pocztowy</label><input type="text headerManagment__input--office" class="manageFooter__officePL-postal headerManagment__input--office" value="">
+                    </p><p class="headerManagment__wrapper--office u-clearfix"><label class="headerManagment__label--office">Telefon</label><input type="text" class="manageFooter__officePL-phone headerManagment__input--office" value="">
+                    </p><p class="headerManagment__wrapper--office u-clearfix"><label class="headerManagment__label--office">E-mail</label><input type="text" class="manageFooter__officePL-email headerManagment__input--office" value="">
+                    </p></div>`;
         let node = document.createElement('div');
-        node.className = 'manageFooter__officeGroup block';
+        node.className = 'manageFooter__officeGroup block u-clearfix';
         node.setAttribute('data-block-id',id);
         node.innerHTML = html;
         let container = document.querySelector('.manageFooter__officesPlContainer');
@@ -103,18 +103,18 @@ export function clickList(store, e) {
                 }
             }
         }
-        let html = `<button class="footerOfficeEn__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-                    <button class="footerOfficeEn__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-                    <button class="footerOfficeEn__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                    <p><label>Nazwa</label><input type="text" class="manageFooter__officeEN-title" value="">
-                    </p><p><label>Adres</label><input type="text" class="manageFooter__officeEN-address" value="">
-                    </p><p><label>Miejscowość</label><input type="text" class="manageFooter__officeEN-city" value="">
-                    </p><p><label>Kod pocztowy</label><input type="text" class="manageFooter__officeEN-postal" value="">
-                    </p><p><label>Telefon</label><input type="text" class="manageFooter__officeEN-phone" value="">
-                    </p><p><label>E-mail</label><input type="text" class="manageFooter__officeEN-email" value="">
-                    </p>`;
+        let html = `<button class="footerOfficeEn__up headerManagment__up headerManagment__up--office"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                    <button class="footerOfficeEn__down headerManagment__down headerManagment__down--office"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                    <button class="footerOfficeEn__delete headerManagment__delete headerManagment__delete--office"><i class="fa fa-trash" aria-hidden="true"></i></button><div class="headerManagment__office">
+                    <p class="headerManagment__wrapper--office u-clearfix"><label class="headerManagment__label--office">Nazwa</label><input type="text" class="manageFooter__officeEN-title headerManagment__input--office" value="">
+                    </p><p class="headerManagment__wrapper--office u-clearfix"><label class="headerManagment__label--office">Adres</label><input type="text" class="manageFooter__officeEN-address headerManagment__input--office" value="">
+                    </p><p class="headerManagment__wrapper--office u-clearfix"><label class="headerManagment__label--office">Miejscowość</label><input type="text" class="manageFooter__officeEN-city headerManagment__input--office" value="">
+                    </p><p class="headerManagment__wrapper--office u-clearfix"><label class="headerManagment__label--office">Kod pocztowy</label><input type="text" class="manageFooter__officeEN-postal headerManagment__input--office" value="">
+                    </p><p class="headerManagment__wrapper--office u-clearfix"><label class="headerManagment__label--office">Telefon</label><input type="text" class="manageFooter__officeEN-phone headerManagment__input--office" value="">
+                    </p><p class="headerManagment__wrapper--office u-clearfix"><label class="headerManagment__label--office">E-mail</label><input type="text" class="manageFooter__officeEN-email headerManagment__input--office" value="">
+                    </p></div>`;
         let node = document.createElement('div');
-        node.className = 'manageFooter__officeGroup block';
+        node.className = 'manageFooter__officeGroup block u-clearfix';
         node.setAttribute('data-block-id',id);
         node.innerHTML = html;
         let container = document.querySelector('.manageFooter__officesENContainer');

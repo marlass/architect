@@ -133,6 +133,31 @@ ul.prophet{margin-left:75%}}
 .photosCatalog__deletePhotoSubmit:hover{opacity:1;color:#e53935}
 .photosCatalog__photoWrapper{float:left;position:relative;padding:4px}
 .photosCatalog__photo{width:162px;height:162px;-o-object-fit:cover;object-fit:cover;display:block}
+.headerManagment{background-color:#ffcc80;padding:24px;margin-top:2em;margin-bottom:4em;width:900px;box-shadow:0 3px 14px #424242}
+.headerManagment__title{margin:0;padding-bottom:1em;font-weight:400;color:#0d47a1}
+.headerManagment__main-title{color:#0d47a1;margin-bottom:0;margin-top:1em}
+.headerManagment__up{display:block;background-color:#0d47a1;border-width:0;box-shadow:0 0 2px #424242;color:#fff;font-size:1.1em;padding:.5em 1.6em;cursor:pointer;float:left;-webkit-transition:all .3s ease-in-out;transition:all .3s ease-in-out}
+.headerManagment__up:hover{background-color:#1565c0;box-shadow:0 4px 8px #424242}
+.headerManagment__down{display:block;background-color:#0d47a1;border-width:0;box-shadow:0 0 2px #424242;color:#fff;font-size:1.1em;padding:.5em 1.6em;cursor:pointer;float:left;-webkit-transition:all .3s ease-in-out;transition:all .3s ease-in-out}
+.headerManagment__down:hover{background-color:#1565c0;box-shadow:0 4px 8px #424242}
+.headerManagment__delete{display:block;background-color:#c62828;border-width:0;box-shadow:0 0 2px #424242;color:#fff;font-size:1.1em;padding:.5em 1.6em;cursor:pointer;float:left;-webkit-transition:all .3s ease-in-out;transition:all .3s ease-in-out}
+.headerManagment__delete:hover{background-color:#e53935;box-shadow:0 4px 8px #424242}
+.headerManagment__wrapper{width:50%;float:left;margin:0 0 3em}
+.headerManagment__input{display:block;width:90%;padding:.2em .4em;border:1px solid #1976d2}
+.headerManagment__label{display:block;padding-bottom:.2em}
+.headerManagment__wrapper--table{float:left;margin:0 0 1em}
+.headerManagment__label--table{float:left;line-height:38px;padding:0 .5em 0 2em}
+.headerManagment__input--table{float:left;height:38px;padding:.1em .5em}
+.headerManagment__addButton{display:block;background-color:#2e7d32;border-width:0;margin-bottom:4em;margin-top:1.5em;box-shadow:0 0 2px #424242;color:#fff;font-size:1.1em;padding:.5em 1.6em;cursor:pointer;width:216px;-webkit-transition:all .3s ease-in-out;transition:all .3s ease-in-out}
+.headerManagment__addButton:hover{background-color:#388e3c;box-shadow:0 4px 8px #424242}
+.headerManagment__wrapper--third{width:33.3333%;float:left;margin:0 0 3em}
+.headerManagment__up--office{clear:left;width:75px;text-align:center}
+.headerManagment__down--office{clear:left;width:75px;text-align:center}
+.headerManagment__delete--office{clear:left;width:75px;text-align:center}
+.headerManagment__office{float:right;margin-top:-75px;margin-bottom:60px}
+.headerManagment__wrapper--office{width:600px;padding-bottom:.25em;margin:0}
+.headerManagment__label--office{width:150px;display:block;float:left;line-height:30px}
+.headerManagment__input--office{width:300px;float:left;display:block;padding:.1em .5em;height:30px}
 .u-visually-hidden{position:absolute!important;clip:rect(1px 1px 1px 1px);clip:rect(1px,1px,1px,1px);padding:0!important;border:0!important;height:1px!important;width:1px!important;overflow:hidden}
 body:hover .u-visually-hidden a,body:hover .u-visually-hidden input,body:hover .u-visually-hidden button{display:none!important}
 .u-clearfix:before,.u-clearfix:after{content:" ";display:table}
