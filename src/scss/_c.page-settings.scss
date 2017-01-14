@@ -1,7 +1,9 @@
 .page-settings {
-    background-color: $gray-6;
-    width: 100%;
-    padding: 0;
+    background-color: $primary-2;
+    padding: 24px;
+    margin-top: 3em;
+    width: 960px;
+    box-shadow: 0px 3px 14px $gray-8;
 
     &__wrapper {
         width: 33%;
@@ -12,17 +14,27 @@
 
     &__label {
         display: block;
-        padding-bottom: 5px;
-        color: $white;
+        padding-bottom: 0.2em;
     }
 
     &__input {
         display: block;
-        height: 30px;
+        width: 100%;
+        padding: 0.2em 0.4em;
+        border: 1px solid $secondary-7;
     }
 
     &__select {
         display: block;
-        height: 30px;
+        width: 100%;
+        padding: 0.2em 0.4em;
+        border: 1px solid $secondary-7;
+    }
+
+    &__title {
+        margin: 0;
+        padding-bottom: 1em;
+        font-weight: 400;
+        color: $secondary-9;
     }
 }

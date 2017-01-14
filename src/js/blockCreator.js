@@ -105,9 +105,9 @@ export default function(store, catalog, team, masthead, pages) {
     }
 
     function mastHeadpost(blockId) {
-        let html = '<h2>Wybierz tło</h2>';
+        let html = '<h4 class="block-masthead__img-label">Wybierz tło</h4>';
         masthead.forEach(function(element) {
-            html += '<label for="'+blockId+'-'+element+'"><img style="width:150px;height:150px;object-fit:cover;float:left" src="/static/uploads/masthead/'+element+'"></label><input type="radio" name="background-'+blockId+'" class="block-masthead__background" id="'+blockId+'-'+element+'" value="'+element+'">';
+            html += '<input type="radio" name="background-'+blockId+'" class="block-masthead__background" id="'+blockId+'-'+element+'" value="'+element+'"><label for="'+blockId+'-'+element+'" class="block-masthead__pic-label"><img class="block-masthead__pic" src="/static/uploads/masthead/'+element+'"></label>';
         }, this);
         let qs = `[data-block-id="${blockId}"] .block-masthead__bg-wrapper`;
         let radioContainer = document.querySelector(qs);
@@ -123,7 +123,7 @@ export default function(store, catalog, team, masthead, pages) {
     }
 
     function smallOfficePost(blockId) {
-        let html = '<label>Wybierz link do strony kontaktu</label><select name="block-office__more-link-'+blockId+'" class="block-office__more-link"><option value="" disabled selected>Wybierz stronę kontaktową</option>';
+        let html = '<label class="block-offices__label">Wybierz link do strony kontaktu</label><select name="block-office__more-link-'+blockId+'" class="block-offices__select block-office__more-link"><option value="" disabled selected>Wybierz stronę kontaktową</option>';
         pages.forEach(function(page) {
             html += '<option value="'+page+'">'+page+'</option>';
         }, this);
@@ -142,9 +142,9 @@ export default function(store, catalog, team, masthead, pages) {
         catalog.forEach(function(dir){
             let subhtml = '';
             dir.photos.forEach(function(pic) {
-                subhtml += '<label for="'+dir.path+'/'+pic.path+'-'+blockId+'-0"><img style="width: 100px;height: 100px;object-fit:cover;float: left" src="/static/uploads/'+dir.path+'/'+pic.path+'"></label><input type="radio" name="img-'+blockId+'-0" class="block-gallery__image" id="'+dir.path+'/'+pic.path+'-'+blockId+'-0" value="'+dir.path+'/'+pic.path+'">';
+                subhtml += '<div class="block-gallery__pic-wrapper u-clearfix"><input type="radio" name="img-'+blockId+'-0" class="block-gallery__image" id="'+dir.path+'/'+pic.path+'-'+blockId+'-0" value="'+dir.path+'/'+pic.path+'"><label for="'+dir.path+'/'+pic.path+'-'+blockId+'-0" class="block-gallery__image-label"><img class="block-gallery__pic" src="/static/uploads/'+dir.path+'/'+pic.path+'"></label></div>';
             }, this);
-            html += '<div class="dir">'+subhtml+'</div>';
+            html += '<div class="galleryCatalog"><h2 class="galleryCatalog__title"><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>'+dir.path+'</h2><div class="dir galleryCatalog__photos galleryCatalog__photos--hidden">'+subhtml+'</div>';
         }, this);
         let qs = `[data-block-id="${blockId}"] .block-gallery__wrapper-image`;
         let radioContainer = document.querySelector(qs);
@@ -159,7 +159,7 @@ export default function(store, catalog, team, masthead, pages) {
     function teamPost(blockId) {
         let html = '';
         team.forEach(function(pic) {
-            html += '<label for="'+pic+'-'+blockId+'-0"><img style="width: 100px;height: 100px;object-fit:cover;float: left" src="/static/uploads/team/'+pic+'"></label><input type="radio" name="img-'+blockId+'-0" class="block-gallery__image" id="'+pic+'-'+blockId+'-0" value="'+pic+'">';
+            html += '<div class="block-gallery__pic-wrapper"><input type="radio" name="img-'+blockId+'-0" class="block-gallery__image" id="'+pic+'-'+blockId+'-0" value="'+pic+'"><label for="'+pic+'-'+blockId+'-0" class="block-gallery__image-label"><img class="block-gallery__pic2" src="/static/uploads/team/'+pic+'"></label></div>';
         }, this);
         let qs = `[data-block-id="${blockId}"] .block-gallery__wrapper-image`;
         let radioContainer = document.querySelector(qs);
@@ -176,9 +176,9 @@ export default function(store, catalog, team, masthead, pages) {
         catalog.forEach(function(dir){
             let subhtml = '';
             dir.photos.forEach(function(pic) {
-                subhtml += '<label for="'+dir.path+'/'+pic.path+'-'+blockId+'-0"><img style="width: 100px;height: 100px;object-fit:cover;float: left" src="/static/uploads/'+dir.path+'/'+pic.path+'"></label><input type="radio" name="img-'+blockId+'-0" class="block-project__image" id="'+dir.path+'/'+pic.path+'-'+blockId+'-0" value="'+dir.path+'/'+pic.path+'">';
+                subhtml += '<div class="block-project__pic-wrapper u-clearfix"><input type="radio" name="img-'+blockId+'-0" class="block-gallery__image" id="'+dir.path+'/'+pic.path+'-'+blockId+'-0" value="'+dir.path+'/'+pic.path+'"><label for="'+dir.path+'/'+pic.path+'-'+blockId+'-0" class="block-gallery__image-label"><img class="block-gallery__pic" src="/static/uploads/'+dir.path+'/'+pic.path+'"></label></div>';
             }, this);
-            html += '<div class="dir">'+subhtml+'</div>';
+            html += '<div class="galleryCatalog"><h2 class="galleryCatalog__title"><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>'+dir.path+'</h2><div class="dir galleryCatalog__photos galleryCatalog__photos--hidden">'+subhtml+'</div>';
         }, this);
         let qs = `[data-block-id="${blockId}"] .block-project__wrapper-image`;
         let radioContainer = document.querySelector(qs);
@@ -188,7 +188,7 @@ export default function(store, catalog, team, masthead, pages) {
             radioContainer.appendChild(p);
         }
 
-        html = '<label for="block-project__page-'+blockId+'-0">Wybierz stronę projektu</label><select name="block-project__page-'+blockId+'-0" class="block-project__page" id="block-project__page-'+blockId+'-0"><option value="" disabled selected>Wybierz stronę projektu</option>';
+        html = '<label for="block-project__page-'+blockId+'-0" class="block-project__label">Wybierz stronę projektu</label><select name="block-project__page-'+blockId+'-0" class="block-project__page block-project__select" id="block-project__page-'+blockId+'-0"><option value="" disabled selected>Wybierz stronę projektu</option>';
         pages.forEach(function(page) {
             html += '<option value="'+page+'">'+page+'</option>';
         }, this);
@@ -200,7 +200,7 @@ export default function(store, catalog, team, masthead, pages) {
             p.innerHTML = html;
             selectContainer.appendChild(p);
         }
-        html = '<label>Wybierz link do strony z projektami</label><select name="block-project__more-link-'+blockId+'" class="block-project__more-link"><option value="" disabled selected>Wybierz stronę z projektami</option>';
+        html = '<label class="block-project__label">Wybierz link do strony z projektami</label><select name="block-project__more-link-'+blockId+'" class="block-project__more-link block-project__select"><option value="" disabled selected>Wybierz stronę z projektami</option>';
         pages.forEach(function(page) {
             html += '<option value="'+page+'">'+page+'</option>';
         }, this);
@@ -241,6 +241,7 @@ export default function(store, catalog, team, masthead, pages) {
     function renderMastheadBase(blockId) {        
         return `
             <div class="block-masthead">
+                <h2 class="block-masthead__title">Nagłówek</h2>
                 <div class="block-masthead__wrapper">
                     <label class="block-masthead__label">Tytuł</label>
                     <input type="text" name="block-masthead__title-${blockId}" class="block-masthead__input block-masthead__title" placeholder="np. Projekty">
@@ -253,6 +254,7 @@ export default function(store, catalog, team, masthead, pages) {
     function renderTextBase(blockId) {
         return `
             <div class="block-text">
+                <h2 class="block-text__title">Blok z tekstem</h2>
                 <div class="block-text__wrapper">
                     <label class="block-text__label">Tło</label>
                     <input type="text" name="block-text__background-${blockId}" class="block-text__input block-text__background" placeholder="np. white">
@@ -265,9 +267,10 @@ export default function(store, catalog, team, masthead, pages) {
     }
 
     function renderOfficesBase(blockId) {
-        return `<div class="block-offices__wrapper"><label>Tytuł sekcji</label>
-                <input type="text" placeholder=" np. Biura" class="block-offices__section-title" name="block-offices__section-title-${blockId}"></div>
-        <div class="officesBlock-container"><div class="subblock" data-subblock-id="0">
+        return `<h2 class="block-offices__title">Biura</h2><div class="block-offices__wrapper">
+            <label class="block-offices__label">Tytuł sekcji</label>
+                <input type="text" placeholder=" np. Biura" class="block-offices__section-title block-offices__input" name="block-offices__section-title-${blockId}"></div>
+        <div class="officesBlock-container u-clearfix"><div class="subblock officeBlock__subblock" data-subblock-id="0">
             <button class="officeBlock__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
             <button class="officeBlock__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
             <button class="officeBlock__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
@@ -304,10 +307,10 @@ export default function(store, catalog, team, masthead, pages) {
     }
 
     function renderSmallOfficesBase(blockId) {
-        return `<div class="block-office__wrapper"><label>Nazwa linku do strony kontaktowej</label>
-                <input type="text" placeholder=" np. Więcej informacji" class="block-office__more-offices-title" name="block-office__more-offices-title-${blockId}">
-            </div><div class="block-office__wrapper block-office__wrapper-more-link"></div>
-        <div class="officesBlock-container"><div class="subblock" data-subblock-id="0">
+        return `<h2 class="block-offices__title">Biura</h2><div class="block-offices__wrapper"><label class="block-offices__label">Nazwa linku do strony kontaktowej</label>
+                <input type="text" placeholder=" np. Więcej informacji" class="block-office__more-offices-title block-offices__input" name="block-office__more-offices-title-${blockId}">
+            </div><div class="block-offices__wrapper block-office__wrapper-more-link"></div>
+        <div class="officesBlock-container u-clearfix"><div class="subblock officeBlock__subblock" data-subblock-id="0">
             <button class="officeBlock__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
             <button class="officeBlock__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
             <button class="officeBlock__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
@@ -340,18 +343,19 @@ export default function(store, catalog, team, masthead, pages) {
     }
 
     function renderGalleryBase(blockId) {
-        return `<div class="block-gallery__wrapper"><label>Tytuł sekcji</label>
-                <input type="text" placeholder=" np. Galeria" class="block-gallery__section-title" name="block-gallery__section-title-${blockId}"></div><div class="galleryBlock-container"><div class="subblock" data-subblock-id="0">
+        return `<h2 class="block-gallery__title">Galeria</h2><div class="block-gallery__wrapper"><label class="block-gallery__label">Tytuł sekcji</label>
+                <input type="text" placeholder=" np. Galeria" class="block-gallery__section-title block-gallery__input" name="block-gallery__section-title-${blockId}"></div><div class="galleryBlock-container"><div class="subblock galleryBlock__subblock" data-subblock-id="0">
             <button class="galleryBlock__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
             <button class="galleryBlock__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
             <button class="galleryBlock__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
             <div class="image">
                 <div class="block-gallery__wrapper">
-                    <label class="block-gallery__wrapper">Podpis</label>
-                    <input type="text" name="block-gallery__title-${blockId}-0" class="block-gallery__text block-gallery__title" placeholder="np. Projekt budynku">
+                    <label class="block-gallery__label">Podpis</label>
+                    <input type="text" name="block-gallery__title-${blockId}-0" class="block-gallery__input block-gallery__text block-gallery__title" placeholder="np. Projekt budynku">
                 </div>
                 <div class="block-gallery__preview">
-                    <img src="/static/img/placeholder.png">
+                    <label class="block-gallery__label">Wybrane zdjęcie</label>
+                    <img src="/static/img/placeholder.png" class="block-gallery__preview-image">
                 </div>
                 <div class="block-gallery__wrapper block-gallery__wrapper-image">
                 </div>
@@ -360,19 +364,16 @@ export default function(store, catalog, team, masthead, pages) {
     }
 
     function renderTeamBase(blockId) {
-        return `<div class="block-gallery__wrapper"><label>Tytuł sekcji</label>
-                <input type="text" placeholder=" np. Zespół" class="block-gallery__section-title" name="block-gallery__section-title-${blockId}">
-            </div><div class="galleryBlock-container"><div class="subblock" data-subblock-id="0">
+        return `<h2 class="block-gallery__title">Zespół</h2><div class="block-gallery__wrapper"><label class="block-gallery__label">Tytuł sekcji</label>
+                <input type="text" placeholder=" np. Zespół" class="block-gallery__section-title block-gallery__input" name="block-gallery__section-title-${blockId}">
+            </div><div class="galleryBlock-container"><div class="subblock galleryBlock__subblock" data-subblock-id="0">
             <button class="galleryBlock__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
             <button class="galleryBlock__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
             <button class="galleryBlock__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
             <div class="image">
                 <div class="block-gallery__wrapper">
                     <label class="block-gallery__label">Podpis</label>
-                    <input type="text" name="block-gallery__title-${blockId}-0" class="block-gallery__text block-gallery__title" placeholder="np. Specjalista od ogrodów">
-                </div>
-                <div class="block-gallery__preview">
-                    <img src="/static/img/placeholder.png">
+                    <input type="text" name="block-gallery__title-${blockId}-0" class="block-gallery__text block-gallery__input block-gallery__title" placeholder="np. Specjalista od ogrodów">
                 </div>
                 <div class="block-gallery__wrapper block-gallery__wrapper-image">
                 </div>
@@ -382,33 +383,34 @@ export default function(store, catalog, team, masthead, pages) {
 
 
     function renderCalcBase(blockId) {
-        return `<h2>Kalkulator</h2>`;
+        return `<h2 class="blockCalc__title">Kalkulator projektu</h2>`;
     }
 
 
     function renderProjectsBase (blockId) {
-        return `<div class="block-project__wrapper"><label>Nazwa linku do strony projektów</label>
-                <input type="text" placeholder=" np. Zobacz więcej projektów" class="block-project__more-project-title" name="block-project__more-project-title-${blockId}">
+        return `<div class="block-project__wrapper"><label class="block-project__label">Nazwa linku do strony projektów</label>
+                <input type="text" placeholder=" np. Zobacz więcej projektów" class="block-project__input block-project__more-project-title" name="block-project__more-project-title-${blockId}">
             </div>
             <div class="block-project__wrapper block-project__wrapper-more-link"></div>
-            <div class="projectsBlock-container"><div class="subblock" data-subblock-id="0">
+            <div class="projectsBlock-container"><div class="subblock projectBlock__subblock" data-subblock-id="0">
             <button class="projectBlock__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
             <button class="projectBlock__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
             <button class="projectBlock__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
             <div class="project">
                 <div class="block-project__wrapper">
                     <label class="block-project__label">Tytuł projektu</label>
-                    <input type="text" name="block-project__title-${blockId}-0" class="block-project__text block-project__title" placeholder=" np. willa na wzgórzu">
+                    <input type="text" name="block-project__title-${blockId}-0" class="block-project__input block-project__text block-project__title" placeholder=" np. willa na wzgórzu">
                 </div>
                 <div class="block-project__wrapper block-project__wrapper-select">
 
                 </div>
                 <div class="block-project__wrapper">
                     <input type="checkbox" name="block-project__big-${blockId}-0" class="block-project__checkbox block-project__big" id="block-project__big-0" value="1">
-                    <label for="block-project__big-0">Duża sekcja</label>
+                    <label for="block-project__big-0" class="block-porject__checkbox--big">Duża sekcja</label>
                 </div>
                 <div class="block-project__preview">
-                    <img src="/static/img/placeholder.png">
+                     <label class="block-project__label">Wybrane zdjęcie</label>
+                    <img src="/static/img/placeholder.png" class="block-gallery__preview-image">
                 </div>
                 <div class="block-project__wrapper block-project__wrapper-image">
                 </div>

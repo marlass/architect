@@ -46,7 +46,7 @@ export function clickList(e, store, catalog, team) {
         let blockIndex = 0;
         if (state.content) {
             for (let i= 0; i<state.content.length; i++) {
-                if (state.content[i].blockId === blockId) {
+                if (state.content[i].blockId == blockId) {
                     blockIndex = i;
                     break;
                 }
@@ -59,22 +59,38 @@ export function clickList(e, store, catalog, team) {
                 }
             }
         }
-        let html = `<button class="galleryBlock__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+        let html = ``;
+        if (hasClass(e.target, 'addImageButtonTeam')) {
+            html = `<button class="galleryBlock__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
             <button class="galleryBlock__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
             <button class="galleryBlock__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
             <div class="image">
                 <div class="block-gallery__wrapper">
-                    <label class="block-gallery__wrapper">Podpis</label>
-                    <input type="text" name="block-gallery__title" class="block-gallery__text block-gallery__title" placeholder="np. Projekt budynku">
-                </div>
-                <div class="block-gallery__preview">
-                    <img src="/static/img/placeholder.png">
+                    <label class="block-gallery__label">Podpis</label>
+                    <input type="text" name="block-gallery__title" class="block-gallery__text block-gallery__input block-gallery__title" placeholder="np. Projekt budynku">
                 </div>
                 <div class="block-gallery__wrapper block-gallery__wrapper-image">
                 </div>
             </div>`;
+        } else {
+            html = `<button class="galleryBlock__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+            <button class="galleryBlock__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+            <button class="galleryBlock__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <div class="image">
+                <div class="block-gallery__wrapper">
+                    <label class="block-gallery__label">Podpis</label>
+                    <input type="text" name="block-gallery__title" class="block-gallery__text block-gallery__input block-gallery__title" placeholder="np. Projekt budynku">
+                </div>
+                <div class="block-gallery__preview">
+                <label class="block-gallery__label">Wybrane zdjęcie</label>
+                    <img src="/static/img/placeholder.png"  class="block-gallery__preview-image">
+                </div>
+                <div class="block-gallery__wrapper block-gallery__wrapper-image">
+                </div>
+            </div>`;
+        }
         let node = document.createElement('div');
-        node.className = 'subblock';
+        node.className = 'subblock galleryBlock__subblock';
         node.setAttribute('data-subblock-id',id);
         node.innerHTML = html;
         let qs = '[data-block-id="'+blockId+'"] .galleryBlock-container';
@@ -95,9 +111,9 @@ function galleryPost(blockId, subBlockId,catalog) {
     catalog.forEach(function(dir){
         let subhtml = '';
         dir.photos.forEach(function(pic) {
-            subhtml += '<label for="'+timestamp+dir.path+'/'+pic.path+'"><img style="width: 100px;height: 100px;object-fit:cover;float: left" src="/static/uploads/'+dir.path+'/'+pic.path+'"></label><input type="radio" name="img'+blockId+'-'+subBlockId+'" class="block-gallery__image" id="'+timestamp+dir.path+'/'+pic.path+'" value="'+dir.path+'/'+pic.path+'">';
-        }, this);
-        html += '<div class="dir">'+subhtml+'</div>';
+            subhtml += '<div class="block-gallery__pic-wrapper u-clearfix"><input type="radio" name="img-'+blockId+'-'+subBlockId+'" class="block-gallery__image" id="'+dir.path+'/'+pic.path+'-'+blockId+'-'+subBlockId+'" value="'+dir.path+'/'+pic.path+'"><label for="'+dir.path+'/'+pic.path+'-'+blockId+'-'+subBlockId+'" class="block-gallery__image-label"><img class="block-gallery__pic" src="/static/uploads/'+dir.path+'/'+pic.path+'"></label></div>';
+    }, this);
+        html += '<div class="galleryCatalog"><h2 class="galleryCatalog__title"><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>'+dir.path+'</h2><div class="dir galleryCatalog__photos galleryCatalog__photos--hidden">'+subhtml+'</div>';
     }, this);
     let qs = `[data-block-id="${blockId}"] [data-subblock-id="${subBlockId}"] .block-gallery__wrapper-image`;
     let radioContainer = document.querySelector(qs);
@@ -111,7 +127,7 @@ function galleryPost(blockId, subBlockId,catalog) {
 function teamPost(blockId, subBlockId, team) {
     let html = '';
     team.forEach(function(pic) {
-        html += '<label for="'+pic+'-'+blockId+'-'+subBlockId+'"><img style="width: 100px;height: 100px;object-fit:cover;float: left" src="/static/uploads/team/'+pic+'"></label><input type="radio" name="img-'+blockId+'-'+subBlockId+'" class="block-gallery__image" id="'+pic+'-'+blockId+'-'+subBlockId+'" value="'+pic+'">';
+        html += '<div class="block-gallery__pic-wrapper"><input type="radio" name="img-'+blockId+'-'+subBlockId+'" class="block-gallery__image" id="'+pic+'-'+blockId+'-'+subBlockId+'" value="'+pic+'"><label for="'+pic+'-'+blockId+'-'+subBlockId+'" class="block-gallery__image-label"><img class="block-gallery__pic2" src="/static/uploads/team/'+pic+'"></label></div>';
     }, this);
     let qs = `[data-block-id="${blockId}"] [data-subblock-id="${subBlockId}"] .block-gallery__wrapper-image`;
     let radioContainer = document.querySelector(qs);

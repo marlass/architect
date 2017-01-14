@@ -1,20 +1,44 @@
 .new-block {
-    margin: 10px 0;
-    border: 2px solid $primary-8;
+    background-color: $primary-2;
+    padding: 24px;
+    margin-top: 3em;
+    width: 960px;
+    box-shadow: 0px 3px 14px $gray-8;
 
     &__label {
-        text-align: center;
         display: block;
-        margin: 50px auto 10px;
+        margin: 0;
+        width: 300px;
+        padding-bottom: 1em;
+        font-weight: 400;
+        color: $secondary-9;
+        font-size: 1.7em;
     }
 
     &__select {
         display: block;
+        width: 300px;
         margin: 10px auto;
+        padding: 0.2em 0.4em;
+        border: 1px solid $secondary-7;
     }
 
     &__submit {
+        margin: 0.8em auto 0;
         display: block;
-        margin: 10px auto 50px;
+        background-color: $secondary-9;
+        border-width: 0px;
+        box-shadow: 0px 0px 2px $gray-8;
+        color: white;
+        font-size: 1.1em;
+        padding: 0.5em 1.6em;
+        cursor: pointer;
+        width: 300px;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+            background-color: $secondary-8;
+            box-shadow: 0px 4px 8px $gray-8;
+        }
     }
 }

@@ -9,6 +9,7 @@
     </script>
     <button type="button" class="page-settings__submit js__save-page adminMainSaveButton"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i>Zapisz stronę</button>
     <div class="page-settings u-clearfix">
+        <h2 class="page-settings__title">Ustawienia strony</h2>
         <p class="page-settings__wrapper">
             <label class="page-settings__label">Adres strony</label>
             <input type="text" name="pageUrl" class="js__page-url page-settings__input" value="{{page.pageUrl}}">
@@ -47,15 +48,17 @@
                 <div class="block__content">
                     {{#equals this.sectionType 'masthead'}}
                         <div class="block-masthead">
+                            <h2 class="block-masthead__title">Nagłówek</h2>
                             <div class="block-masthead__wrapper">
                                 <label class="block-masthead__label">Tytuł</label>
                                 <input type="text" name="block-masthead__title" class="block-masthead__input block-masthead__title" placeholder="np. Projekty" value="{{this.content.title}}">
                             </div>
                             <div class="block-masthead__bg-wrapper u-clearfix">
                                 <div>
-                                <h2>Wybierz tło</h2>
+                                <h4 class="block-masthead__img-label">Wybierz tło</h4>
                                 {{#each ../masthead}}
-                                    <label for="{{../this.blockId}}-{{this}}"><img style="width: 150px;height: 150px;object-fit:cover;float: left;" src="/static/uploads/masthead/{{this}}"></label><input type="radio" name="background{{../this.blockId}}" class="block-masthead__background" id="{{../this.blockId}}-{{this}}" value="{{this}}" {{#equals this ../this.content.background}}checked{{/equals}}>
+                                    <input type="radio" name="background{{../this.blockId}}" class="block-masthead__background" id="{{../this.blockId}}-{{this}}" value="{{this}}" {{#equals this ../this.content.background}}checked{{/equals}}>
+                                    <label for="{{../this.blockId}}-{{this}}" class="block-masthead__pic-label"><img class="block-masthead__pic" src="/static/uploads/masthead/{{this}}"></label>
                                 {{/each}}
                                 </div>
                             </div>
@@ -63,6 +66,7 @@
                     {{/equals}}
                     {{#equals this.sectionType 'text'}}
                         <div class="block-text">
+                            <h2 class="block-text__title">Blok z tekstem</h2>
                             <div class="block-text__wrapper">
                                 <label class="block-text__label">Tło</label>
                                 <input type="text" name="block-text__background-{{this.blockId}}" class="block-text__input block-text__background" placeholder="np. white" value="{{this.content.background}}">
@@ -74,15 +78,16 @@
                         </div>
                     {{/equals}}
                     {{#equals this.sectionType 'calc'}}
-                        <h2>Kalkulator</h2>
+                        <h2 class="blockCalc__title">Kalkulator projektu</h2>
                     {{/equals}}
                     {{#equals this.sectionType 'offices'}}
+                        <h2 class="block-offices__title">Biura</h2>
                         <div class="block-offices__wrapper">
-                            <label>Tytuł sekcji</label>
-                            <input value="{{this.title}}" type="text" placeholder=" np. Biura" class="block-offices__section-title" name="block-offices__section-title-{{this.blockId}}"></div>
-                        <div class="officesBlock-container">
+                            <label class="block-offices__label">Tytuł sekcji</label>
+                            <input value="{{this.title}}" type="text" placeholder=" np. Biura" class="block-offices__section-title block-offices__input" name="block-offices__section-title-{{this.blockId}}"></div>
+                        <div class="officesBlock-container u-clearfix">
                             {{#each this.content}}
-                            <div class="subblock" data-subblock-id="{{this.subBlockId}}">
+                            <div class="subblock officeBlock__subblock" data-subblock-id="{{this.subBlockId}}">
                             <button class="officeBlock__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
                             <button class="officeBlock__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
                             <button class="officeBlock__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
@@ -120,25 +125,25 @@
                             </div><button class="addOfficeButton">Dodaj biuro</button>
                     {{/equals}}
                     {{#equals this.sectionType 'team'}}
-                        <div class="block-gallery__wrapper"><label>Tytuł sekcji</label>
-                            <input type="text" placeholder=" np. Zespół" class="block-gallery__section-title" name="block-gallery__section-title-{{this.blockId}}" value="{{this.title}}">
+                        <h2 class="block-gallery__title">Zespół</h2></div><div class="block-gallery__wrapper"><label class="block-gallery__label">Tytuł sekcji</label>
+                            <input type="text" placeholder=" np. Zespół" class="block-gallery__section-title block-gallery__input" name="block-gallery__section-title-{{this.blockId}}" value="{{this.title}}">
                         </div><div class="galleryBlock-container">
                         {{#each this.content}}
-                        <div class="subblock" data-subblock-id="{{this.subBlockId}}">
+                        <div class="subblock galleryBlock__subblock" data-subblock-id="{{this.subBlockId}}">
                         <button class="galleryBlock__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
                         <button class="galleryBlock__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
                         <button class="galleryBlock__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
                         <div class="image">
                             <div class="block-gallery__wrapper">
                                 <label class="block-gallery__label">Podpis</label>
-                                <input type="text" name="block-gallery__title-{{../this.blockId}}-{{this.subBlockId}}" class="block-gallery__text block-gallery__title" value="{{this.content.title}}" placeholder="np. Specjalista od ogrodów">
-                            </div>
-                            <div class="block-gallery__preview">
-                                <img src="/static/img/placeholder.png">
+                                <input type="text" name="block-gallery__title-{{../this.blockId}}-{{this.subBlockId}}" class="block-gallery__text block-gallery__title block-gallery__input" value="{{this.content.title}}" placeholder="np. Specjalista od ogrodów">
                             </div>
                             <div class="block-gallery__wrapper block-gallery__wrapper-image">
                                 {{#each ../../team}}
-                                    <label for="{{../../this.blockId}}-{{../this.subBlockId}}-{{@index}}-{{this}}"><img style="width: 150px;height: 150px;object-fit:cover;float: left;" src="/static/uploads/team/{{this}}"></label><input type="radio" name="img-'{{../../this.blockId}}-{{../this.subBlockId}}" class="block-gallery__image" id="{{../../this.blockId}}-{{../this.subBlockId}}-{{@index}}-{{this}}" value="{{this}}" {{#equals this ../this.content.img}}checked{{/equals}}>
+                                    <div class="block-gallery__pic-wrapper">
+                                    <input type="radio" name="img-'{{../../this.blockId}}-{{../this.subBlockId}}" class="block-gallery__image" id="{{../../this.blockId}}-{{../this.subBlockId}}-{{@index}}-{{this}}" value="{{this}}" {{#equals this ../this.content.img}}checked{{/equals}}>
+                                    <label for="{{../../this.blockId}}-{{../this.subBlockId}}-{{@index}}-{{this}}" class="block-gallery__image-label"><img class="block-gallery__pic2" src="/static/uploads/team/{{this}}"></label>
+                                    </div>
                                 {{/each}}
                             </div>
                         </div>
@@ -147,14 +152,15 @@
                         </div><button class="addImageButton addImageButtonTeam">Dodaj zdjęcie</button>
                     {{/equals}}
                     {{#equals this.sectionType 'projectsBlock'}}
+                        <h2 class="block-project__title">Projekty</h2>
                         <div class="block-project__wrapper">
-                            <label>Nazwa linku do strony projektów</label>
-                            <input type="text" placeholder=" np. Zobacz więcej projektów" class="block-project__more-project-title" name="block-project__more-project-title-{{this.blockId}}" value="{{this.linkTitle}}">
+                            <label class="block-project__label">Nazwa linku do strony projektów</label>
+                            <input type="text" placeholder=" np. Zobacz więcej projektów" class="block-project__more-project-title block-project__input" name="block-project__more-project-title-{{this.blockId}}" value="{{this.linkTitle}}">
                         </div>
                         <div class="block-project__wrapper block-project__wrapper-more-link">
                             <div>
-                                <label>Wybierz link do strony z projektami</label>
-                                <select name="block-project__more-link-{{this.blockId}}" class="block-project__more-link">
+                                <label class="block-project__label">Wybierz link do strony z projektami</label>
+                                <select name="block-project__more-link-{{this.blockId}}" class="block-project__more-link block-project__select">
                                     <option value="" disabled  {{#equals this.linkUrl ''}}selected{{/equals}}>Wybierz stronę z projektami</option>
                                     {{#each ../pages}}
                                         <option value="{{this}}" {{#equals ../this.linkUrl this}}selected{{/equals}}>{{this}}</option>
@@ -162,21 +168,21 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="projectsBlock-container">
+                        <div class="projectsBlock-container u-clearfix">
                         {{#each this.content}}
-                        <div class="subblock" data-subblock-id="{{this.subBlockId}}">
+                        <div class="subblock projectBlock__subblock" data-subblock-id="{{this.subBlockId}}">
                         <button class="projectBlock__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
                         <button class="projectBlock__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
                         <button class="projectBlock__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
                         <div class="project">
                             <div class="block-project__wrapper">
                                 <label class="block-project__label">Tytuł projektu</label>
-                                <input type="text" name="block-project__title-{{../this.blockId}}-{{this.subBlockId}}" class="block-project__text block-project__title" placeholder="np. willa na wzgórzu" value="{{this.content.title}}">
+                                <input type="text" name="block-project__title-{{../this.blockId}}-{{this.subBlockId}}" class="block-project__text block-project__title block-project__input" placeholder="np. willa na wzgórzu" value="{{this.content.title}}">
                             </div>
                             <div class="block-project__wrapper block-project__wrapper-select">
                                 <div>
-                                    <label for="block-project__page-{{../../blockId}}-{{../subBlockId}}">Wybierz stronę projektu</label>
-                                    <select name="block-project__page-{{../../blockId}}-{{../subBlockId}}" class="block-project__page" id="block-project__page-{{../../blockId}}-{{../subBlockId}}">
+                                    <label for="block-project__page-{{../../blockId}}-{{../subBlockId}}" class="block-project__label">Wybierz stronę projektu</label>
+                                    <select name="block-project__page-{{../../blockId}}-{{../subBlockId}}" class="block-project__page block-project__select" id="block-project__page-{{../../blockId}}-{{../subBlockId}}">
                                         <option value="" disabled {{#equals this.content.page ''}}selected{{/equals}}>Wybierz stronę projektu</option>
                                         {{#each ../../pages}}
                                         <option value="{{this}}" {{#equals ../this.content.page this}}selected{{/equals}}>{{this}}</option>
@@ -186,23 +192,28 @@
                             </div>
                             <div class="block-project__wrapper">
                                 <input type="checkbox" name="block-project__big" class="block-project__checkbox block-project__big" id="block-project__big-{{this.blockId}}-{{this.subBlockId}}" value="1" {{#equals this.content.big 1}}checked{{/equals}}>
-                                <label for="block-project__big-{{this.blockId}}-{{this.subBlockId}}">Duża sekcja</label>
+                                <label for="block-project__big-{{this.blockId}}-{{this.subBlockId}}" class="block-project__label--checkbox">Duża sekcja</label>
                             </div>
                             <div class="block-project__preview">
-                                <img src="/static/img/placeholder.png">
+                                <label class="block-project__label">Wybrane zdjęcie</label>
+                                <img src="{{#if this.content.img}}/static/uploads/{{this.content.img}}{{else}}/static/img/placeholder.png{{/if}}" class="block-gallery__preview-image">
                             </div>
                             <div class="block-project__wrapper block-project__wrapper-image">
                                 <div>
                                     {{#each ../../catalogs}}
-                                        <div class="dir">
+                                        <div class="galleryCatalog">
+                                        <h2 class="galleryCatalog__title"><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>{{this.path}}</h2>
+                                        <div class="dir galleryCatalog__photos galleryCatalog__photos--hidden">
                                             {{#each this.photos}}
-                                                <label for="{{../../../this.blockId}}-{{../../this.subBlockId}}-{{../this.path}}/{{this.path}}">
-                                                <img style="width: 150px; height: 150px; object-fit: cover;float: left;" src="/static/uploads/{{../this.path}}/{{this.path}}"></label>
-                                                <input type="radio" name="img-{{../../../this.blockId}}-{{../../this.subBlockId}}" class="block-project__image" id="{{../../../this.blockId}}-{{../../this.subBlockId}}-{{../this.path}}/{{this.path}}" 
-                                                {{#equalsImg ../this.path this.path ../../this.content.img}}
-                                                    checked
-                                                {{/equalsImg}}>
+                                                <div class="block-project__pic-wrapper u-clearfix">
+                                                    <input type="radio" name="img-{{../../../this.blockId}}-{{../../this.subBlockId}}" class="block-gallery__image" id="{{../../../this.blockId}}-{{../../this.subBlockId}}-{{../this.path}}/{{this.path}}" 
+                                                    {{#equalsImg ../this.path this.path ../../this.content.img}}
+                                                        checked
+                                                    {{/equalsImg}}><label for="{{../../../this.blockId}}-{{../../this.subBlockId}}-{{../this.path}}/{{this.path}}" class="block-gallery__image-label">
+                                                    <img class="block-gallery__pic" src="/static/uploads/{{../this.path}}/{{this.path}}"></label>
+                                                </div>
                                             {{/each}}
+                                        </div>
                                         </div>
                                     {{/each}}
                                 </div>
@@ -213,13 +224,14 @@
                         </div><button class="addProjectButton">Dodaj projekt</button>                
                     {{/equals}}
                     {{#equals this.sectionType 'smallOffices'}}
-                        <div class="block-office__wrapper"><label>Nazwa linku do strony kontaktowej</label>
-                            <input type="text" placeholder=" np. Więcej informacji" class="block-office__more-offices-title" name="block-office__more-offices-title-{{this.blockId}}" value="{{this.linkTitle}}">
+                        <h2 class="block-offices__title">Biura</h2>
+                        <div class="block-offices__wrapper"><label class="block-offices__label">Nazwa linku do strony kontaktowej</label>
+                            <input type="text" placeholder=" np. Więcej informacji" class="block-office__more-offices-title block-offices__input" name="block-office__more-offices-title-{{this.blockId}}" value="{{this.linkTitle}}">
                         </div>
-                        <div class="block-office__wrapper block-office__wrapper-more-link">
+                        <div class="block-offices__wrapper block-office__wrapper-more-link">
                             <div>
-                                <label>Wybierz link do strony kontaktu</label>
-                                <select name="block-office__more-link-{{this.blockId}}" class="block-office__more-link">
+                                <label class="block-offices__label">Wybierz link do strony kontaktu</label>
+                                <select name="block-office__more-link-{{this.blockId}}" class="block-office__more-link block-offices__select">
                                     <option value="" disabled {{#equals this.linkUrl ''}}selected{{/equals}}>Wybierz stronę kontaktową</option>
                                     {{#each ../pages}}
                                         <option value="{{this}}" {{#equals ../this.linkUrl this}}selected{{/equals}}>{{this}}</option>
@@ -227,9 +239,9 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="officesBlock-container">
+                        <div class="officesBlock-container u-clearfix">
                             {{#each this.content}}
-                            <div class="subblock" data-subblock-id="{{this.subBlockId}}">
+                            <div class="subblock officeBlock__subblock" data-subblock-id="{{this.subBlockId}}">
                             <button class="officeBlock__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
                             <button class="officeBlock__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
                             <button class="officeBlock__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
@@ -263,36 +275,42 @@
                             </div><button class="addSmallOfficeButton">Dodaj biuro</button>                    
                     {{/equals}}
                     {{#equals this.sectionType 'gallery'}}
+                        <h2 class="block-gallery__title">Galeria</h2>
                         <div class="block-gallery__wrapper">
-                            <label>Tytuł sekcji</label>
-                            <input type="text" placeholder=" np. Galeria" class="block-gallery__section-title" name="block-gallery__section-title-{{this.blockId}}" value="{{this.title}}"></div>
+                            <label class="block-gallery__label">Tytuł sekcji</label>
+                            <input type="text" placeholder=" np. Galeria" class="block-gallery__section-title block-gallery__input" name="block-gallery__section-title-{{this.blockId}}" value="{{this.title}}"></div>
                         <div class="galleryBlock-container">
                         {{#each this.content}}
-                        <div class="subblock" data-subblock-id="{{this.subBlockId}}">
+                        <div class="subblock galleryBlock__subblock" data-subblock-id="{{this.subBlockId}}">
                         <button class="galleryBlock__up"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
                         <button class="galleryBlock__down"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
                         <button class="galleryBlock__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
                         <div class="image">
                             <div class="block-gallery__wrapper">
-                                <label class="block-gallery__wrapper">Podpis</label>
-                                <input type="text" name="block-gallery__title-{{../this.blockId}}-{{this.subBlockId}}" class="block-gallery__text block-gallery__title" placeholder="np. Projekt budynku" value="{{this.content.title}}">
+                                <label class="block-gallery__label">Podpis</label>
+                                <input type="text" name="block-gallery__title-{{../this.blockId}}-{{this.subBlockId}}" class="block-gallery__text block-gallery__title block-gallery__input" placeholder="np. Projekt budynku" value="{{this.content.title}}">
                             </div>
                             <div class="block-gallery__preview">
-                                <img src="/static/img/placeholder.png">
+                                <label class="block-gallery__label">Wybrane zdjęcie</label>
+                                <img src="{{#if this.content.img}}/static/uploads/{{this.content.img}}{{else}}/static/img/placeholder.png{{/if}}"class="block-gallery__preview-image">
                             </div>
                             <div class="block-gallery__wrapper block-gallery__wrapper-image">
                                 <div>
                                     {{#each ../../catalogs}}
-                                        <div class="dir">
+                                    <div class="galleryCatalog">
+                                        <h2 class="galleryCatalog__title"><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>{{this.path}}</h2>
+                                        <div class="dir galleryCatalog__photos galleryCatalog__photos--hidden">
                                             {{#each this.photos}}
-                                                <label for="{{../../../this.blockId}}-{{../../this.subBlockId}}-{{../this.path}}/{{this.path}}">
-                                                <img style="width: 150px; height: 150px; object-fit: cover;float: left;" src="/static/uploads/{{../this.path}}/{{this.path}}"></label>
-                                                <input type="radio" name="img-{{../../../this.blockId}}-{{../../this.subBlockId}}" class="block-gallery__image" id="{{../../../this.blockId}}-{{../../this.subBlockId}}-{{../this.path}}/{{this.path}}" 
-                                                {{#equalsImg ../this.path this.path ../../this.content.img}}
-                                                    checked
-                                                {{/equalsImg}}>
+                                                <div class="block-gallery__pic-wrapper u-clearfix">
+                                                    <input type="radio" name="img-{{../../../this.blockId}}-{{../../this.subBlockId}}" class="block-gallery__image" id="{{../../../this.blockId}}-{{../../this.subBlockId}}-{{../this.path}}/{{this.path}}" 
+                                                    {{#equalsImg ../this.path this.path ../../this.content.img}}
+                                                        checked
+                                                    {{/equalsImg}}><label for="{{../../../this.blockId}}-{{../../this.subBlockId}}-{{../this.path}}/{{this.path}}" class="block-gallery__image-label">
+                                                    <img class="block-gallery__pic" src="/static/uploads/{{../this.path}}/{{this.path}}"></label>
+                                                </div>
                                             {{/each}}
                                         </div>
+                                    </div>
                                     {{/each}}
                                 </div>
                             </div>

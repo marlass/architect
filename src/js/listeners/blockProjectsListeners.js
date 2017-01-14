@@ -46,7 +46,7 @@ export function clickList(e, store, catalog, pages) {
         let blockIndex = 0;
         if (state.content) {
             for (let i= 0; i<state.content.length; i++) {
-                if (state.content[i].blockId === blockId) {
+                if (state.content[i].blockId == blockId) {
                     blockIndex = i;
                     break;
                 }
@@ -64,24 +64,25 @@ export function clickList(e, store, catalog, pages) {
             <button class="projectBlock__delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
             <div class="project">
                 <div class="block-project__wrapper">
-                    <label class="block-project__label">Tytuł projektu</label>
-                    <input type="text" name="block-project__title-${blockId}-${id}" class="block-project__text block-project__title" placeholder=" np. willa na wzgórzu">
+                    <label class="block-project__label" class="block-project__label">Tytuł projektu</label>
+                    <input type="text" name="block-project__title-${blockId}-${id}" class="block-project__input block-project__text block-project__title" placeholder=" np. willa na wzgórzu">
                 </div>
                 <div class="block-project__wrapper block-project__wrapper-select">
 
                 </div>
                 <div class="block-project__wrapper">
                     <input type="checkbox" name="block-project__big-${blockId}-${id}" class="block-project__checkbox block-project__big" id="block-project__big-${blockId}-${id}">
-                    <label for="block-project__big-${blockId}-${id}">Duża sekcja</label>
+                    <label for="block-project__big-${blockId}-${id}" class="block-project__label--checkbox">Duża sekcja</label>
                 </div>
                 <div class="block-project__preview">
-                    <img src="/static/img/placeholder.png">
+                    <label class="block-project__label">Wybrane zdjęcie</label>
+                    <img src="/static/img/placeholder.png" class="block-gallery__preview-image">
                 </div>
                 <div class="block-project__wrapper block-project__wrapper-image">
                 </div>
             </div>`;
         let node = document.createElement('div');
-        node.className = 'subblock';
+        node.className = 'subblock projectBlock__subblock';
         node.setAttribute('data-subblock-id',id);
         node.innerHTML = html;
         let qs = '[data-block-id="'+blockId+'"] .projectsBlock-container';
@@ -97,9 +98,9 @@ function projectPost(blockId, subBlockId,catalog,pages) {
     catalog.forEach(function(dir){
         let subhtml = '';
         dir.photos.forEach(function(pic) {
-            subhtml += '<label for="'+dir.path+'/'+pic.path+'-'+blockId+'-'+subBlockId+'"><img style="width: 100px;height: 100px;object-fit:cover;float: left" src="/static/uploads/'+dir.path+'/'+pic.path+'"></label><input type="radio" name="img-'+blockId+'-'+subBlockId+'" class="block-project__image" id="'+dir.path+'/'+pic.path+'-'+blockId+'-'+subBlockId+'" value="'+dir.path+'/'+pic.path+'">';
+            subhtml += '<div class="block-project__pic-wrapper u-clearfix"><input type="radio" name="img-'+blockId+'-'+subBlockId+'" class="block-gallery__image" id="'+dir.path+'/'+pic.path+'-'+blockId+'-'+subBlockId+'" value="'+dir.path+'/'+pic.path+'"><label for="'+dir.path+'/'+pic.path+'-'+blockId+'-'+subBlockId+'" class="block-gallery__image-label"><img class="block-gallery__pic" src="/static/uploads/'+dir.path+'/'+pic.path+'"></label></div>';
         }, this);
-        html += '<div class="dir">'+subhtml+'</div>';
+        html += '<div class="galleryCatalog"><h2 class="galleryCatalog__title"><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>'+dir.path+'</h2><div class="dir galleryCatalog__photos galleryCatalog__photos--hidden">'+subhtml+'</div>';
     }, this);
     let qs = `[data-block-id="${blockId}"] [data-subblock-id="${subBlockId}"] .block-project__wrapper-image`;
     let radioContainer = document.querySelector(qs);
@@ -109,7 +110,7 @@ function projectPost(blockId, subBlockId,catalog,pages) {
         radioContainer.appendChild(p);
     }
 
-    html = '<label for="block-project__page-'+blockId+'-'+subBlockId+'">Wybierz stronę projektu</label><select name="block-project__page-'+blockId+'-'+subBlockId+'" class="block-project__page" id="block-project__page-'+blockId+'-'+subBlockId+'"><option value="" disabled selected>Wybierz stronę projektu</option>';
+    html = '<label for="block-project__page-'+blockId+'-'+subBlockId+'" class="block-project__label">Wybierz stronę projektu</label><select name="block-project__page-'+blockId+'-'+subBlockId+'" class="block-project__page block-project__select" id="block-project__page-'+blockId+'-'+subBlockId+'"><option value="" disabled selected>Wybierz stronę projektu</option>';
     pages.forEach(function(page) {
         html += '<option value="'+page+'">'+page+'</option>';
     }, this);
@@ -119,7 +120,7 @@ function projectPost(blockId, subBlockId,catalog,pages) {
     if (selectContainer) {
         let p = document.createElement('div');
         p.innerHTML = html;
-        radioContainer.appendChild(p);
+        selectContainer.appendChild(p);
     }
 }
 

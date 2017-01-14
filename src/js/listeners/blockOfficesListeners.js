@@ -46,7 +46,7 @@ export function clickList(e, store) {
         let blockIndex = 0;
         if (state.content) {
             for (let i= 0; i<state.content.length; i++) {
-                if (state.content[i].blockId === blockId) {
+                if (state.content[i].blockId == blockId) {
                     blockIndex = i;
                     break;
                 }
@@ -93,7 +93,7 @@ export function clickList(e, store) {
                 </div>
             </div>`;
         let node = document.createElement('div');
-        node.className = 'subblock';
+        node.className = 'subblock  officeBlock__subblock';
         node.setAttribute('data-subblock-id',id);
         node.innerHTML = html;
         let qs = '[data-block-id="'+blockId+'"] .officesBlock-container';
@@ -152,7 +152,7 @@ export function clickList(e, store) {
                 </div>
             </div>`;
         let node = document.createElement('div');
-        node.className = 'subblock';
+        node.className = 'subblock officeBlock__subblock';
         node.setAttribute('data-subblock-id',id);
         node.innerHTML = html;
         let qs = '[data-block-id="'+blockId+'"] .officesBlock-container';

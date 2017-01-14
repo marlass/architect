@@ -168,6 +168,25 @@ document.addEventListener('click', function (e) {
     }
 }, true);
 
+document.addEventListener('click', function (e) {
+    if (hasClass(e.target,'galleryCatalog__title') || hasClass(e.target.parentNode,'galleryCatalog__title')) {
+        let block = e.target.closest('.galleryCatalog');
+        let photos = block.querySelector('.galleryCatalog__photos');
+        toggleClass(photos, 'galleryCatalog__photos--hidden');
+        let i = e.target.parentNode.querySelector('i');
+        toggleClass(i,'fa-plus-circle');
+        toggleClass(i,'fa-minus-circle');
+    }
+}, true);
+
+document.addEventListener('click', function (e) {
+    if (hasClass(e.target,'block-gallery__pic')) {
+        let block = e.target.closest('.subblock');
+        let photos = block.querySelector('.block-gallery__preview-image');
+        photos.src = e.target.src;
+    }
+}, true);
+
 function toggleClass(el, className) {
     if (el.classList) {
         el.classList.toggle(className);
