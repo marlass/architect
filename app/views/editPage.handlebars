@@ -210,7 +210,7 @@
                                         <div class="dir galleryCatalog__photos galleryCatalog__photos--hidden">
                                             {{#each this.photos}}
                                                 <div class="block-project__pic-wrapper u-clearfix">
-                                                    <input type="radio" name="img-{{../../../this.blockId}}-{{../../this.subBlockId}}" class="block-gallery__image" id="{{../../../this.blockId}}-{{../../this.subBlockId}}-{{../this.path}}/{{this.path}}" 
+                                                    <input type="radio" name="img-{{../../../this.blockId}}-{{../../this.subBlockId}}" class="block-gallery__image" id="{{../../../this.blockId}}-{{../../this.subBlockId}}-{{../this.path}}/{{this.path}}" value="{{../this.path}}/{{this.path}}"
                                                     {{#equalsImg ../this.path this.path ../../this.content.img}}
                                                         checked
                                                     {{/equalsImg}}><label for="{{../../../this.blockId}}-{{../../this.subBlockId}}-{{../this.path}}/{{this.path}}" class="block-gallery__image-label">

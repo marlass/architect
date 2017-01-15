@@ -133,7 +133,7 @@ body{height:100%;background-color:#eee;color:#424242}
 .project--big{width:100%}}
 .project__more-link{display:inline-block;clear:both;color:#ef6c00;text-decoration:none;text-transform:uppercase;padding:.5em .5em;border-radius:3px;margin:1.5em .5em .5em;font-size:1.2em;text-align:center}
 .project__more-link:hover{background-color:#eee}
-.project-container{max-width:60em;margin:0 auto;position:relative;background-color:#fff;height:100%;min-height:300px;box-shadow:0 10px 20px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23);margin-top:1.5em;border-radius:0 0 6px 6px;padding:.5em}
+.project-container{max-width:60em;margin:0 auto;position:relative;background-color:#fff;height:100%;min-height:300px;box-shadow:0 10px 20px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23);border-radius:0 0 6px 6px;padding:.5em}
 @media all and (max-width:61em){
 .project-container{max-width:96%}}
 .input{display:block}
@@ -196,14 +196,14 @@ body{height:100%;background-color:#eee;color:#424242}
 .calc-container{max-width:60em;background-color:#fff;margin:0 auto;position:relative;height:100%;min-height:400px;box-shadow:0 10px 20px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23);border-radius:6px;padding:1.2em;margin-top:1.5em}
 @media all and (max-width:61em){
 .calc-container{max-width:96%}}
-.text-block{max-width:60em;background-color:#fff;margin:0 auto;position:relative;height:100%;min-height:400px;box-shadow:0 10px 20px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23);border-radius:0 0 6px 6px;padding:1.2em;color:#424242}
+.text-block{max-width:60em;background-color:#fff;margin:0 auto;position:relative;height:100%;min-height:200px;box-shadow:0 10px 20px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23);border-radius:0 0 6px 6px;padding:1.2em;color:#424242}
 @media all and (max-width:61em){
 .text-block{max-width:96%}}
 .text-block h1,.text-block h2,.text-block h3,.text-block h4,.text-block h5,.text-block h6{font-weight:400}
 .text-block a{color:#1976d2;-webkit-transition:color .15s ease-in-out;transition:color .15s ease-in-out}
 .text-block a:hover,.text-block a:focus{color:#0d47a1}
 .text-block a:active{color:#2196f3}
-.small-office-container{max-width:60em;margin:0 auto;position:relative;background-color:#fff;height:100%;min-height:250px;box-shadow:0 10px 20px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23);margin-top:1.5em;border-radius:0 0 6px 6px;padding:.5em}
+.small-office-container{max-width:60em;margin:0 auto;position:relative;background-color:#fff;height:100%;min-height:250px;box-shadow:0 10px 20px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23);border-radius:0 0 6px 6px;padding:.5em}
 @media all and (max-width:61em){
 .small-office-container{max-width:96%}}
 .small-office{padding:1em 1em;float:left;width:50%;font-size:1em;line-height:1.6;margin:0}
