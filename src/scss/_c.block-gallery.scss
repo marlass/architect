@@ -14,20 +14,20 @@
 
     &__label {
         display: block;
-        padding-bottom: 0.2em;
+        padding-bottom: .2em;
     }
 
     &__input {
         display: block;
         width: 300px;
-        padding: 0.2em 0.4em;
+        padding: .2em .4em;
         border: 1px solid $secondary-7;
     }
 
     &__select {
         display: block;
         width: 300px;
-        padding: 0.2em 0.4em;
+        padding: .2em .4em;
         border: 1px solid $secondary-7;
     }
 
@@ -53,7 +53,7 @@
         padding: 5px;
         display: block;
         border: 4px solid transparent;
-        transition: all 0.3s ease-in-out;
+        transition: all .3s ease-in-out;
     }
 
     &__image:checked + label {
@@ -76,7 +76,7 @@
         margin-bottom: 2em;
         float: left;
         width: 830px;
-        box-shadow: 0px 3px 14px $gray-8;
+        box-shadow: 0 3px 14px $gray-8;
         position: relative;
         min-height: 120px;
     }
@@ -87,19 +87,19 @@
         left: -75px;
         top: 0;
         background-color: $secondary-9;
-        border-width: 0px;
-        box-shadow: 0px 0px 2px $gray-8;
+        border-width: 0;
+        box-shadow: 0 0 2px $gray-8;
         color: white;
         font-size: 1.1em;
-        padding: 0.5em 1.6em;
+        padding: .5em 1.6em;
         cursor: pointer;
         width: 75px;
         height: 40px;
-        transition: all 0.3s ease-in-out;
+        transition: all .3s ease-in-out;
 
         &:hover {
             background-color: $secondary-8;
-            box-shadow: 0px 4px 8px $gray-8;
+            box-shadow: 0 4px 8px $gray-8;
         }
     }
 
@@ -109,19 +109,19 @@
         left: -75px;
         top: 40px;
         background-color: $secondary-9;
-        border-width: 0px;
-        box-shadow: 0px 0px 2px $gray-8;
+        border-width: 0;
+        box-shadow: 0 0 2px $gray-8;
         color: white;
         font-size: 1.1em;
-        padding: 0.5em 1.6em;
+        padding: .5em 1.6em;
         cursor: pointer;
         width: 75px;
         height: 40px;
-        transition: all 0.3s ease-in-out;
+        transition: all .3s ease-in-out;
 
         &:hover {
             background-color: $secondary-8;
-            box-shadow: 0px 4px 8px $gray-8;
+            box-shadow: 0 4px 8px $gray-8;
         }
     }
 
@@ -131,40 +131,40 @@
         left: -75px;
         top: 80px;
         background-color: $error-2;
-        border-width: 0px;
-        box-shadow: 0px 0px 2px $gray-8;
+        border-width: 0;
+        box-shadow: 0 0 2px $gray-8;
         color: white;
         font-size: 1.1em;
-        padding: 0.5em 1.6em;
+        padding: .5em 1.6em;
         cursor: pointer;
         width: 75px;
         height: 40px;
-        transition: all 0.3s ease-in-out;
+        transition: all .3s ease-in-out;
 
         &:hover {
             background-color: $error-1;
-            box-shadow: 0px 4px 8px $gray-8;
+            box-shadow: 0 4px 8px $gray-8;
         }
     }
 }
 
 .addImageButton {
-    margin-top: 0em;
+    margin-top: 0;
     display: block;
     background-color: $success-2;
-    border-width: 0px;
-    box-shadow: 0px 0px 2px $gray-8;
+    border-width: 0;
+    box-shadow: 0 0 2px $gray-8;
     color: white;
     font-size: 1em;
-    padding: 0.5em 1em;
+    padding: .5em 1em;
     cursor: pointer;
     width: 240px;
     margin-left: 20px;
-    transition: all 0.3s ease-in-out;
+    transition: all .3s ease-in-out;
 
     &:hover {
         background-color: $success-1;            
-        box-shadow: 0px 4px 8px $gray-8
+        box-shadow: 0 4px 8px $gray-8
     }
 }
 
@@ -173,14 +173,14 @@
     &__title {
         margin: 0;
         min-width: 500px;
-        padding-top: 0.4em;
+        padding-top: .4em;
         display: block;
         float: left;
-        padding-bottom: 0.2em;
+        padding-bottom: .2em;
         font-weight: 400;
         color: $secondary-9;
         cursor: pointer;
-        transition: all 0.3s ease-in-out;
+        transition: all .3s ease-in-out;
 
         i {
             padding-right: 20px;

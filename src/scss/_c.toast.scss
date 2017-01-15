@@ -3,15 +3,15 @@
     top: 20px;
     /*display: inline-block;*/
     margin-left:70%; /*Fallback for FF<26 and safari which doesn't calculate the margin */
-    transition: margin 0.1s cubic-bezier(.07,.99,.93,.97);
+    transition: margin .1s cubic-bezier(.07,.99,.93,.97);
 }
 
 .prophet > li{
-    margin-top:0px;
-    margin-bottom:0px;
+    margin-top: 0;
+    margin-bottom: 0;
     list-style-type: none;
     min-width: 100px;
-    opacity:0;
+    opacity: 0;
     background-color: #323232;
     color: #fafafa;
     z-index: 99;
@@ -22,15 +22,15 @@
     vertical-align: middle;
     max-width: 200px;
     text-align: center;
-    box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s cubic-bezier(.07,.99,.93,.97);
+    box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.3);
+    transition: all .3s cubic-bezier(.07,.99,.93,.97);
 }
 .prophet > .prophet-message-active{
 
-    margin-top:10px;
-    margin-bottom:0px;
+    margin-top: 10px;
+    margin-bottom: 0;
     opacity: 1;
-    transition: all 0.2s cubic-bezier(.07,.99,.93,.97);
+    transition: all .2s cubic-bezier(.07,.99,.93,.97);
 }
 
 @media only screen and (min-width: 240px){

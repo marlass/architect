@@ -4,7 +4,7 @@
     margin-top: 2em;
     margin-bottom: 4em;
     width: 900px;
-    box-shadow: 0px 3px 14px $gray-8;
+    box-shadow: 0 3px 14px $gray-8;
     
     &__title {
         margin: 0;
@@ -15,61 +15,61 @@
 
     &__main-title {
         color: $secondary-9;
-        margin-bottom: 0em;
+        margin-bottom: 0;
         margin-top: 1em;
     }
 
     &__up {
         display: block;
         background-color: $secondary-9;
-        border-width: 0px;
-        box-shadow: 0px 0px 2px $gray-8;
+        border-width: 0;
+        box-shadow: 0 0 2px $gray-8;
         color: white;
         font-size: 1.1em;
-        padding: 0.5em 1.6em;
+        padding: .5em 1.6em;
         cursor: pointer;
         float: left;
-        transition: all 0.3s ease-in-out;
+        transition: all .3s ease-in-out;
 
         &:hover {
             background-color: $secondary-8;
-            box-shadow: 0px 4px 8px $gray-8;
+            box-shadow: 0 4px 8px $gray-8;
         }
     }
 
     &__down {
         display: block;
         background-color: $secondary-9;
-        border-width: 0px;
-        box-shadow: 0px 0px 2px $gray-8;
+        border-width: 0;
+        box-shadow: 0 0 2px $gray-8;
         color: white;
         font-size: 1.1em;
-        padding: 0.5em 1.6em;
+        padding: .5em 1.6em;
         cursor: pointer;
         float: left;
-        transition: all 0.3s ease-in-out;
+        transition: all .3s ease-in-out;
 
         &:hover {
             background-color: $secondary-8;
-            box-shadow: 0px 4px 8px $gray-8;
+            box-shadow: 0 4px 8px $gray-8;
         }
     }
 
     &__delete {
         display: block;
         background-color: $error-2;
-        border-width: 0px;
-        box-shadow: 0px 0px 2px $gray-8;
+        border-width: 0;
+        box-shadow: 0 0 2px $gray-8;
         color: white;
         font-size: 1.1em;
-        padding: 0.5em 1.6em;
+        padding: .5em 1.6em;
         cursor: pointer;
         float: left;
-        transition: all 0.3s ease-in-out;
+        transition: all .3s ease-in-out;
 
         &:hover {
             background-color: $error-1;
-            box-shadow: 0px 4px 8px $gray-8;
+            box-shadow: 0 4px 8px $gray-8;
         }
     }
 
@@ -82,13 +82,13 @@
     &__input {
         display: block;
         width: 90%;
-        padding: 0.2em 0.4em;
+        padding: .2em .4em;
         border: 1px solid $secondary-7;
     }
 
     &__label {
         display: block;
-        padding-bottom: 0.2em;
+        padding-bottom: .2em;
     }
 
     &__wrapper--table {
@@ -99,32 +99,32 @@
     &__label--table {
         float: left;
         line-height: 38px;
-        padding: 0 0.5em 0 2em;
+        padding: 0 .5em 0 2em;
     }
 
     &__input--table {
         float: left;
         height: 38px;
-        padding: 0.1em 0.5em;
+        padding: .1em .5em;
     }
 
     &__addButton {
         display: block;
         background-color: $success-2;
-        border-width: 0px;
+        border-width: 0;
         margin-bottom: 4em;
         margin-top: 1.5em;
-        box-shadow: 0px 0px 2px $gray-8;
+        box-shadow: 0 0 2px $gray-8;
         color: white;
         font-size: 1.1em;
-        padding: 0.5em 1.6em;
+        padding: .5em 1.6em;
         cursor: pointer;
         width: 216px;
-        transition: all 0.3s ease-in-out;
+        transition: all .3s ease-in-out;
 
         &:hover {
             background-color: $success-1;
-            box-shadow: 0px 4px 8px $gray-8;
+            box-shadow: 0 4px 8px $gray-8;
         }
     }
 
@@ -175,7 +175,7 @@
         width: 300px;
         float: left;
         display: block;
-        padding: 0.1em 0.5em;
+        padding: .1em .5em;
         height: 30px;
     }
 }

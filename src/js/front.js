@@ -96,17 +96,17 @@ function calculatePrice () {
             resultText = `We offer project for single-family house of ${area}ft<sup>2</sup> size`;
         }
         if (garage === '1') {
-            resultText += `, garage`
+            resultText += `, garage`;
         } else if (garage === '2') {
-            resultText += ', double garage'
+            resultText += ', double garage';
         }
         if (project === 'project2') {
-            resultText += ` and installation project` 
+            resultText += ` and installation project` ;
         } else if (project === 'project3') {
-            resultText += ` and instalation project, and decoration`
+            resultText += ` and instalation project, and decoration`;
         }
         if (build) {
-            resultText += ` with build cost estimation`
+            resultText += ` with build cost estimation`;
         }        
         resultText += ` from ${price/5}£.`;
     } else {
@@ -120,17 +120,17 @@ function calculatePrice () {
             resultText = `Oferujemy projekt domu jednorodzinnego o metrażu ${area}m<sup>2</sup>`;
         }
         if (garage === '1') {
-            resultText += `, garażem`
+            resultText += `, garażem`;
         } else if (garage === '2') {
-            resultText += ', 2 garażami'
+            resultText += ', 2 garażami';
         }
         if (project === 'project2') {
-            resultText += ` i projektem instalacji` 
+            resultText += ` i projektem instalacji`; 
         } else if (project === 'project3') {
-            resultText += ` i projektem instalacji, i wnętrz`
+            resultText += ` i projektem instalacji, i wnętrz`;
         }
         if (build) {
-            resultText += ` z wyceną budowy`
+            resultText += ` z wyceną budowy`;
         }        
         resultText += ` od ${price}zł.`;
     }

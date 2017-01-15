@@ -1,6 +1,6 @@
 .gallery {
     width: 100%;
-    padding: 0.15em;
+    padding: .15em;
 
     a {
         width: 100%;
@@ -11,7 +11,7 @@
     &__item {
         width: 20%;
         margin: 0;
-        padding: 0.15em;
+        padding: .15em;
         float: left;
 
         @media all and (max-width: 61em) {
@@ -53,8 +53,8 @@
         font-weight: 400;
         font-size: 2.2em;
         color: $primary-8;
-        opacity: 0.75;
-        padding: 0.5em 0.5em;
+        opacity: .75;
+        padding: .5em .5em;
         margin: 0;
     }
 }

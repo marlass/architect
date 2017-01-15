@@ -4,7 +4,7 @@
     &__header {
         color: $primary-8;
         font-weight: 400;
-        margin: 0.2em 0 0.3em
+        margin: .2em 0 .3em
     }
 
     &__wrapper {
@@ -13,18 +13,18 @@
 
     &__radio-header {
         color: $primary-8;
-        margin: 1em 0 0.5em;
+        margin: 1em 0 .5em;
         font-weight: 400;
     }
 
     &__radio-option {
-        padding-bottom: 0.1em;
+        padding-bottom: .1em;
     }
 
     &__label {
         font-weight: 400;
         font-size: 1.17em;
-        margin: 1em 0 0.5em;
+        margin: 1em 0 .5em;
         display: block;
         color: $primary-8;
     }
@@ -50,13 +50,13 @@
     }
 
     &__checkbox-wrapper {
-        padding-bottom: 0.75em;
+        padding-bottom: .75em;
     }
 
     &__input {
         display: block;
         height: 32px;
-        padding: 0.1em 8px;
+        padding: .1em 8px;
         border: 1px solid $gray-6;
     }
 
@@ -97,14 +97,14 @@
             text-align: center;
             line-height: 18px;
             border-radius: 50px;
-            transition: all 0.15s ease-in-out;
+            transition: all .15s ease-in-out;
         }
     }
 
     &__result {
         font-size: 1.05em;
         line-height: 1.45;
-        padding-top: 0.5em;
+        padding-top: .5em;
         float: left;
         max-width: 600px;
     }

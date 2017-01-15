@@ -216,7 +216,7 @@ body{height:100%;background-color:#eee;color:#424242}
 .small-office__more-link:hover{background-color:#eee}
 .u-visually-hidden{position:absolute!important;clip:rect(1px 1px 1px 1px);clip:rect(1px,1px,1px,1px);padding:0!important;border:0!important;height:1px!important;width:1px!important;overflow:hidden}
 body:hover .u-visually-hidden a,body:hover .u-visually-hidden input,body:hover .u-visually-hidden button{display:none!important}
-.u-clearfix:before,.u-clearfix:after{content:" ";display:table}
+.u-clearfix:before,.u-clearfix:after{content:' ';display:table}
 .u-clearfix:after{clear:both}
 .u-clearfix{*zoom:1}
 /*# sourceMappingURL=styles.css.map */

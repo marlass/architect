@@ -19,7 +19,7 @@
 
     &__header {
         margin: 0;
-        padding: 0.5em 0 0.5em 0.3em;
+        padding: .5em 0 .5em .3em;
         color: $primary-8;
         font-weight: 400;
         font-size: 2.2em;
@@ -35,8 +35,8 @@
         font-size: 1.15em;
         color: white;
         background-color: $secondary-7;
-        padding: 0.3em 0.5em;
-        opacity: 0.85;
+        padding: .3em .5em;
+        opacity: .85;
     }
 
     &__img {
@@ -46,18 +46,18 @@
 }
 
 .team-container {
-        max-width: 60em;
-        margin: 0 auto;
-        position: relative;
-        height: 100%;
-        min-height: 300px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-        margin-top: 1.5em;
-        border-radius: 6px;
-        background-color: white;
-        padding: 10px;
+    max-width: 60em;
+    margin: 0 auto;
+    position: relative;
+    height: 100%;
+    min-height: 300px;
+    box-shadow: 0 10px 20px rgba(0,0,0,.19), 0 6px 6px rgba(0,0,0,.23);
+    margin-top: 1.5em;
+    border-radius: 6px;
+    background-color: white;
+    padding: 10px;
 
-        @media all and (max-width: 61em) {
-            max-width: 96%;
-        }
+    @media all and (max-width: 61em) {
+        max-width: 96%;
+    }
 }
