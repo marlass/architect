@@ -1,0 +1,114 @@
+.calc {
+    box-shadow: 0px 2px 8px $gray-6;
+    padding: 20px;
+
+    &__header {
+        color: $secondary-4;
+    }
+
+    &__wrapper {
+
+    }
+
+    &__radio-header {
+        color: $secondary-4;
+        margin: 1em 0 0.5em;
+    }
+
+    &__radio-option {
+        padding-bottom: 0.1em;
+    }
+
+    &__label {
+        font-weight: 600;
+        font-size: 1.17em;
+        margin: 1em 0 0.5em;
+        display: block;
+        color: $secondary-4;
+    }
+
+    &__radio {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+
+        &:checked + label:before {
+            background-color: $secondary-4;
+        }
+    }
+
+    &__checkbox {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+
+        &:checked + label:before {
+            content: '✔';
+        }
+    }
+
+    &__checkbox-wrapper {
+        padding-bottom: 0.75em;
+    }
+
+    &__input {
+        display: block;
+        height: 32px;
+        padding: 0.1em 8px;
+    }
+
+    &__checkbox-label {
+        line-height: 20px;
+        padding-left: 25px;
+
+        &:before {
+            content: '';
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+            background-color: $white;
+            border: 1px solid $secondary-5;
+            color: $secondary-5;
+            position: absolute;
+            margin-left: -25px;
+            text-align: center;
+            line-height: 16px;
+        }
+    }
+
+    &__radio-label {
+        line-height: 20px;
+        padding-left: 25px;
+
+        &:before {
+            content: '';
+            margin-top: 2px;
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+            background-color: $white;
+            border: 2px solid $gray-4;
+            color: $secondary-5;
+            position: absolute;
+            margin-left: -25px;
+            text-align: center;
+            line-height: 18px;
+            border-radius: 50px;
+            transition: all 0.15s ease-in-out;
+        }
+    }
+
+    &__result {
+        
+    }
+
+    &__left {
+        width: 50%;
+        float: left;
+    }
+
+    &__right {
+        width: 50%;
+        float: left;
+    }
+}

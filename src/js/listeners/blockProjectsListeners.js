@@ -153,13 +153,13 @@ export function changeList(e, store) {
         let input = e.target;
         let id = input.closest('.block').getAttribute('data-block-id');
         let subId = input.closest('.subblock').getAttribute('data-subblock-id');
-        let page = e.target.options[e.target.selectedIndex].value;;
+        let page = e.target.options[e.target.selectedIndex].value;
         store.dispatch({"type": 'SET_PROJECT_PAGE', "blockId": id,"subblockId": subId, "page": page});
     }
     if (hasClass(e.target,'block-project__more-link')) {
         let input = e.target;
         let id = input.closest('.block').getAttribute('data-block-id');
-        let url2 = e.target.options[e.target.selectedIndex].value;;
+        let url2 = e.target.options[e.target.selectedIndex].value;
         store.dispatch({"type": 'SET_BLOCK_PROJECT_LINK_URL', "blockId": id, "url": url2});
     }
     if (hasClass(e.target,'block-project__big')) {

@@ -3,8 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>{{page.title}}</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:title" content="{{page.title}}">
+    <meta property="og:description" content="{{page.description}}">
+    <meta property="og:image" content="/static/img/architect.jpg">
+    <meta property="og:url" content="{{page.pageUrl}}">
+
+    <meta name="twitter:title" content="{{page.title}}">
+    <meta name="twitter:description" content="{{page.description}}">
+    <meta name="twitter:image" content="/static/img/architect.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
     <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.css">
+
+    <script src="/static/js/front.js" defer></script>
+
+    <script type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js"
+></script>
 </head>
 <body>
     <header>
@@ -64,35 +82,62 @@
                 {{#equals this.sectionType 'calc'}}
                     <div class="content">
                         <div class="content__inner u-clearfix">                            
-                            <div class="calculator">
-                                <h2>Oblicz przykładowy koszt projektu domu wolnostojącego</h2>
-                                <p>
-                                    <label for="size">Wielkość domu w m^2</label>
-                                    <input type="number" name="size" id="size">
+                            <div class="calc">
+                                <h2 class="calc__header">Oblicz przykładowy koszt projektu domu wolnostojącego</h2>
+                                <div class="calc__left">
+                                <p class="calc__wrapper">
+                                    <label for="size" class="calc__label">Wielkość domu w m<sup>2</sup></label>
+                                    <input type="number" name="size" id="size" class="calc__input" placeholder="np. 200">
                                 </p>
-                                <p>
-                                    <h3>Garaż</h3>
-                                    <input type="radio" name="garage" id="garage1" value="0">
-                                    <label for="garage1">Bez garażu</label>
-                                    <input type="radio" name="garage" id="garage2" value="1">
-                                    <label for="garage2">1 garaż</label>
-                                    <input type="radio" name="garage" id="garage3" value="2">
-                                    <label for="garage3">2 garaże</label>
+                                <p class="calc__wrapper">
+                                    <h3 class="calc__radio-header">Dodatki</h3>
+                                    <div class="calc__checkbox-wrapper">
+                                        <input type="checkbox" name="garden" id="garden" class="calc__checkbox">
+                                        <label for="garden" class="calc__checkbox-label">Projekt ogrodu</label>
+                                    </div>
+                                    <div class="calc__checkbox-wrapper">
+                                        <input type="checkbox" name="build" id="build" class="calc__checkbox">
+                                        <label for="build" class="calc__checkbox-label">Wycena realizacji</label>
+                                    </div>
+                                    <div class="calc__checkbox-wrapper">
+                                        <input type="checkbox" name="terrace" id="terrace" class="calc__checkbox">
+                                        <label for="terrace" class="calc__checkbox-label">Projekt tarasu</label>
+                                    </div>
                                 </p>
-                                <p>
-                                    <h3>Rodzaj projektu</h3>
-                                    <input type="radio" name="projekt" id="project1" value="project1">
-                                    <label for="project1">Projekt</label>
-                                    <input type="radio" name="projekt" id="project2" value="project2">
-                                    <label for="project2">Projekt + instalacje</label>
-                                    <input type="radio" name="projekt" id="project3" value="project3">
-                                    <label for="project3">Projekt + instalacje + aranżacje</label>
+                                </div>
+                                <div class="calc__right">
+                                <p class="calc__wrapper">
+                                    <h3 class="calc__radio-header">Garaż</h3>
+                                    <div class="calc__radio-option">
+                                        <input type="radio" name="garage" id="garage1" value="0" class="calc__radio" checked>
+                                        <label for="garage1" class="calc__radio-label">Bez garażu</label>
+                                    </div>
+                                    <div class="calc__radio-option">
+                                        <input type="radio" name="garage" id="garage2" value="1" class="calc__radio">
+                                        <label for="garage2" class="calc__radio-label">1 garaż</label>
+                                    </div>
+                                    <div class="calc__radio-option">
+                                        <input type="radio" name="garage" id="garage3" value="2" class="calc__radio">
+                                        <label for="garage3" class="calc__radio-label">2 garaże</label>
+                                    </div>
                                 </p>
-                                <p>
-                                    <input type="checkbox" name="garden" id="garden">
-                                    <label for="garden">Projekt ogrodu</label>
+                                <p class="calc__wrapper">
+                                    <h3 class="calc__radio-header">Rodzaj projektu</h3>
+                                    <div class="calc__radio-option">
+                                        <input type="radio" name="projekt" id="project1" value="project1" class="calc__radio" checked>
+                                        <label for="project1" class="calc__radio-label">Projekt</label>
+                                    </div>
+                                    <div class="calc__radio-option">
+                                        <input type="radio" name="projekt" id="project2" value="project2" class="calc__radio">
+                                        <label for="project2" class="calc__radio-label">Projekt + instalacje</label>
+                                    </div>
+                                    <div class="calc__radio-option">
+                                        <input type="radio" name="projekt" id="project3" value="project3" class="calc__radio">
+                                        <label for="project3" class="calc__radio-label">Projekt + instalacje + aranżacje</label>
+                                    </div>
                                 </p>
-                                <p>Oferujemy projekt domu jednorodzinnego o metrażu 45m^2 z garażem i projektem instalacji, wnętrz i ogrodu od 4000 zł</p>
+                                </div>
+                                <p class="calc__result">Oferujemy projekt domu jednorodzinnego o metrażu 45m<sup>2</sup> z garażem i projektem instalacji, wnętrz i ogrodu od 4000 zł</p>
                             </div>
                         </div>
                     </div>
@@ -208,11 +253,13 @@
                                 {{#each footer.links.pl}}
                                     <li class="footer-nav__item"><a class="footer-nav__link" href="{{this.url}}">{{this.title}}</a></li>
                                 {{/each}}
+                                <li class="footer-nav__item"><a class="footer-nav__link" href="{{page.secondurl}}">Wersja angielska strony</a></li>
                             {{/equals}}
                             {{#equals page.lang 'en'}}
                                 {{#each footer.links.en}}
                                     <li class="footer-nav__item"><a class="footer-nav__link" href="{{this.url}}">{{this.title}}</a></li>
                                 {{/each}}
+                                <li class="footer-nav__item"><a class="footer-nav__link" href="{{page.secondurl}}">Wersja polska strony</a></li>
                             {{/equals}}
                         </ul>
                     </div>
@@ -251,6 +298,14 @@
                     {{/equals}}                     
                      {{footer.year}}
                 </p>
+                <div class="footer-share">
+                    <ul class="footer-share__links">
+                        <li class="footer-share__item"><a class="footer-share__fb" href="https://www.facebook.com/sharer/sharer.php?u=http%3A//localhost%3A3003/{{page.pageUrl}}"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+                        <li class="footer-share__item"><a class="footer-share__twitter" href="https://twitter.com/home?status=http%3A//localhost%3A3003/{{page.pageUrl}}"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+                        <li class="footer-share__item"><a class="footer-share__google" href="https://plus.google.com/share?url=http%3A//localhost%3A3003/{{page.pageUrl}}"><i class="fa fa-google-plus fa-lg" aria-hidden="true"></i></a></li>
+                        <li class="footer-share__item"><a class="footer-share__pin" href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"   data-pin-custom="true"><i class="fa fa-pinterest-p fa-lg" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </footer>

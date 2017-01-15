@@ -43,6 +43,7 @@ const langSelect = document.querySelector('.js__lang-select');
 const pageUrl = document.querySelector('.js__page-url');
 const title = document.querySelector('.js__title');
 const otherLangUrl = document.querySelector('.js__other-lang-url');
+const pageDescription = document.querySelector('.js__page-description');
 
 const deleteCatalogForms = document.querySelectorAll('.deleteCatalogForm');
 const deletePhotoForms = document.querySelectorAll('.deletePhotoForm');
@@ -107,6 +108,20 @@ if (otherLangUrl) {
     otherLangUrl.addEventListener('blur', function(e) {
         let url = otherLangUrl.value;
         store.dispatch({"type": 'SET_OTHER_LANG_URL',"url": url});
+    });
+}
+
+if (otherLangUrl) {
+    otherLangUrl.addEventListener('blur', function(e) {
+        let url = otherLangUrl.value;
+        store.dispatch({"type": 'SET_OTHER_LANG_URL',"url": url});
+    });
+}
+
+if (pageDescription) {
+    pageDescription.addEventListener('blur', function(e) {
+        let description = pageDescription.value;
+        store.dispatch({"type": 'SET_PAGE_DESCRIPTION',"description": description});
     });
 }
 

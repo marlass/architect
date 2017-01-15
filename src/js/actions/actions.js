@@ -16,6 +16,8 @@ export default function(state = {}, action) {
             return Object.assign({}, state, {"lang": action.lang});
         case 'SET_OTHER_LANG_URL':
             return Object.assign({}, state, {"secondurl": action.url});
+        case 'SET_PAGE_DESCRIPTION':
+            return Object.assign({}, state, {"description": action.description});
         case 'CREATE_BLOCK':
             return blockCreationHandler(state, action);
         case 'SET_BLOCK_TEXT_TEXT':

@@ -4,7 +4,8 @@ var webpack = require('webpack'),
 module.exports = {
     //debug: true,
     entry: {
-        admin: ['./src/js/admin.js']
+        admin: ['./src/js/admin.js'],
+        front: ['./src/js/front.js']
     },
     output: {
         path: path.join(__dirname, 'app/public/js'),
