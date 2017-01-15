@@ -1,16 +1,54 @@
 .office {
     width: 100%;
-    padding: 1em;
+    padding: 1em 0;
+    border-bottom: 2px solid $primary-8;
 
-    &__info {
-        width: 25%;
-        float: left;
-        padding-right: 2em;
+    &:last-of-type {
+        border-bottom: 0;
     }
 
-    &__map {
-        width: 75%;
+    &__info {
+        width: 35%;
         float: left;
+        padding-right: 2em;
+        line-height: 1.6;
+
+        @media all and (max-width: 46em) {
+            width: 100%;
+        }
+    }
+
+    
+
+    &__map {
+        width: 65%;
+        float: left;
+
+        @media all and (max-width: 46em) {
+            width: 100%;
+        }
+    }
+
+    &__header {
+        margin: 0;
+        padding: 0 0 0.5em 0;
+        color: $primary-8;
+        font-weight: 400;
+        font-size: 2.2em;
+    }
+
+    a {
+        color: $secondary-7;
+        transition: color 0.15s ease-in-out;
+
+        &:hover,
+        &:focus {
+            color: $secondary-9;
+        }
+
+        &:active {
+            color: $secondary-5;
+        }
     }
 }
 
@@ -23,6 +61,7 @@
     min-height: 300px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     margin-top: 1.5em;
+    padding: 1.5em;
     border-radius: 6px;
 
     @media all and (max-width: 61em) {

@@ -1,8 +1,10 @@
 .calc {
-    padding: 20px;
+    padding: 10px;
 
     &__header {
-        color: $secondary-4;
+        color: $primary-8;
+        font-weight: 400;
+        margin: 0.2em 0 0.3em
     }
 
     &__wrapper {
@@ -10,8 +12,9 @@
     }
 
     &__radio-header {
-        color: $secondary-4;
+        color: $primary-8;
         margin: 1em 0 0.5em;
+        font-weight: 400;
     }
 
     &__radio-option {
@@ -19,11 +22,11 @@
     }
 
     &__label {
-        font-weight: 600;
+        font-weight: 400;
         font-size: 1.17em;
         margin: 1em 0 0.5em;
         display: block;
-        color: $secondary-4;
+        color: $primary-8;
     }
 
     &__radio {
@@ -32,7 +35,7 @@
         opacity: 0;
 
         &:checked + label:before {
-            background-color: $secondary-4;
+            background-color: $primary-3;
         }
     }
 
@@ -54,6 +57,7 @@
         display: block;
         height: 32px;
         padding: 0.1em 8px;
+        border: 1px solid $gray-6;
     }
 
     &__checkbox-label {
@@ -66,8 +70,8 @@
             height: 18px;
             display: inline-block;
             background-color: $white;
-            border: 1px solid $secondary-5;
-            color: $secondary-5;
+            border: 1px solid $primary-6;
+            color: $primary-8;
             position: absolute;
             margin-left: -25px;
             text-align: center;
@@ -87,7 +91,7 @@
             display: inline-block;
             background-color: $white;
             border: 2px solid $gray-4;
-            color: $secondary-5;
+            color: $primary-6;
             position: absolute;
             margin-left: -25px;
             text-align: center;
@@ -98,23 +102,35 @@
     }
 
     &__result {
-        
+        font-size: 1.05em;
+        line-height: 1.45;
+        padding-top: 0.5em;
+        float: left;
+        max-width: 600px;
     }
 
     &__left {
         width: 50%;
         float: left;
+
+        @media all and (max-width: 42em) {
+            width: 100%;
+        }
     }
 
     &__right {
         width: 50%;
         float: left;
+
+        @media all and (max-width: 42em) {
+            width: 100%;
+        }
     }
 }
 
 .calc-container {
     max-width: 60em;
-    background-color: $secondary-9;
+    background-color: white;
     margin: 0 auto;
     position: relative;
     height: 100%;

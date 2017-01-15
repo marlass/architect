@@ -3,7 +3,15 @@
     margin: 0;
     float: left;
     width: 33.3333%;
-    padding: 1em 0.5em 0 0.5em;
+    padding: 0.5em;
+
+    @media all and (max-width: 50em) {
+        width: 50%;
+    }
+
+    @media all and (max-width: 35em) {
+        width: 100%;
+    }
 
     &__link {
         display: block;
@@ -21,13 +29,34 @@
         left: 1em;
         color: $white;
         background-color: $secondary-7;
-        opacity: 0.75;
+        opacity: 0.80;
         padding: 0.3em 0.6em;
 
     }
 
     &--big {
         width: 66.6666%;
+
+        @media all and (max-width: 50em) {
+            width: 100%;
+        }
+    }
+
+    &__more-link {
+        display: inline-block;
+        clear: both;
+        color: $primary-8;
+        text-decoration: none;
+        text-transform: uppercase;
+        padding: 0.5em 0.5em;
+        border-radius: 3px;
+        margin: 1.5em 0.5em 0.5em;
+        font-size: 1.2em;
+        text-align: center;
+
+        &:hover {
+            background-color: $gray-2;
+        }
     }
 }
 
@@ -41,6 +70,7 @@
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     margin-top: 1.5em;
     border-radius: 0 0 6px 6px;
+    padding: 0.5em;
 
     @media all and (max-width: 61em) {
         max-width: 96%;

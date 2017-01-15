@@ -90,6 +90,7 @@
                     </div>
                 {{/equals}}
                 {{#equals this.sectionType 'calc'}}
+                    {{#equals ../page.lang 'pl'}}
                     <div class="content">
                         <div class="content__inner u-clearfix calc-container">                            
                             <div class="calc">
@@ -147,16 +148,80 @@
                                     </div>
                                 </p>
                                 </div>
-                                <p class="calc__result">Oferujemy projekt domu jednorodzinnego o metrażu 45m<sup>2</sup> z garażem i projektem instalacji, wnętrz i ogrodu od 4000 zł</p>
+                                <p class="calc__result">Oferujemy projekt domu jednorodzinnego o metrażu 0m<sup>2</sup> od 0zł.</p>
                             </div>
                         </div>
                     </div>
+                    {{/equals}}
+                    {{#equals ../page.lang 'en'}}
+                    <div class="content">
+                        <div class="content__inner u-clearfix calc-container">                            
+                            <div class="calc">
+                                <h2 class="calc__header">Calculate estimated project cost for single-family house.</h2>
+                                <div class="calc__left">
+                                <p class="calc__wrapper">
+                                    <label for="size" class="calc__label">House size in ft<sup>2</sup></label>
+                                    <input type="number" name="size" id="size" class="calc__input" placeholder="np. 200">
+                                </p>
+                                <p class="calc__wrapper">
+                                    <h3 class="calc__radio-header">Additions</h3>
+                                    <div class="calc__checkbox-wrapper">
+                                        <input type="checkbox" name="garden" id="garden" class="calc__checkbox">
+                                        <label for="garden" class="calc__checkbox-label">Garden project</label>
+                                    </div>
+                                    <div class="calc__checkbox-wrapper">
+                                        <input type="checkbox" name="build" id="build" class="calc__checkbox">
+                                        <label for="build" class="calc__checkbox-label">Estimate build cost</label>
+                                    </div>
+                                    <div class="calc__checkbox-wrapper">
+                                        <input type="checkbox" name="terrace" id="terrace" class="calc__checkbox">
+                                        <label for="terrace" class="calc__checkbox-label">Terrace project</label>
+                                    </div>
+                                </p>
+                                </div>
+                                <div class="calc__right">
+                                <p class="calc__wrapper">
+                                    <h3 class="calc__radio-header">Garage</h3>
+                                    <div class="calc__radio-option">
+                                        <input type="radio" name="garage" id="garage1" value="0" class="calc__radio" checked>
+                                        <label for="garage1" class="calc__radio-label">No garage</label>
+                                    </div>
+                                    <div class="calc__radio-option">
+                                        <input type="radio" name="garage" id="garage2" value="1" class="calc__radio">
+                                        <label for="garage2" class="calc__radio-label">Single garage</label>
+                                    </div>
+                                    <div class="calc__radio-option">
+                                        <input type="radio" name="garage" id="garage3" value="2" class="calc__radio">
+                                        <label for="garage3" class="calc__radio-label">Double garage</label>
+                                    </div>
+                                </p>
+                                <p class="calc__wrapper">
+                                    <h3 class="calc__radio-header">Project type</h3>
+                                    <div class="calc__radio-option">
+                                        <input type="radio" name="projekt" id="project1" value="project1" class="calc__radio" checked>
+                                        <label for="project1" class="calc__radio-label">Project</label>
+                                    </div>
+                                    <div class="calc__radio-option">
+                                        <input type="radio" name="projekt" id="project2" value="project2" class="calc__radio">
+                                        <label for="project2" class="calc__radio-label">Project + installation</label>
+                                    </div>
+                                    <div class="calc__radio-option">
+                                        <input type="radio" name="projekt" id="project3" value="project3" class="calc__radio">
+                                        <label for="project3" class="calc__radio-label">Project + installation + decoration</label>
+                                    </div>
+                                </p>
+                                </div>
+                                <p class="calc__result">We offer project for single-family house of 0ft<sup>2</sup> size from 0£.</p>
+                            </div>
+                        </div>
+                    </div>
+                    {{/equals}}                    
                 {{/equals}}
                 {{#equals this.sectionType 'offices'}}
                     <div class="content">
                         <div class="content__inner u-clearfix office-container">
                             {{#if this.title}}
-                                <h2>{{this.title}}</h2>
+                                <h2 class="office__header">{{this.title}}</h2>
                             {{/if}}
                             {{#each this.content}}
                             <div class="office u-clearfix">
@@ -199,6 +264,7 @@
                 {{#equals this.sectionType 'projectsBlock'}}
                     <div class="content">
                         <div class="content__inner u-clearfix project-container">
+                            <div class="u-clearfix">
                             {{#each this.content}}
                             <div class="project {{#if this.content.big }}project--big{{/if}}">
                                 <a href="{{this.content.page}}" class="project__link"  style="background-image: url('/static/uploads/{{this.content.img}}');">
@@ -206,8 +272,9 @@
                                 </a>
                             </div>
                             {{/each}}
+                            </div>
                             {{#if this.linkTitle }}
-                                <a href="{{this.linkUrl}}">{{this.linkTitle}}</a>
+                                <a href="{{this.linkUrl}}" class="project__more-link">{{this.linkTitle}}</a>
                             {{/if}}
                         </div>
                     </div>
@@ -215,8 +282,9 @@
                 {{#equals this.sectionType 'smallOffices'}}
                     <div class="content">
                         <div class="content__inner u-clearfix small-office-container">
+                            <div class="u-clearfix">
                             {{#each this.content}}
-                            <p>
+                            <p class="small-office">
                                 {{this.content.title}}<br>
                                 {{this.content.address}},<br>
                                 {{this.content.city}}, {{this.content.postal}}<br>
@@ -224,8 +292,9 @@
                                 email: <a href="mailto: {{this.content.email}}">{{this.content.email}}</a>
                             </p>
                             {{/each}}
+                            </div>
                             {{#if this.linkTitle}}
-                            <a href="{{this.linkUrl}}">{{this.linkTitle}}</a>
+                            <a href="{{this.linkUrl}}" class="small-office__more-link">{{this.linkTitle}}</a>
                             {{/if}}
                         </div>
                     </div>

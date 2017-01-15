@@ -4,12 +4,57 @@
     position: relative;
     background-color: white;
     height: 100%;
-    min-height: 300px;
+    min-height: 250px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     margin-top: 1.5em;
     border-radius: 0 0 6px 6px;
+    padding: 0.5em;
 
     @media all and (max-width: 61em) {
         max-width: 96%;
+    }
+}
+
+.small-office {
+    padding: 1em 1em;
+    float: left;
+    width: 50%;
+    font-size: 1em;
+    line-height: 1.6;
+    margin: 0;
+
+    @media all and (max-width: 45em) {
+        width: 100%;
+    }
+
+    a {
+        color: $secondary-7;
+        transition: color 0.15s ease-in-out;
+
+        &:hover,
+        &:focus {
+            color: $secondary-9;
+        }
+
+        &:active {
+            color: $secondary-5;
+        }
+    }
+
+    &__more-link {
+        display: inline-block;
+        clear: both;
+        color: $primary-8;
+        text-decoration: none;
+        text-transform: uppercase;
+        padding: 0.5em 0.5em;
+        border-radius: 3px;
+        margin: 1.5em 0.5em 0.5em;
+        font-size: 1.2em;
+        text-align: center;
+
+        &:hover {
+            background-color: $gray-2;
+        }
     }
 }

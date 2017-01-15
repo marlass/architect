@@ -87,39 +87,37 @@ function calculatePrice () {
     let resultText = '';
     if (lang === 'en') {
         if (garden && terrace) {
-            resultText = `Oferujemy projekt domu jednorodzinnego o metrażu ${area}<sup>2</sup> z ogrodem i tarasem`;
+            resultText = `We offer project for single-family house of ${area}ft<sup>2</sup> size with garden and terrace`;
         } else if (garden && !terrace) {
-            resultText = `Oferujemy projekt domu jednorodzinnego o metrażu ${area}<sup>2</sup> z ogrodem`;
+            resultText = `We offer project for single-family house of ${area}ft<sup>2</sup> size with garden`;
         } else if (terrace) {
-            resultText = `Oferujemy projekt domu jednorodzinnego o metrażu ${area}<sup>2</sup> z tarasem`;
+            resultText = `We offer project for single-family house of ${area}ft<sup>2</sup> size with terrace`;
         } else {
-            resultText = `Oferujemy projekt domu jednorodzinnego o metrażu ${area}<sup>2</sup>`;
+            resultText = `We offer project for single-family house of ${area}ft<sup>2</sup> size`;
         }
         if (garage === '1') {
-            resultText += `, garażem`
+            resultText += `, garage`
         } else if (garage === '2') {
-            resultText += ', 2 garażami'
+            resultText += ', double garage'
         }
         if (project === 'project2') {
-            resultText += ` i projektem instalacji` 
+            resultText += ` and installation project` 
         } else if (project === 'project3') {
-            resultText += ` i projektem instalacji, i wnętrz`
+            resultText += ` and instalation project, and decoration`
         }
-
         if (build) {
-            resultText += ` z wyceną budowy`
-        }
-        
-        resultText += ` od ${price/5}£.`;
+            resultText += ` with build cost estimation`
+        }        
+        resultText += ` from ${price/5}£.`;
     } else {
         if (garden && terrace) {
-            resultText = `Oferujemy projekt domu jednorodzinnego o metrażu ${area}<sup>2</sup> z ogrodem i tarasem`;
+            resultText = `Oferujemy projekt domu jednorodzinnego o metrażu ${area}m<sup>2</sup> z ogrodem i tarasem`;
         } else if (garden && !terrace) {
-            resultText = `Oferujemy projekt domu jednorodzinnego o metrażu ${area}<sup>2</sup> z ogrodem`;
+            resultText = `Oferujemy projekt domu jednorodzinnego o metrażu ${area}m<sup>2</sup> z ogrodem`;
         } else if (terrace) {
-            resultText = `Oferujemy projekt domu jednorodzinnego o metrażu ${area}<sup>2</sup> z tarasem`;
+            resultText = `Oferujemy projekt domu jednorodzinnego o metrażu ${area}m<sup>2</sup> z tarasem`;
         } else {
-            resultText = `Oferujemy projekt domu jednorodzinnego o metrażu ${area}<sup>2</sup>`;
+            resultText = `Oferujemy projekt domu jednorodzinnego o metrażu ${area}m<sup>2</sup>`;
         }
         if (garage === '1') {
             resultText += `, garażem`
@@ -131,11 +129,9 @@ function calculatePrice () {
         } else if (project === 'project3') {
             resultText += ` i projektem instalacji, i wnętrz`
         }
-
         if (build) {
             resultText += ` z wyceną budowy`
-        }
-        
+        }        
         resultText += ` od ${price}zł.`;
     }
 
