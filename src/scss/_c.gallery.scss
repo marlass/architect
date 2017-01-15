@@ -1,20 +1,77 @@
 .gallery {
     width: 100%;
 
+    a {
+        width: 100%;
+        display: block;
+        height: 100%;
+    }
+
     &__item {
-        width: 25%;
+        width: 192px;
         margin: 0;
-        padding: 0.5em;
+        padding: 0;
         float: left;
+
+        @media all and (max-width: 61em) {
+            width: 20%;
+        }
+
+        @media all and (max-width: 52em) {
+            width: 25%;
+        }
+
+        @media all and (max-width: 44em) {
+            width: 33.3333333%;
+        }
+
+        @media all and (max-width: 30em) {
+            width: 50%;
+        }
     }
 
     &__img {
         width: 100%;
-        height: 150px;
+        height: 192px;
         object-fit: cover;
+        display: block;
+        object-position: top left;
+
+        @media all and (max-width: 26em) {
+            height: 150px;
+        }
     }
 
     &__caption {
+        display: none;
+    }
 
+    &__header {
+        width: 100%;
+        z-index: 2;
+        background-color: $secondary-7;
+        color: $white;
+        opacity: 0.75;
+        padding: 0.5em 0.6em;
+        margin: 0;
+        border-radius: 6px 6px 0 0;
+    }
+}
+
+
+.gallery-container {
+    max-width: 60em;
+    background-color: white;
+    margin: 0 auto;
+    position: relative;
+    height: 100%;
+    padding: 0;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    border-radius: 6px;
+    margin-top: 1.5em;
+    overflow: hidden;
+
+    @media all and (max-width: 61em) {
+        max-width: 96%;
     }
 }

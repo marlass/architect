@@ -69,13 +69,6 @@ export default function(store, catalog, team, masthead, pages) {
         container.appendChild(node);
         postRenderFunction(block, idCounter);
         idCounter += 1;
-        /*let selector = '[data-block-id="'+(idCounter-1)+'"] .block-text__text';
-        let newTextarea = document.querySelector(selector);
-        if (newTextarea) {
-            let mdeditor = new SimpleMDE(
-                {element: newTextarea,
-                autoDownloadFontAwesome: false});
-        }*/
     }
 
     function postRenderFunction(block, blockId) {    

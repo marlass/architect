@@ -109,7 +109,7 @@ export function clickList(e, store) {
         let blockIndex = 0;
         if (state.content) {
             for (let i= 0; i<state.content.length; i++) {
-                if (state.content[i].blockId === blockId) {
+                if (state.content[i].blockId == blockId) {
                     blockIndex = i;
                     break;
                 }

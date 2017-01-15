@@ -30,3 +30,19 @@
         width: 66.6666%;
     }
 }
+
+.project-container {
+    max-width: 60em;
+    margin: 0 auto;
+    position: relative;
+    background-color: white;
+    height: 100%;
+    min-height: 300px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    margin-top: 1.5em;
+    border-radius: 0 0 6px 6px;
+
+    @media all and (max-width: 61em) {
+        max-width: 96%;
+    }
+}

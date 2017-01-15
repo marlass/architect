@@ -1,0 +1,39 @@
+.text-block {
+    max-width: 60em;
+    background-color: white;
+    margin: 0 auto;
+    position: relative;
+    height: 100%;
+    min-height: 400px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    border-radius: 0 0 6px 6px;
+    padding: 1.2em;
+    color: $gray-8;
+
+    @media all and (max-width: 61em) {
+        max-width: 96%;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: 400;
+    }
+
+    a {
+        color: $secondary-7;
+        transition: color 0.15s ease-in-out;
+
+        &:hover,
+        &:focus {
+            color: $secondary-9;
+        }
+
+        &:active {
+            color: $secondary-5;
+        }
+    }
+}

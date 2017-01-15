@@ -4,5 +4,48 @@
     &__member {
         float: left;
         width: 33.33333%;
+        position: relative;
+        padding: 10px;
+        margin: 0;
     }
+
+    &__header {
+        padding-left: 10px;
+        color: $primary-8;
+    }
+}
+
+.member {
+    &__info {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+        font-size: 1.15em;
+        color: white;
+        background-color: $secondary-8;
+        padding: 0.3em 0.5em;
+    }
+
+    &__img {
+        display: block;
+        width: 100%;
+    }
+}
+
+.team-container {
+        max-width: 60em;
+        margin: 0 auto;
+        position: relative;
+        height: 100%;
+        min-height: 300px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        margin-top: 1.5em;
+        border-radius: 6px;
+        background-color: white;
+        padding: 10px;
+
+        @media all and (max-width: 61em) {
+            max-width: 96%;
+        }
 }

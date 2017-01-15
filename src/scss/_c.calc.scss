@@ -1,5 +1,4 @@
 .calc {
-    box-shadow: 0px 2px 8px $gray-6;
     padding: 20px;
 
     &__header {
@@ -110,5 +109,22 @@
     &__right {
         width: 50%;
         float: left;
+    }
+}
+
+.calc-container {
+    max-width: 60em;
+    background-color: $secondary-9;
+    margin: 0 auto;
+    position: relative;
+    height: 100%;
+    min-height: 400px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    border-radius: 6px;
+    padding: 1.2em;
+    margin-top: 1.5em;
+
+    @media all and (max-width: 61em) {
+        max-width: 96%;
     }
 }

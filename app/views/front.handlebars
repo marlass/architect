@@ -29,6 +29,10 @@
     <script src="/static/photoswipe/photoswipe.min.js"></script> 
     <script src="/static/photoswipe/photoswipe-ui-default.min.js"></script>
 
+    <script>
+        window.__GALLERY__ = {};
+    </script>
+
 </head>
 <body>
     <header>
@@ -72,22 +76,22 @@
         <div class="main">
             {{#each page.content}}
                 {{#equals this.sectionType 'masthead'}}
-                    <div class="masthead" style="background-image: url('/static/uploads/masthead/{{this.content.background}}')">
-                        <div class="masthead__inner">
+                    <div class="masthead">
+                        <div class="masthead__inner" style="background-image: url('/static/uploads/masthead/{{this.content.background}}')">
                             <h1 class="masthead__title">{{this.content.title}}</h1>
                         </div>
                     </div>
                 {{/equals}}
                 {{#equals this.sectionType 'text'}}
                     <div class="content" style="background-color: {{this.content.background}}">
-                        <div class="content__inner u-clearfix">
+                        <div class="content__inner u-clearfix text-block">
                             {{{this.content.text}}}
                         </div>
                     </div>
                 {{/equals}}
                 {{#equals this.sectionType 'calc'}}
                     <div class="content">
-                        <div class="content__inner u-clearfix">                            
+                        <div class="content__inner u-clearfix calc-container">                            
                             <div class="calc">
                                 <h2 class="calc__header">Oblicz przykładowy koszt projektu domu wolnostojącego</h2>
                                 <div class="calc__left">
@@ -150,7 +154,7 @@
                 {{/equals}}
                 {{#equals this.sectionType 'offices'}}
                     <div class="content">
-                        <div class="content__inner u-clearfix">
+                        <div class="content__inner u-clearfix office-container">
                             {{#if this.title}}
                                 <h2>{{this.title}}</h2>
                             {{/if}}
@@ -175,15 +179,15 @@
                 {{/equals}}
                 {{#equals this.sectionType 'team'}}
                     <div class="content">
-                        <div class="content__inner u-clearfix">
+                        <div class="content__inner u-clearfix team-container">
                             {{#if this.title}}
-                                <h2>{{this.title}}</h2>
+                                <h2 class="team__header">{{this.title}}</h2>
                             {{/if}}
                             <div class="team u-clearfix">
                                 {{#each this.content}}
                                 <figure class="team__member member">
                                     <img class="member__img" src="/static/uploads/team/{{this.content.img}}">
-                                    <figcaption class="memeber__info">
+                                    <figcaption class="member__info">
                                         {{this.content.title}}
                                     </figcaption>
                                 </figure>
@@ -194,7 +198,7 @@
                 {{/equals}}
                 {{#equals this.sectionType 'projectsBlock'}}
                     <div class="content">
-                        <div class="content__inner u-clearfix">
+                        <div class="content__inner u-clearfix project-container">
                             {{#each this.content}}
                             <div class="project {{#if this.content.big }}project--big{{/if}}">
                                 <a href="{{this.content.page}}" class="project__link"  style="background-image: url('/static/uploads/{{this.content.img}}');">
@@ -210,7 +214,7 @@
                 {{/equals}}
                 {{#equals this.sectionType 'smallOffices'}}
                     <div class="content">
-                        <div class="content__inner u-clearfix">
+                        <div class="content__inner u-clearfix small-office-container">
                             {{#each this.content}}
                             <p>
                                 {{this.content.title}}<br>
@@ -227,15 +231,23 @@
                     </div>
                 {{/equals}}
                 {{#equals this.sectionType 'gallery'}}
-                    <div class="content">
-                        <div class="content__inner u-clearfix">
+                    <div class="content" data-block-id="{{this.blockId}}">
+                        <script>
+                           window.__GALLERY__[{{this.blockId}}] = [];
+                        </script>
+                        <div class="content__inner u-clearfix gallery-container">
                             {{#if this.title}}
-                                <h2>{{this.title}}</h2>
+                                <h2 class="gallery__header">{{this.title}}</h2>
                             {{/if}}
                             <div class="gallery u-clearfix">
                                 {{#each this.content}}
                                 <figure class="gallery__item">
-                                    <img class="gallery__img" src="/static/uploads/{{this.content.img}}" alt="{{this.content.title}}">
+                                    <a href="/static/uploads/{{this.content.img}}">
+                                        <img class="gallery__img" src="/static/uploads_resized_320/{{this.content.img}}" alt="{{this.content.title}}">
+                                        <script>
+                                            window.__GALLERY__[{{../this.blockId}}].push({{{size this.content.img}}});
+                                        </script>
+                                    </a>
                                     <figcaption class="gallery__caption">
                                         {{this.content.title}}
                                     </figcaption>
