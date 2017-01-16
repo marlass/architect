@@ -196,7 +196,7 @@ body{height:100%;background-color:#eee;color:#424242}
 .calc-container{max-width:60em;background-color:#fff;margin:0 auto;position:relative;height:100%;min-height:400px;box-shadow:0 10px 20px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23);border-radius:6px;padding:1.2em;margin-top:1.5em}
 @media all and (max-width:61em){
 .calc-container{max-width:96%}}
-.text-block{max-width:60em;background-color:#fff;margin:0 auto;position:relative;height:100%;min-height:200px;box-shadow:0 10px 20px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23);border-radius:0 0 6px 6px;padding:1.2em;color:#424242}
+.text-block{max-width:60em;background-color:#fff;margin:0 auto;position:relative;height:100%;min-height:200px;box-shadow:0 10px 20px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23);border-radius:0 0 6px 6px;padding:1.2em;line-height:1.45;color:#424242}
 @media all and (max-width:61em){
 .text-block{max-width:96%}}
 .text-block h1,.text-block h2,.text-block h3,.text-block h4,.text-block h5,.text-block h6{font-weight:400}
