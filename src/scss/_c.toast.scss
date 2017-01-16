@@ -1,6 +1,7 @@
 .prophet{
     position: fixed;
     top: 20px;
+    z-index: 999;
     /*display: inline-block;*/
     margin-left:70%; /*Fallback for FF<26 and safari which doesn't calculate the margin */
     transition: margin .1s cubic-bezier(.07,.99,.93,.97);
@@ -14,7 +15,7 @@
     opacity: 0;
     background-color: #323232;
     color: #fafafa;
-    z-index: 99;
+    z-index: 99999;
     margin-top: 20px;
     cursor: pointer;
     border-radius: 2px;

@@ -34,8 +34,8 @@ module.exports = function(app) {
 
     app.post('/login', 
         passport.authenticate('local',
-            { successRedirect: '/admin/',
-            failureRedirect: '/' })
+            { successRedirect: '/admin/pageList',
+            failureRedirect: '/login' })
     );
 
     /* Login route */
@@ -45,9 +45,9 @@ module.exports = function(app) {
 
     /* Admin routes */
     /* Disable authenticatet routes for development */
-    /*app.all('/admin/*', ensureAuthenticated, function(req, res, next){
+    app.all('/admin/*', ensureAuthenticated, function(req, res, next){
         next();
-    });*/
+    });
 
     /* Logout */
     app.get('/admin/logout', function(req, res) {
