@@ -108,7 +108,7 @@ function calculatePrice () {
         if (build) {
             resultText += ` with build cost estimation`;
         }        
-        resultText += ` from ${price/5}£.`;
+        resultText += ` from ${floor(price/5)}£.`;
     } else {
         if (garden && terrace) {
             resultText = `Oferujemy projekt domu jednorodzinnego o metrażu ${area}m<sup>2</sup> z ogrodem i tarasem`;
@@ -132,7 +132,7 @@ function calculatePrice () {
         if (build) {
             resultText += ` z wyceną budowy`;
         }        
-        resultText += ` od ${price}zł.`;
+        resultText += ` od ${floor(price)}zł.`;
     }
 
     result.innerHTML = resultText;
